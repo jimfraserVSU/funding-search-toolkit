@@ -75,6 +75,13 @@ main{padding:2rem 0 4rem}
 label.opt{display:flex;gap:.55rem;align-items:flex-start;font-size:.9rem;padding:.24rem 0;cursor:pointer;color:var(--ink)}
 label.opt input{margin-top:.32rem;accent-color:var(--green);flex:none}
 label.opt .n{margin-left:auto;color:var(--muted);font-size:.78rem;font-variant-numeric:tabular-nums;padding-left:.4rem}
+/* Field labels above selects/inputs (awards, foundations, budget). */
+label[for]{display:block;font-weight:700;font-size:.78rem;color:var(--rust);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.32rem}
+/* Small print under a control or beneath a result set. */
+.fine{font-size:.8rem;color:var(--muted);margin:.35rem 0 0}
+/* The header is sticky, so anything scrolled to by script or by a #hash needs
+   clearance or the header sits on top of it. */
+h2,h3,[id]{scroll-margin-top:7.5rem}
 
 /* ---------- forms ---------- */
 input[type=text],input[type=search],input[type=number],input[type=date],select,textarea{width:100%;padding:.62rem .8rem;border:1px solid var(--line);border-radius:var(--r);font:inherit;font-size:.95rem;color:var(--ink);background:var(--paper)}

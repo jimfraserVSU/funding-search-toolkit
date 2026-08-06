@@ -6,6 +6,7 @@
     ['index.html', 'Search'],
     ['calendar.html', 'Deadlines'],
     ['funders.html', 'Funders'],
+    ['foundations.html', 'Foundation 990s'],
     ['awards.html', 'Award Intel'],
     ['budget.html', 'Budget'],
     ['proposal.html', 'Proposal Studio'],
@@ -87,6 +88,9 @@
     /* ---------- money / dates ---------- */
     money: function (n) {
       if (!n) return null;
+      /* Foundation endowments run to the tens of billions, so bare $M would
+         print things like $62192.7M. Billions get their own branch. */
+      if (n >= 1e9) return '$' + (n / 1e9).toFixed(n % 1e9 === 0 ? 0 : 1) + 'B';
       if (n >= 1e6) return '$' + (n / 1e6).toFixed(n % 1e6 === 0 ? 0 : 1) + 'M';
       if (n >= 1e3) return '$' + Math.round(n / 1e3) + 'K';
       return '$' + n;
