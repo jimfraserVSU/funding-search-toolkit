@@ -41,3 +41,8 @@
   from = "/api/grants-search"
   to = "/.netlify/functions/grants-search"
   status = 200
+
+[[redirects]]
+  from = "/api/foundations"
+  to = "/.netlify/functions/foundations"
+  status = 200

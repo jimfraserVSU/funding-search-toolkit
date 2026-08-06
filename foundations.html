@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Foundation 990s — Dr. Bucky Greenlove’s Funding Search Toolkit</title>
+<meta name="description" content="Vet a private foundation before you write the letter of inquiry: grants actually paid, assets, payout rate, ten-year trend, and a direct link to the 990-PF where every grantee is listed. Live IRS Form 990 data.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=ec5a332d">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap"><div class="brandbar">
+    <div class="mark" aria-hidden="true">G</div>
+    <div class="brandtxt"><strong>Dr. Bucky Greenlove’s Funding Search Toolkit</strong><span>Find it · Vet it · Win it</span></div>
+  </div></div>
+  <nav class="main" aria-label="Main"><div class="wrap navslot"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Foundation 990s</p>
+    <h1>Every foundation says it funds your field. The tax return says what it wrote cheques for.</h1>
+    <p>A private foundation must file <strong>Form 990-PF</strong> every year, and it is public. It reports what the foundation actually paid out, what it is sitting on, and — in the PDF — the name of every organisation that received money. Fifteen minutes here can save you six weeks on a letter of inquiry to a funder that was never going to say yes.</p>
+  </div>
+</section>
+
+<main id="main"><div class="wrap">
+
+  <div class="note"><p><strong>Read it in this order.</strong> First, <strong>scale</strong>: if a foundation pays out $400,000 a year across all causes, your $250,000 ask is not realistic. Second, the <strong>operating flag</strong>: an operating foundation spends its money running its own programmes and usually accepts no outside proposals at all. Third, the <strong>payout rate</strong>: private non-operating foundations must distribute roughly 5% of investment assets annually, so one sitting well below that is either newly formed or not in a giving posture. Only then open the PDF and read the grantee list — that is where you learn whether they fund institutions like yours.</p></div>
+
+  <form class="card" id="fSearch" style="margin-bottom:1.2rem">
+    <div class="searchbig" style="margin-bottom:.9rem">
+      <input type="search" id="qName" placeholder="Foundation name — e.g. Kresge, Mellon, Jessie Ball duPont" aria-label="Search foundations by name">
+      <button class="btn orange" type="submit">Search 990 filings</button>
+    </div>
+    <div class="grid g3" style="gap:.8rem">
+      <div>
+        <label for="qState">State</label>
+        <select id="qState">
+          <option value="">Any state</option>
+          <option value="VA">Virginia</option>
+          <option value="DC">District of Columbia</option>
+          <option value="MD">Maryland</option>
+          <option value="NC">North Carolina</option>
+          <option value="NY">New York</option>
+          <option value="PA">Pennsylvania</option>
+          <option value="GA">Georgia</option>
+          <option value="MI">Michigan</option>
+          <option value="IL">Illinois</option>
+          <option value="CA">California</option>
+          <option value="MA">Massachusetts</option>
+          <option value="TX">Texas</option>
+          <option value="FL">Florida</option>
+          <option value="OH">Ohio</option>
+          <option value="IN">Indiana</option>
+          <option value="MN">Minnesota</option>
+          <option value="NJ">New Jersey</option>
+          <option value="WA">Washington</option>
+          <option value="TN">Tennessee</option>
+          <option value="SC">South Carolina</option>
+          <option value="AL">Alabama</option>
+          <option value="MS">Mississippi</option>
+          <option value="LA">Louisiana</option>
+          <option value="MO">Missouri</option>
+          <option value="CT">Connecticut</option>
+          <option value="CO">Colorado</option>
+          <option value="WI">Wisconsin</option>
+          <option value="OR">Oregon</option>
+          <option value="AZ">Arizona</option>
+          <option value="KY">Kentucky</option>
+        </select>
+      </div>
+      <div>
+        <label for="qNtee">Category (NTEE major group)</label>
+        <select id="qNtee">
+          <option value="">Any category</option>
+          <option value="2">Education</option>
+          <option value="4">Health</option>
+          <option value="5">Human services</option>
+          <option value="7">Public &amp; societal benefit</option>
+          <option value="1">Arts, culture &amp; humanities</option>
+          <option value="3">Environment &amp; animals</option>
+          <option value="6">International &amp; foreign affairs</option>
+          <option value="8">Religion related</option>
+          <option value="9">Mutual &amp; membership benefit</option>
+        </select>
+      </div>
+      <div>
+        <label for="qEin">…or go straight to an EIN</label>
+        <input type="text" id="qEin" placeholder="38-1359217" inputmode="numeric" aria-describedby="einHelp">
+        <p id="einHelp" class="fine">Nine digits. Opens the 990 record directly.</p>
+      </div>
+    </div>
+  </form>
+
+  <div id="out" aria-live="polite"></div>
+
+  <div id="detail"></div>
+
+  <div class="note warn" style="margin-top:2rem"><p><strong>What this data can and cannot tell you.</strong> The figures below come from the IRS extract of each filed return, republished by ProPublica. Two limits worth knowing. Returns lag — the most recent year available is usually one to two years behind, so a foundation that changed direction last year will not show it yet. And the machine-readable extract carries <em>totals only</em>; the list of who actually received grants exists only inside the PDF of the return, which is why every year below links to its PDF. For a private foundation the grantee list is <strong>Part XV</strong>. It is worth the scroll.</p></div>
+
+  <div class="note"><p><strong>Community foundations are a different animal.</strong> Most file the ordinary Form 990 rather than a 990-PF, and the IRS extract for Form 990 does not include a grants-paid figure at all. When you look one up here you will see revenue, expenses and assets but no giving total — that is a gap in the federal data, not evidence that the organisation gives nothing. For those, total expenses is the usable proxy, and the PDF still holds the detail.</p></div>
+
+</div></main>
+
+<footer class="site"><div class="wrap footslot"></div></footer>
+
+<script src="assets/app.js?v=b1414f6b"></script>
+<script>
+(function(){
+  var out = document.getElementById('out');
+  var detail = document.getElementById('detail');
+  var LAST = null;
+
+  function api(qs){
+    return fetch('/api/foundations?' + qs)
+      .then(function(r){ return r.json().then(function(j){ j.__status = r.status; return j; }); })
+      .catch(function(){
+        /* If the pretty redirect is unavailable, hit the function path directly.
+           There is no direct-to-ProPublica fallback: that API sends no CORS
+           headers, so the browser would be blocked. */
+        return fetch('/.netlify/functions/foundations?' + qs)
+          .then(function(r){ return r.json().then(function(j){ j.__status = r.status; return j; }); });
+      });
+  }
+
+  function busy(el, msg){
+    el.innerHTML = '<div class="note"><p>' + TK.esc(msg) + '</p></div>';
+  }
+  function fail(el, msg){
+    el.innerHTML = '<div class="note danger"><p>' + TK.esc(msg) + '</p></div>';
+  }
+
+  /* ---------------- search ---------------- */
+
+  function search(){
+    var name  = document.getElementById('qName').value.trim();
+    var state = document.getElementById('qState').value;
+    var ntee  = document.getElementById('qNtee').value;
+    if(!name && !state && !ntee){
+      fail(out, 'Enter a name, or pick a state or category, before searching.');
+      return;
+    }
+    detail.innerHTML = '';
+    busy(out, 'Searching IRS 990 filings…');
+    var qs = new URLSearchParams();
+    if(name)  qs.set('q', name);
+    if(state) qs.set('state', state);
+    if(ntee)  qs.set('ntee', ntee);
+    api(qs.toString()).then(function(d){
+      if(d.error){ fail(out, d.error); return; }
+      LAST = d;
+      renderResults(d);
+    }).catch(function(){
+      fail(out, 'Could not reach the 990 lookup service. Try again in a moment.');
+    });
+  }
+
+  function renderResults(d){
+    if(!d.results.length){
+      out.innerHTML = '<div class="note warn"><p>No 501(c)(3) organisations matched. Try fewer words — “Kresge” finds more than “The Kresge Foundation of Troy Michigan”.</p></div>';
+      return;
+    }
+    var shown = d.results.length;
+    var h = '<p class="lead"><strong>' + d.total.toLocaleString() + '</strong> organisation' +
+            (d.total === 1 ? '' : 's') + ' matched. Showing ' + shown +
+            (d.pages > 1 ? ' (page ' + (d.page + 1) + ' of ' + d.pages + ')' : '') +
+            '. Pick one to pull its filing history.</p>';
+    d.results.forEach(function(o){
+      h += '<div class="res foundation">' +
+             '<h3>' + TK.esc(o.name) + '</h3>' +
+             '<p class="spons">' + TK.esc([o.city, o.state].filter(Boolean).join(', ') || 'Location not reported') +
+               ' · EIN ' + TK.esc(o.einFormatted) +
+               (o.ntee ? ' · NTEE ' + TK.esc(o.ntee) : '') + '</p>' +
+             '<div class="meta">' +
+               '<button class="btn sm" type="button" data-ein="' + TK.esc(String(o.ein)) + '">Open 990 record</button>' +
+               '<a href="https://projects.propublica.org/nonprofits/organizations/' + TK.esc(String(o.ein)) +
+                 '" target="_blank" rel="noopener">View on ProPublica</a>' +
+             '</div>' +
+           '</div>';
+    });
+    out.innerHTML = h;
+    Array.prototype.forEach.call(out.querySelectorAll('button[data-ein]'), function(b){
+      b.addEventListener('click', function(){ loadOrg(b.getAttribute('data-ein')); });
+    });
+  }
+
+  /* ---------------- organisation detail ---------------- */
+
+  function loadOrg(ein){
+    busy(detail, 'Pulling filing history…');
+    detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    api('mode=org&ein=' + encodeURIComponent(ein)).then(function(d){
+      if(d.error){ fail(detail, d.error); return; }
+      renderOrg(d);
+    }).catch(function(){
+      fail(detail, 'Could not load that record. Try again in a moment.');
+    });
+  }
+
+  function pct(v){ return v === null || v === undefined ? '—' : v + '%'; }
+  function dollars(v){ return v === null || v === undefined ? '—' : (TK.money(v) || '$0'); }
+
+  function renderOrg(d){
+    var h = '<h2 style="margin-top:2rem">' + TK.esc(d.name) + '</h2>';
+    h += '<p class="lead">' + TK.esc([d.city, d.state].filter(Boolean).join(', ')) +
+         ' · EIN ' + TK.esc(d.einFormatted) +
+         (d.ntee ? ' · NTEE ' + TK.esc(d.ntee) : '') + '</p>';
+
+    /* The two findings that change whether you should apply at all. */
+    if(d.isOperating === true){
+      h += '<div class="note danger"><p><strong>This is an operating foundation.</strong> It spends its money running programmes it operates itself. Operating foundations generally do not accept unsolicited proposals. Confirm directly before investing any writing time.</p></div>';
+    }
+    if(!d.isPrivateFoundation){
+      h += '<div class="note warn"><p><strong>Files Form 990, not 990-PF.</strong> ' + TK.esc(d.note) + '</p></div>';
+    }
+    if(d.grantsToIndividuals === true){
+      h += '<div class="note ok"><p>This foundation reports making grants <strong>to individuals</strong> as well as to organisations — relevant if you are looking for fellowship or scholarship support rather than an institutional award.</p></div>';
+    }
+
+    h += '<div class="grid g3" style="margin:1.2rem 0">' +
+           stat(dollars(d.latestGrantsPaid), 'Grants paid, ' + (d.latestYear || 'latest year')) +
+           stat(dollars(d.latestAssets), 'Assets held') +
+           stat(pct(d.latestPayoutPct), 'Paid out as share of assets') +
+         '</div>';
+    h += '<div class="grid g3" style="margin:1.2rem 0">' +
+           stat(dollars(d.medianGrantsPaid), 'Median annual giving') +
+           stat(d.trendPct === null ? '—' : (d.trendPct > 0 ? '+' : '') + d.trendPct + '%', 'Trend, recent vs. earlier years') +
+           stat(String(d.filings.length), 'Years of data available') +
+         '</div>';
+
+    if(d.isPrivateFoundation && d.latestPayoutPct !== null && d.latestPayoutPct < 3.5){
+      h += '<div class="note warn"><p>Payout is below the ~5% a private non-operating foundation is generally expected to distribute. That can mean a recently established endowment, a year with an unusual asset valuation, or a foundation not currently making new commitments. Worth a phone call before a proposal.</p></div>';
+    }
+
+    h += '<h3>Year by year</h3>';
+    h += '<table class="tbl"><caption class="sr">Annual financial summary from filed returns</caption><thead><tr>' +
+         '<th scope="col">Year</th><th scope="col">Form</th><th scope="col">Grants paid</th>' +
+         '<th scope="col">Assets</th><th scope="col">Payout</th><th scope="col">Expenses</th>' +
+         '<th scope="col">Return</th></tr></thead><tbody>';
+    d.filings.forEach(function(f){
+      h += '<tr>' +
+             '<td>' + TK.esc(String(f.year || '—')) + '</td>' +
+             '<td>' + TK.esc(f.form) + '</td>' +
+             '<td>' + (f.grantsPaid === null ? '<span style="color:var(--muted)">not in 990 data</span>' : dollars(f.grantsPaid)) + '</td>' +
+             '<td>' + dollars(f.assets) + '</td>' +
+             '<td>' + pct(f.payoutPct) + '</td>' +
+             '<td>' + dollars(f.expenses) + '</td>' +
+             '<td>' + (f.pdf ? '<a href="' + TK.esc(f.pdf) + '" target="_blank" rel="noopener">PDF</a>' : '—') + '</td>' +
+           '</tr>';
+    });
+    h += '</tbody></table>';
+
+    if(d.isPrivateFoundation){
+      h += '<div class="note"><p><strong>The grantee list is in the PDF.</strong> Open any year above and find <strong>Part XV, “Supplementary Information — Grants and Contributions Paid During the Year”</strong>. Every recipient is named, with the amount and the stated purpose. Read three years of it and you will know within minutes whether this foundation funds universities, whether it funds outside its home region, and what a typical award actually looks like.</p></div>';
+    }
+
+    if(d.pdfOnly.length){
+      h += '<h3>Earlier returns (PDF only)</h3><p>These years were filed but have no machine-readable extract. The PDFs still contain the full grantee lists.</p><p>';
+      d.pdfOnly.slice(0, 14).forEach(function(f){
+        h += '<a class="btn sm ghost" style="margin:.15rem .3rem .15rem 0" href="' + TK.esc(f.pdf) +
+             '" target="_blank" rel="noopener">' + TK.esc(String(f.year)) + ' ' + TK.esc(f.form) + '</a>';
+      });
+      h += '</p>';
+    }
+
+    h += '<p style="margin-top:1.4rem"><button class="btn" type="button" id="fCsv">Download this history as CSV</button> ' +
+         '<a class="btn ghost" href="' + TK.esc(d.sourceUrl) + '" target="_blank" rel="noopener">Full record on ProPublica</a></p>';
+    h += '<p class="fine">Source: ' + TK.esc(d.source) + '. Retrieved ' + TK.esc((d.fetched || '').slice(0, 10)) + '.</p>';
+
+    detail.innerHTML = h;
+    document.getElementById('fCsv').addEventListener('click', function(){
+      TK.csv(d.filings.map(function(f){
+        return {
+          Foundation: d.name, EIN: d.einFormatted, Year: f.year, Form: f.form,
+          'Grants paid': f.grantsPaid === null ? '' : f.grantsPaid,
+          Assets: f.assets === null ? '' : f.assets,
+          'Payout %': f.payoutPct === null ? '' : f.payoutPct,
+          Expenses: f.expenses === null ? '' : f.expenses,
+          'Return PDF': f.pdf || ''
+        };
+      }), (d.name || 'foundation').toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40) + '-990s.csv');
+    });
+  }
+
+  function stat(big, label){
+    return '<div class="stat"><b>' + TK.esc(big) + '</b><span>' + TK.esc(label) + '</span></div>';
+  }
+
+  /* ---------------- wiring ---------------- */
+
+  document.getElementById('fSearch').addEventListener('submit', function(e){
+    e.preventDefault();
+    var ein = document.getElementById('qEin').value.replace(/\D/g, '');
+    if(ein.length === 9){ out.innerHTML = ''; loadOrg(ein); return; }
+    if(ein.length){ fail(out, 'An EIN is nine digits. Leave the box empty to search by name instead.'); return; }
+    search();
+  });
+
+  /* Deep link: foundations.html?ein=381359217 or ?q=kresge */
+  var p = new URLSearchParams(location.search);
+  if(p.get('ein')) { document.getElementById('qEin').value = p.get('ein'); loadOrg(p.get('ein').replace(/\D/g,'')); }
+  else if(p.get('q')){ document.getElementById('qName').value = p.get('q'); search(); }
+})();
+</script>
+</body>
+</html>
