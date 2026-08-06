@@ -37,6 +37,8 @@
   <div class="toolbar" style="margin-bottom:1.2rem">
     <button class="btn orange" type="button" id="addBtn">Add an opportunity</button>
     <button class="btn ghost" type="button" id="importStars">Import my starred list</button>
+    <button class="btn ghost" type="button" id="icsBtn">Add deadlines to my calendar</button>
+    <button class="btn ghost" type="button" id="subBtn">Subscribe to tracked deadlines</button>
     <button class="btn ghost" type="button" id="csvBtn">Export CSV</button>
     <button class="btn ghost" type="button" id="backupBtn">Download backup</button>
     <button class="btn ghost" type="button" id="restoreBtn">Restore from backup</button>
@@ -72,13 +74,15 @@
 
   <div class="note" style="margin-top:2rem"><p><strong>How this connects to the rest of the site.</strong> Star anything on the Search or Funders pages, then use <em>Import my starred list</em> here to pull those entries in with their sponsor, deadline and link already filled. From there they are yours to annotate — the pipeline never changes on its own, so nothing you have written gets overwritten by a later import.</p></div>
 
+  <div class="note"><p><strong>Two ways to get these into your calendar, and they are not the same.</strong> <em>Add deadlines to my calendar</em> downloads a one-time <code>.ics</code> file covering every tracked item that has a date, including ones you typed in yourself, each with a 30-day and 7-day reminder. It is a snapshot — change a date here afterwards and your calendar will not know. <em>Subscribe to tracked deadlines</em> gives you a live feed URL that keeps itself current, but it can only carry items that came from the programme directory: manually added entries live only in your browser, and the server that builds the feed has never seen them. The download covers everything; the subscription stays current. Most people want both.</p></div>
+
   <div class="note ok"><p><strong>The annual review use.</strong> <em>Export CSV</em> gives you one row per opportunity with dates, amounts, your role and outcome — the format that drops straight into an annual report, a promotion dossier, or a chair's request for departmental grant activity. It is easier to keep this current in ninety seconds a month than to reconstruct a year of it from memory each spring.</p></div>
 
 </div></main>
 
 <footer class="site"><div class="wrap footslot"></div></footer>
 
-<script src="assets/app.js?v=3949eac0"></script>
+<script src="assets/app.js?v=b8b2bd7e"></script>
 <script>
 (function(){
   'use strict';
@@ -275,6 +279,49 @@
   });
 
   /* ---------- export / backup / restore ---------- */
+
+  /* One-time .ics covering everything with a date, hand-typed entries included. */
+  document.getElementById('icsBtn').addEventListener('click', function(){
+    var ev = P.all()
+      .filter(function(r){ return /^\d{4}-\d{2}-\d{2}$/.test(r.deadline || ''); })
+      .map(function(r){
+        var d = new Date(r.deadline + 'T00:00:00');
+        return {
+          date: d,
+          title: (LABEL[r.status] || r.status) + ': ' + (r.title || 'Untitled'),
+          desc: [r.sponsor && ('Sponsor: ' + r.sponsor),
+                 r.role && ('Role: ' + r.role),
+                 money(r.amount) && ('Request: ' + money(r.amount)),
+                 r.notes].filter(Boolean).join('\n'),
+          url: r.url || ''
+        };
+      });
+    if(!ev.length){
+      alert('None of your tracked items has a specific date yet.\n\nAdd a sponsor deadline to an entry (Edit → Sponsor deadline) and it will appear here.');
+      return;
+    }
+    TK.ics(ev, 'my-pipeline-deadlines.ics');
+  });
+
+  /* Live feed — only directory items, because those are the only ones the
+     server can resolve from an id. Manual entries never leave the browser. */
+  document.getElementById('subBtn').addEventListener('click', function(){
+    var all = P.all();
+    var ids = all.map(function(r){ return r.id; })
+                 .filter(function(id){ return id && !/^x[a-z0-9]{6,}$/.test(id); });
+    if(!ids.length){
+      alert('A live feed needs items that came from the programme directory.\n\nEverything you are tracking right now was added by hand, so there is nothing the feed server can look up. Use “Add deadlines to my calendar” instead — that covers manual entries too.');
+      return;
+    }
+    var url = location.origin + '/.netlify/functions/calendar?ids=' + ids.join(',');
+    var manual = all.length - ids.length;
+    navigator.clipboard.writeText(url).then(function(){
+      alert('Feed URL copied.\n\nIn your calendar app choose “Subscribe to calendar” (Google: Other calendars → From URL) and paste it.\n\nCovers ' + ids.length + ' item' + (ids.length===1?'':'s') + ' from the directory.' +
+        (manual ? '\n' + manual + ' manually added item' + (manual===1?'':'s') + ' cannot be included — use the download for those.' : ''));
+    }).catch(function(){
+      prompt('Copy this feed URL into your calendar app:', url);
+    });
+  });
 
   document.getElementById('csvBtn').addEventListener('click', function(){
     var all = P.all();
