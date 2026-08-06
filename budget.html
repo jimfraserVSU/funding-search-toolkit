@@ -7,7 +7,7 @@
 <meta name="description" content="Build a defensible grant budget with Virginia State University's rates: F&A on modified total direct costs with the right exclusions, fringe by category, course release, summer salary caps, and escalation.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=ec5a332d">
+<link rel="stylesheet" href="assets/style.css?v=324c7e13">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
 <style>
   .brow{display:grid;grid-template-columns:1.6fr .9fr .8fr .9fr .8fr 34px;gap:.5rem;align-items:end;margin-bottom:.5rem}
@@ -44,7 +44,7 @@
 <main id="main"><div class="wrap">
 
   <div class="note danger">
-    <p><strong>Read this before you trust a number below.</strong> VSU’s published F&amp;A rate agreement shows an effective period ending <strong>06/30/2025</strong>. A successor agreement almost certainly exists, but it is not published anywhere public. <strong>Get the current signed rate agreement PDF from the Office of Sponsored Research &amp; Programs before you submit any budget.</strong> The 44% / 20% below are last-published defaults, not confirmed current rates.</p>
+    <p><strong>The on-campus F&amp;A rate is 44% of modified total direct costs</strong>, confirmed current as of 2026-08-06. Off-campus is 20% MTDC, cognizant agency DHHS. One practical note that has nothing to do with whether the rate is right: some sponsors ask for the signed rate agreement PDF as an attachment, so it is worth having a copy from the Office of Sponsored Research &amp; Programs in your proposal file before you need it.</p>
     <p style="margin-top:.5rem">Second trap, from VSU’s own wording: <strong>37% is the fringe benefit rate, not the indirect rate.</strong> VSU’s salary page says the indirect cost rate agreement “has established a fringe benefit rate of 37%,” which reads to a lot of people as though 37% were the F&amp;A rate. It is not.</p>
   </div>
 
@@ -55,7 +55,7 @@
         <select id="sYears"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div>
       <div><label for="sFA">F&amp;A rate</label>
         <select id="sFA">
-          <option value="44">44% — on campus (last published)</option>
+          <option value="44">44% — on campus</option>
           <option value="20">20% — off campus (last published)</option>
           <option value="10">10% — de minimis</option>
           <option value="0">0% — sponsor prohibits indirect</option>
@@ -102,7 +102,7 @@
   <h2>The VSU numbers this uses</h2>
   <div class="scroll"><table class="tbl">
     <thead><tr><th>Item</th><th>Value</th><th>Note</th></tr></thead><tbody>
-      <tr><td>F&amp;A on campus</td><td>44.00% MTDC</td><td class="warn">Published agreement expired 06/30/2025 — confirm with OSRP</td></tr>
+      <tr><td>F&amp;A on campus</td><td>44.00% MTDC</td><td>Confirmed current, 2026-08-06</td></tr>
       <tr><td>F&amp;A off campus</td><td>20.00% MTDC</td><td>Same agreement</td></tr>
       <tr><td>F&amp;A base</td><td>Modified Total Direct Costs</td><td>Excludes equipment, tuition, participant support, and each subaward above $25,000</td></tr>
       <tr><td>Fringe — full time</td><td>37%</td><td>Of salaries and wages</td></tr>
@@ -118,7 +118,7 @@
 
 </div></main>
 <footer class="site"><div class="wrap footslot"></div></footer>
-<script src="assets/app.js?v=b1414f6b"></script>
+<script src="assets/app.js?v=3949eac0"></script>
 <script>
 (function(){
 'use strict';
@@ -256,7 +256,6 @@ function calc(){
   years.forEach(function(r){ ['sal','fringe','other','totalDirect','mtdc','indirect','total','excluded'].forEach(function(k){ g[k]+=r[k]; }); });
 
   if(!people.length&&!costs.length) flags.push({t:'warn',m:'Nothing entered yet — add at least one person or cost line.'});
-  if(fa===0.44) flags.push({t:'danger',m:'You are using <strong>44%</strong>, whose published rate agreement expired <strong>06/30/2025</strong>. Obtain the current signed agreement from OSRP before submitting.'});
   if(g.excluded>0) flags.push({t:'ok',m:'<strong>'+money(g.excluded)+'</strong> was correctly excluded from the F&amp;A base'+(g.sal&&years[0].subExcess?', including subaward costs above the first $25,000':'')+'. If you had charged F&amp;A on the full direct costs you would have over-requested roughly <strong>'+money(g.excluded*fa)+'</strong>.'});
   if(ceil&&g.total>ceil) flags.push({t:'danger',m:'Total of <strong>'+money(g.total)+'</strong> exceeds the ceiling you entered ('+money(ceil)+') by <strong>'+money(g.total-ceil)+'</strong>.'});
   if(g.sal&&(g.indirect/g.total)>0.32) flags.push({t:'warn',m:'Indirect costs are '+Math.round(g.indirect/g.total*100)+'% of the total request. That is normal at a 44% rate, but reviewers on capped or foundation programs notice — check whether this sponsor limits indirect.'});
@@ -340,7 +339,6 @@ document.getElementById('expJust').addEventListener('click',function(){
   });
   L.push('## Facilities and administrative costs','',
     'F&A is applied at '+(r.fa*100).toFixed(2)+'% of modified total direct costs, consistent with VSU\'s negotiated rate agreement with the U.S. Department of Health and Human Services. Equipment, tuition, participant support, and the portion of each subaward above $25,000 are excluded from the base.','',
-    '> CONFIRM before submission: VSU\'s published rate agreement period ended 06/30/2025. Obtain the current signed agreement from OSRP and update this paragraph and the rate above.','',
     '## Totals','',
     '| Year | Direct | F&A | Total |','|---|---|---|---|');
   r.years.forEach(function(y){ L.push('| '+y.y+' | '+money(y.totalDirect)+' | '+money(y.indirect)+' | '+money(y.total)+' |'); });

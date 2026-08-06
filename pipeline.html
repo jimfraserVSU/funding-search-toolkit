@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Pipeline — Dr. Bucky Greenlove’s Funding Search Toolkit</title>
+<meta name="description" content="Track what you are considering, drafting, and have submitted — with deadlines, amounts, and outcomes. Exports to CSV for annual review and to JSON for backup.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=324c7e13">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap"><div class="brandbar">
+    <div class="mark" aria-hidden="true">G</div>
+    <div class="brandtxt"><strong>Dr. Bucky Greenlove’s Funding Search Toolkit</strong><span>Find it · Vet it · Win it</span></div>
+  </div></div>
+  <nav class="main" aria-label="Main"><div class="wrap navslot"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">My pipeline</p>
+    <h1>Searching is the easy part. Remembering what you already started is the hard part.</h1>
+    <p>Stars mark what looked interesting. This tracks what you actually did about it — what you are drafting, what went out the door and when, and what came back. It also gives you the one thing every annual review asks for and nobody keeps: a dated list of what you submitted.</p>
+  </div>
+</section>
+
+<main id="main"><div class="wrap">
+
+  <div class="note danger"><p><strong>Read this before you rely on it.</strong> This list lives in <em>this browser on this computer</em> and nowhere else. It is not an account, there is no server copy, and clearing your browsing data will erase it. That is a deliberate trade — the site has no logins and collects nothing about you — but it means the backup below is not optional housekeeping. <strong>Export a backup whenever you add something you would hate to retype.</strong> The file restores in one click, on any machine.</p></div>
+
+  <div class="grid g4" id="summary" style="margin-bottom:1.4rem"></div>
+
+  <div class="toolbar" style="margin-bottom:1.2rem">
+    <button class="btn orange" type="button" id="addBtn">Add an opportunity</button>
+    <button class="btn ghost" type="button" id="importStars">Import my starred list</button>
+    <button class="btn ghost" type="button" id="csvBtn">Export CSV</button>
+    <button class="btn ghost" type="button" id="backupBtn">Download backup</button>
+    <button class="btn ghost" type="button" id="restoreBtn">Restore from backup</button>
+    <input type="file" id="restoreFile" accept="application/json,.json" aria-label="Choose a pipeline backup file to restore" hidden>
+  </div>
+
+  <form class="card" id="addForm" hidden style="margin-bottom:1.4rem">
+    <h2 style="margin-top:0;font-size:1.1rem">Add an opportunity</h2>
+    <div class="grid g3" style="gap:.8rem">
+      <div style="grid-column:1/-1"><label for="fTitle">Programme or opportunity</label>
+        <input type="text" id="fTitle" required placeholder="e.g. NSF Excellence in Research"></div>
+      <div><label for="fSponsor">Sponsor</label><input type="text" id="fSponsor" placeholder="e.g. National Science Foundation"></div>
+      <div><label for="fDeadline">Sponsor deadline</label><input type="date" id="fDeadline"></div>
+      <div><label for="fAmount">Amount you plan to request</label><input type="number" id="fAmount" min="0" step="1000" placeholder="250000"></div>
+      <div><label for="fRole">Your role</label>
+        <select id="fRole">
+          <option value="PI">PI</option><option value="Co-PI">Co-PI</option>
+          <option value="Co-I">Co-Investigator</option><option value="Senior personnel">Senior personnel</option>
+          <option value="Consultant">Consultant</option><option value="Subaward">Subaward to VSU</option>
+        </select></div>
+      <div><label for="fStatus">Status</label><select id="fStatus"></select></div>
+      <div><label for="fUrl">Link to the announcement</label><input type="text" id="fUrl" placeholder="https://"></div>
+      <div style="grid-column:1/-1"><label for="fNotes">Notes</label>
+        <textarea id="fNotes" placeholder="Programme officer contacted, collaborators, internal deadlines, what to reuse from last time…"></textarea></div>
+    </div>
+    <p style="margin:.9rem 0 0">
+      <button class="btn" type="submit">Save</button>
+      <button class="btn ghost" type="button" id="cancelAdd">Cancel</button>
+    </p>
+  </form>
+
+  <div id="board" aria-live="polite"></div>
+
+  <div class="note" style="margin-top:2rem"><p><strong>How this connects to the rest of the site.</strong> Star anything on the Search or Funders pages, then use <em>Import my starred list</em> here to pull those entries in with their sponsor, deadline and link already filled. From there they are yours to annotate — the pipeline never changes on its own, so nothing you have written gets overwritten by a later import.</p></div>
+
+  <div class="note ok"><p><strong>The annual review use.</strong> <em>Export CSV</em> gives you one row per opportunity with dates, amounts, your role and outcome — the format that drops straight into an annual report, a promotion dossier, or a chair's request for departmental grant activity. It is easier to keep this current in ninety seconds a month than to reconstruct a year of it from memory each spring.</p></div>
+
+</div></main>
+
+<footer class="site"><div class="wrap footslot"></div></footer>
+
+<script src="assets/app.js?v=3949eac0"></script>
+<script>
+(function(){
+  'use strict';
+  var P = TK.pipeline;
+  var board = document.getElementById('board');
+  var summary = document.getElementById('summary');
+  var form = document.getElementById('addForm');
+  var editingKey = null;
+
+  var LABEL = {}; P.STATUSES.forEach(function(s){ LABEL[s[0]] = s[1]; });
+  var TONE = { considering:'', drafting:'', submitted:'ok', awarded:'ok', declined:'warn', passed:'' };
+
+  /* status <select> options, used by the add form and by every row */
+  function statusOptions(sel){
+    return P.STATUSES.map(function(s){
+      return '<option value="'+s[0]+'"'+(s[0]===sel?' selected':'')+'>'+s[1]+'</option>';
+    }).join('');
+  }
+  document.getElementById('fStatus').innerHTML = statusOptions('considering');
+
+  function money(v){
+    var n = Number(v);
+    return (v === '' || v === null || !isFinite(n) || n <= 0) ? '' : '$' + n.toLocaleString();
+  }
+
+  /* ---------- summary ---------- */
+
+  function drawSummary(){
+    var all = P.all();
+    var by = {}; P.STATUSES.forEach(function(s){ by[s[0]] = 0; });
+    var requested = 0, awarded = 0;
+    all.forEach(function(r){
+      by[r.status] = (by[r.status] || 0) + 1;
+      var n = Number(r.amount) || 0;
+      if (r.status !== 'passed' && r.status !== 'declined') requested += n;
+      if (r.status === 'awarded') awarded += n;
+    });
+    var live = by.considering + by.drafting + by.submitted;
+    summary.innerHTML =
+      stat(String(all.length), 'Opportunities tracked') +
+      stat(String(live), 'Active right now') +
+      stat(requested ? (TK.money(requested) || '—') : '—', 'Requested or in play') +
+      stat(awarded ? (TK.money(awarded) || '—') : '—', 'Awarded');
+  }
+  function stat(b,s){ return '<div class="stat"><b>'+TK.esc(b)+'</b><span>'+TK.esc(s)+'</span></div>'; }
+
+  /* ---------- board ---------- */
+
+  function draw(){
+    drawSummary();
+    var all = P.all();
+    if(!all.length){
+      board.innerHTML = '<div class="note warn"><p>Nothing tracked yet. Use <strong>Add an opportunity</strong>, or star a few programmes on the Search page and then <strong>Import my starred list</strong>.</p></div>';
+      return;
+    }
+    var order = P.STATUSES.map(function(s){ return s[0]; });
+    all.sort(function(a,b){
+      var d = order.indexOf(a.status) - order.indexOf(b.status);
+      if (d) return d;
+      if (a.deadline && b.deadline) return a.deadline < b.deadline ? -1 : 1;
+      if (a.deadline) return -1;
+      if (b.deadline) return 1;
+      return (a.title||'').localeCompare(b.title||'');
+    });
+
+    var h = '';
+    order.forEach(function(st){
+      var rows = all.filter(function(r){ return r.status === st; });
+      if(!rows.length) return;
+      h += '<h2 style="font-size:1.12rem;margin:1.8rem 0 .7rem">' + TK.esc(LABEL[st]) +
+           ' <span style="color:var(--muted);font-weight:400">(' + rows.length + ')</span></h2>';
+      rows.forEach(function(r){ h += card(r); });
+    });
+    board.innerHTML = h;
+    wire();
+  }
+
+  function card(r){
+    var due = '';
+    if(r.deadline){
+      var d = TK.daysFrom ? TK.daysFrom(r.deadline) : null;
+      if(d !== null && d !== undefined && isFinite(d)){
+        due = d < 0 ? '<b style="color:var(--muted)">closed ' + Math.abs(d) + 'd ago</b>'
+            : d === 0 ? '<b style="color:var(--danger)">due today</b>'
+            : '<b style="color:' + (d <= 30 ? 'var(--danger)' : 'var(--ink)') + '">' + d + ' days out</b>';
+      }
+    }
+    return '<div class="res ' + (r.status === 'awarded' ? 'federal' : r.status === 'declined' ? 'nonprofit' : 'state') + '" data-k="' + TK.esc(r.key) + '">' +
+      '<h3>' + (r.url ? '<a href="' + TK.esc(r.url) + '" target="_blank" rel="noopener">' + TK.esc(r.title) + '</a>' : TK.esc(r.title)) + '</h3>' +
+      '<p class="spons">' + TK.esc(r.sponsor || 'Sponsor not recorded') + (r.role ? ' · ' + TK.esc(r.role) : '') + '</p>' +
+      (r.notes ? '<p class="desc">' + TK.esc(r.notes) + '</p>' : '') +
+      '<div class="meta">' +
+        '<span><label for="s-' + TK.esc(r.key) + '" class="sr">Status for ' + TK.esc(r.title) + '</label>' +
+          '<select id="s-' + TK.esc(r.key) + '" data-act="status" style="width:auto;padding:.3rem .5rem;font-size:.82rem">' + statusOptions(r.status) + '</select></span>' +
+        (r.deadline ? '<span>Deadline <b>' + TK.esc(r.deadline) + '</b> ' + due + '</span>' : '') +
+        (money(r.amount) ? '<span>Request <b>' + TK.esc(money(r.amount)) + '</b></span>' : '') +
+        (r.submitted ? '<span>Submitted <b>' + TK.esc(r.submitted) + '</b></span>' : '') +
+        (r.decided ? '<span>Decision <b>' + TK.esc(r.decided) + '</b></span>' : '') +
+        '<span>Added ' + TK.esc(r.added || '') + '</span>' +
+        '<button class="btn sm ghost" type="button" data-act="edit">Edit</button>' +
+        '<button class="btn sm ghost" type="button" data-act="del">Remove</button>' +
+      '</div></div>';
+  }
+
+  function wire(){
+    Array.prototype.forEach.call(board.querySelectorAll('.res'), function(el){
+      var k = el.getAttribute('data-k');
+      el.querySelector('[data-act=status]').addEventListener('change', function(e){
+        var patch = { key:k, status:e.target.value };
+        var today = new Date().toISOString().slice(0,10);
+        /* Stamp the date the moment a status implies one, so nobody has to
+           remember when they hit submit three weeks later. */
+        var cur = P.get(k) || {};
+        if(e.target.value === 'submitted' && !cur.submitted) patch.submitted = today;
+        if((e.target.value === 'awarded' || e.target.value === 'declined') && !cur.decided) patch.decided = today;
+        P.upsert(patch); draw();
+      });
+      el.querySelector('[data-act=edit]').addEventListener('click', function(){ openForm(k); });
+      el.querySelector('[data-act=del]').addEventListener('click', function(){
+        var r = P.get(k);
+        if(confirm('Remove "' + (r && r.title ? r.title : 'this entry') + '" from your pipeline?')){ P.remove(k); draw(); }
+      });
+    });
+  }
+
+  /* ---------- add / edit ---------- */
+
+  function openForm(key){
+    editingKey = key || null;
+    var r = key ? P.get(key) : null;
+    document.getElementById('fTitle').value    = r ? r.title : '';
+    document.getElementById('fSponsor').value  = r ? r.sponsor : '';
+    document.getElementById('fDeadline').value = r && /^\d{4}-\d{2}-\d{2}$/.test(r.deadline||'') ? r.deadline : '';
+    document.getElementById('fAmount').value   = r ? r.amount : '';
+    document.getElementById('fRole').value     = r && r.role ? r.role : 'PI';
+    document.getElementById('fStatus').innerHTML = statusOptions(r ? r.status : 'considering');
+    document.getElementById('fUrl').value      = r ? r.url : '';
+    document.getElementById('fNotes').value    = r ? r.notes : '';
+    form.hidden = false;
+    form.scrollIntoView({behavior:'smooth', block:'center'});
+    document.getElementById('fTitle').focus();
+  }
+
+  document.getElementById('addBtn').addEventListener('click', function(){ openForm(null); });
+  document.getElementById('cancelAdd').addEventListener('click', function(){ form.hidden = true; editingKey = null; });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var t = document.getElementById('fTitle').value.trim();
+    if(!t) return;
+    P.upsert({
+      key: editingKey || undefined,
+      title: t,
+      sponsor: document.getElementById('fSponsor').value.trim(),
+      deadline: document.getElementById('fDeadline').value,
+      amount: document.getElementById('fAmount').value,
+      role: document.getElementById('fRole').value,
+      status: document.getElementById('fStatus').value,
+      url: document.getElementById('fUrl').value.trim(),
+      notes: document.getElementById('fNotes').value.trim()
+    });
+    form.reset(); form.hidden = true; editingKey = null;
+    draw();
+  });
+
+  /* ---------- import from stars ---------- */
+
+  document.getElementById('importStars').addEventListener('click', function(){
+    var ids = TK.stars.all();
+    if(!ids.length){
+      alert('You have not starred anything yet. Star programmes on the Search or Funders pages, then come back.');
+      return;
+    }
+    TK.load('data/programs.json').then(function(d){
+      var progs = d.programs || d;
+      var byId = {}; progs.forEach(function(p){ byId[p.id] = p; });
+      var added = 0, skipped = 0;
+      ids.forEach(function(id){
+        if(P.has(id)){ skipped++; return; }   // never clobber notes already written
+        var p = byId[id];
+        if(!p) return;
+        P.upsert({
+          key: id, id: id, title: p.name, sponsor: p.sponsor, url: p.url,
+          deadline: '', amount: p.award_max || p.award_min || '',
+          status: 'considering',
+          notes: p.deadline ? ('Sponsor cycle: ' + p.deadline) : ''
+        });
+        added++;
+      });
+      draw();
+      alert('Added ' + added + ' starred opportunit' + (added === 1 ? 'y' : 'ies') + '.' +
+            (skipped ? '\n' + skipped + ' were already in your pipeline and were left untouched.' : ''));
+    }).catch(function(){ alert('Could not load the programme directory just now. Try again in a moment.'); });
+  });
+
+  /* ---------- export / backup / restore ---------- */
+
+  document.getElementById('csvBtn').addEventListener('click', function(){
+    var all = P.all();
+    if(!all.length){ alert('Nothing to export yet.'); return; }
+    TK.csv(all.map(function(r){
+      return {
+        Opportunity: r.title, Sponsor: r.sponsor, Role: r.role,
+        Status: LABEL[r.status] || r.status,
+        'Amount requested': r.amount, 'Sponsor deadline': r.deadline,
+        'Date added': r.added, 'Date submitted': r.submitted, 'Date decided': r.decided,
+        Notes: r.notes, Link: r.url
+      };
+    }), 'funding-pipeline-' + new Date().toISOString().slice(0,10) + '.csv');
+  });
+
+  document.getElementById('backupBtn').addEventListener('click', function(){
+    if(!P.count()){ alert('Nothing to back up yet.'); return; }
+    TK.download(P.exportJson(), 'pipeline-backup-' + new Date().toISOString().slice(0,10) + '.json', 'application/json');
+  });
+
+  document.getElementById('restoreBtn').addEventListener('click', function(){
+    document.getElementById('restoreFile').click();
+  });
+  document.getElementById('restoreFile').addEventListener('change', function(e){
+    var f = e.target.files && e.target.files[0];
+    if(!f) return;
+    var mode = P.count()
+      ? (confirm('You already have ' + P.count() + ' entries.\n\nOK = merge the backup into what is here.\nCancel = replace everything with the backup.') ? 'merge' : 'replace')
+      : 'replace';
+    var fr = new FileReader();
+    fr.onload = function(){
+      try {
+        var n = P.importJson(fr.result, mode);
+        draw();
+        alert('Restored ' + n + ' entries (' + mode + ').');
+      } catch(err){
+        alert('That file does not look like a pipeline backup.');
+      }
+      e.target.value = '';
+    };
+    fr.readAsText(f);
+  });
+
+  draw();
+})();
+</script>
+</body>
+</html>
