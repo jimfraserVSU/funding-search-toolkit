@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Award Intel — Dr. Bucky Greenlove’s Funding Search Toolkit</title>
+<meta name="description" content="What actually got funded: recent awards by program, Virginia State University's own award record, and what peer HBCUs are winning — live from NIH RePORTER and NSF Award Search.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=f9cb0a4c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap"><div class="brandbar">
+    <div class="mark" aria-hidden="true">G</div>
+    <div class="brandtxt"><strong>Dr. Bucky Greenlove’s Funding Search Toolkit</strong><span>Find it · Vet it · Win it</span></div>
+  </div></div>
+  <nav class="main" aria-label="Main"><div class="wrap navslot"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Award intel</p>
+    <h1>Stop guessing what a program funds. Go read what it funded.</h1>
+    <p>Announcements describe what a program <em>says</em> it wants. The award record shows what it <strong>actually bought</strong> — at what size, to what kind of institution, for what kind of project. This is the most underused move in grant seeking, and both databases are free.</p>
+  </div>
+</section>
+
+<main id="main"><div class="wrap">
+
+  <div class="note"><strong>How to use this well.</strong> Before you write a word, pull ten to fifteen funded projects in your target program. Notice the scale of the awards, how the titles are framed, whether they are single-PI or team, and which institutions keep appearing. You are calibrating against reality instead of against the announcement's aspirations. Then look at the <strong>peers</strong> tab: if institutions like yours are winning, the question stops being “can we?” and becomes “what did they have that we need?”</p></div>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-prog" aria-controls="p-prog" aria-selected="true">Search awards</button>
+    <button role="tab" id="tab-vsu" aria-controls="p-vsu" aria-selected="false">VSU’s record</button>
+    <button role="tab" id="tab-peer" aria-controls="p-peer" aria-selected="false">Peer HBCUs</button>
+  </div>
+
+  <!-- ======== SEARCH ======== -->
+  <div id="p-prog" role="tabpanel" aria-labelledby="tab-prog">
+    <form class="card" id="fProg" style="margin-bottom:1.2rem">
+      <div class="searchbig" style="margin-bottom:.9rem">
+        <input type="search" id="qText" placeholder="Topic, method, or population — e.g. health disparities, teacher preparation, food security" aria-label="Search funded awards">
+        <button class="btn orange" type="submit">Search awards</button>
+      </div>
+      <div class="grid g3" style="gap:.8rem">
+        <div><label for="qMech">NIH mechanism</label>
+          <select id="qMech">
+            <option value="">Any NIH mechanism</option>
+            <option value="R15">R15 — AREA/REAP (undergraduate-serving institutions)</option>
+            <option value="SC1,SC2,SC3">SC1–SC3 — SCORE (MSI-focused)</option>
+            <option value="R01">R01 — the standard research project</option>
+            <option value="R21">R21 — exploratory/developmental</option>
+            <option value="R03">R03 — small grant</option>
+            <option value="U54,P20">U54 / P20 — centers and partnerships (RCMI-type)</option>
+            <option value="K01,K08,K23,K99">K-series — career development</option>
+            <option value="R25,T34,R16">R25 / T34 / R16 — education and training</option>
+          </select></div>
+        <div><label for="qNsf">NSF program</label>
+          <input type="text" id="qNsf" placeholder="e.g. HBCU-EiR, S-STEM, LSAMP"></div>
+        <div><label for="qYears">Fiscal years</label>
+          <select id="qYears">
+            <option value="2025,2026">Last 2 years</option>
+            <option value="2024,2025,2026" selected>Last 3 years</option>
+            <option value="2022,2023,2024,2025,2026">Last 5 years</option>
+          </select></div>
+      </div>
+    </form>
+    <div id="outProg"></div>
+  </div>
+
+  <!-- ======== VSU ======== -->
+  <div id="p-vsu" role="tabpanel" aria-labelledby="tab-vsu" hidden>
+    <div class="note ok"><strong>Why this matters beyond curiosity.</strong> Capacity narratives, institutional-commitment sections, and “prior support” statements all need real numbers, and reviewers distrust narratives without them. This is also the fastest way to find an internal collaborator who has already won from the agency you are targeting.</div>
+    <div class="toolbar">
+      <label for="vsuOrg" class="sr">Institution</label>
+      <input type="text" id="vsuOrg" value="VIRGINIA STATE UNIVERSITY" style="max-width:340px">
+      <button class="btn orange sm" id="vsuGo">Pull award record</button>
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="vsuCsv" disabled>⬇ CSV</button>
+    </div>
+    <div id="outVsu"></div>
+  </div>
+
+  <!-- ======== PEERS ======== -->
+  <div id="p-peer" role="tabpanel" aria-labelledby="tab-peer" hidden>
+    <div class="note"><strong>The comparison set.</strong> Howard · NC A&amp;T · Morgan State · Florida A&amp;M · Jackson State · Tennessee State · Prairie View A&amp;M · Alabama A&amp;M · Delaware State · Norfolk State · Hampton · Clark Atlanta · Tuskegee · Texas Southern · Virginia State. NSF results are not restricted to this list — NSF’s API filters by program and keyword rather than by institution set, so read the NSF rows as national context.</div>
+    <form class="card" id="fPeer" style="margin-bottom:1.2rem">
+      <div class="searchbig">
+        <label for="peerText" class="sr">Topic filter for peer comparison</label>
+        <input type="search" id="peerText" placeholder="Optional topic filter — leave blank to see everything these institutions won">
+        <button class="btn orange" type="submit">Compare</button>
+      </div>
+    </form>
+    <div id="outPeer"></div>
+  </div>
+
+</div></main>
+<footer class="site"><div class="wrap footslot"></div></footer>
+<script src="assets/app.js?v=0dada977"></script>
+<script>
+(function(){
+'use strict';
+var LAST={};
+
+var tabs=[['tab-prog','p-prog'],['tab-vsu','p-vsu'],['tab-peer','p-peer']];
+tabs.forEach(function(t){
+  document.getElementById(t[0]).addEventListener('click',function(){
+    tabs.forEach(function(o){
+      document.getElementById(o[0]).setAttribute('aria-selected',o[0]===t[0]?'true':'false');
+      document.getElementById(o[1]).hidden=o[0]!==t[0];
+    });
+  });
+});
+
+function money(n){
+  if(!n) return '—';
+  if(n>=1e6) return '$'+(n/1e6).toFixed(n%1e6===0?0:2)+'M';
+  if(n>=1e3) return '$'+Math.round(n/1e3)+'K';
+  return '$'+n;
+}
+function card(a){
+  var e=TK.esc;
+  return '<article class="res '+(a.source==='NIH'?'federal':'foundation')+'">'+
+    '<h3><a href="'+e(a.url)+'" target="_blank" rel="noopener">'+e(a.title||'(untitled)')+'</a></h3>'+
+    '<p class="spons">'+e(a.org)+(a.state?' · '+e(a.state):'')+'</p>'+
+    '<div class="meta">'+
+      '<span><b>'+e(a.source)+'</b>'+(a.admin&&a.admin!==a.source?' '+e(a.admin):'')+'</span>'+
+      '<span><b>Award:</b> '+e(money(a.amount))+'</span>'+
+      '<span><b>FY:</b> '+e(a.year||'—')+'</span>'+
+      (a.program?'<span><b>Program:</b> '+e(a.program)+'</span>':'')+
+      (a.pi?'<span><b>PI:</b> '+e(a.pi)+'</span>':'')+
+    '</div></article>';
+}
+function summary(d,label){
+  var e=TK.esc;
+  var h='<div class="grid g3" style="margin-bottom:1.2rem">'+
+    '<div class="stat"><b>'+d.count+'</b><span>awards found'+(label?' — '+e(label):'')+'</span></div>'+
+    '<div class="stat"><b>'+money(d.totalDollars)+'</b><span>total obligated across these awards</span></div>'+
+    '<div class="stat"><b>'+money(d.medianAward)+'</b><span>median award size — size your ask to this</span></div>'+
+  '</div>';
+  if(d.topOrgs&&d.topOrgs.length>1){
+    h+='<h3>Who is winning</h3><div class="scroll"><table class="tbl"><thead><tr><th>Institution</th><th style="width:130px">Total</th></tr></thead><tbody>'+
+      d.topOrgs.map(function(o){return '<tr><td>'+e(o.key)+'</td><td>'+money(o.value)+'</td></tr>';}).join('')+
+    '</tbody></table></div>';
+  }
+  if(d.topPrograms&&d.topPrograms.length>1){
+    h+='<h3>Most common mechanisms and programs</h3><div class="chips" style="margin-bottom:1rem">'+
+      d.topPrograms.map(function(p){return '<span class="chip">'+e(p.key)+' · '+p.value+'</span>';}).join('')+'</div>';
+  }
+  return h;
+}
+function run(body,box,label,key){
+  var el=document.getElementById(box);
+  el.innerHTML='<div class="empty"><span class="spin" style="border-color:rgba(30,39,33,.25);border-top-color:var(--green)"></span> Querying NIH RePORTER and NSF Award Search…</div>';
+  return fetch('/.netlify/functions/awards',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(key) LAST[key]=d;
+      if(d.error&&!(d.hits||[]).length){ el.innerHTML='<div class="note danger"><strong>'+TK.esc(d.error)+'</strong> '+TK.esc(d.detail||'')+'</div>'; return d; }
+      if(!d.hits||!d.hits.length){
+        el.innerHTML='<div class="empty"><h3>No awards matched.</h3><p>Both databases match literally. Try a broader term, drop the mechanism filter, or widen the year range. A genuinely empty result is itself informative — it may mean the program is new, or that you are describing the work in vocabulary the agency does not use.</p></div>';
+        return d;
+      }
+      el.innerHTML=summary(d,label)+'<h3>The awards</h3>'+d.hits.map(card).join('')+
+        (d.errors&&d.errors.length?'<div class="note warn" style="margin-top:1rem"><strong>Partial results.</strong> One source did not respond: '+TK.esc(d.errors.join('; '))+'</div>':'');
+      return d;
+    })
+    .catch(function(){
+      el.innerHTML='<div class="note danger"><strong>Could not reach the award databases.</strong> Try again in a moment, or search directly at <a href="https://reporter.nih.gov/" rel="noopener">RePORTER</a> and <a href="https://www.nsf.gov/awardsearch/" rel="noopener">NSF Award Search</a>.</div>';
+    });
+}
+
+document.getElementById('fProg').addEventListener('submit',function(e){
+  e.preventDefault();
+  var mech=document.getElementById('qMech').value;
+  run({mode:'program',
+       text:document.getElementById('qText').value.trim(),
+       activityCodes:mech?mech.split(','):[],
+       nsfProgram:document.getElementById('qNsf').value.trim(),
+       years:document.getElementById('qYears').value.split(',').map(Number),
+       limit:40},'outProg',document.getElementById('qText').value.trim()||'all');
+});
+document.getElementById('vsuGo').addEventListener('click',function(){
+  var org=document.getElementById('vsuOrg').value.trim();
+  run({mode:'org',org:org,years:[2021,2022,2023,2024,2025,2026],limit:50},'outVsu',org,'vsu')
+    .then(function(d){ document.getElementById('vsuCsv').disabled=!(d&&d.hits&&d.hits.length); });
+});
+document.getElementById('vsuCsv').addEventListener('click',function(){
+  var d=LAST.vsu; if(!d||!d.hits) return;
+  TK.csv(d.hits.map(function(a){
+    return {Source:a.source,Title:a.title,Institution:a.org,Amount:a.amount,'Fiscal year':a.year,
+            Program:a.program,PI:a.pi,'Award number':a.num,URL:a.url};
+  }),'award-record.csv');
+});
+document.getElementById('fPeer').addEventListener('submit',function(e){
+  e.preventDefault();
+  run({mode:'peers',text:document.getElementById('peerText').value.trim(),
+       years:[2023,2024,2025,2026],limit:50},'outPeer','peer institutions');
+});
+
+/* Deep link: awards.html?q=health+disparities runs the search on load */
+var pre=new URLSearchParams(location.search).get('q');
+if(pre){ document.getElementById('qText').value=pre; document.getElementById('fProg').dispatchEvent(new Event('submit')); }
+})();
+</script>
+</body>
+</html>

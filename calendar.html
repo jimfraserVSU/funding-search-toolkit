@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deadline Calendar — Dr. Bucky Greenlove’s Funding Search Toolkit</title>
+<meta name="description" content="Upcoming funding deadlines across federal, foundation, and state programs, with urgency flags, discipline filters, and calendar export.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=f9cb0a4c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap"><div class="brandbar">
+    <div class="mark" aria-hidden="true">G</div>
+    <div class="brandtxt"><strong>Dr. Bucky Greenlove’s Funding Search Toolkit</strong><span>Find it · Vet it · Win it</span></div>
+  </div></div>
+  <nav class="main" aria-label="Main"><div class="wrap navslot"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Deadline calendar</p>
+    <h1>What is closing, and how long you actually have.</h1>
+    <p>Deadlines here are derived from each program’s published cycle. Treat them as planning dates, not authorities — every one links to the funder, and the funder is always right.</p>
+  </div>
+</section>
+
+<main id="main"><div class="wrap">
+
+  <div class="note warn"><strong>How these dates are produced.</strong> Most recurring programs publish a cycle (“first Tuesday in March,” “LOI in July, full proposal in October”) rather than a single date. This page parses those cycles into the next likely occurrence so you can plan. <strong>Before you build a schedule on any date here, open the funder link and confirm it.</strong> Programs get delayed, restructured, and cancelled — especially in unsettled budget years.</div>
+
+  <div id="profileBar"></div>
+
+  <div class="card" style="margin-bottom:1.4rem">
+    <h2 style="margin-top:0;font-size:1.3rem">Subscribe instead of downloading</h2>
+    <p style="margin-bottom:.6rem">A downloaded <code>.ics</code> is a snapshot — it never updates. This feed does. Subscribe once and deadlines stay current in Outlook, Google Calendar, or Apple Calendar, with reminders at 30 days and one week.</p>
+    <div class="toolbar" style="margin-bottom:.5rem">
+      <button class="btn orange sm" id="subCopy">🔗 Copy feed URL</button>
+      <a class="btn ghost sm" id="subOpen" href="/.netlify/functions/calendar">Preview the feed</a>
+      <span style="font-size:.85rem;color:var(--muted)">Reflects your current discipline and quick filters.</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);margin:0"><strong>Outlook:</strong> Add calendar → Subscribe from web → paste. <strong>Google:</strong> Other calendars → From URL. <strong>Apple:</strong> File → New Calendar Subscription.</p>
+  </div>
+
+  <div class="cols">
+    <aside class="card filters" aria-label="Filters">
+      <h2 style="margin:0 0 .6rem;font-size:1.05rem">Narrow it down</h2>
+      <div class="fgroup" open>
+        <label for="win" style="font-weight:700;font-size:.82rem;color:var(--rust);text-transform:uppercase;letter-spacing:.05em">Time window</label>
+        <select id="win" style="margin-top:.4rem">
+          <option value="60">Next 60 days</option>
+          <option value="120" selected>Next 4 months</option>
+          <option value="180">Next 6 months</option>
+          <option value="365">Next 12 months</option>
+        </select>
+      </div>
+      <details class="fgroup" open><summary>Discipline</summary><div class="opts" id="fFields"></div></details>
+      <details class="fgroup" open><summary>Quick filters</summary><div class="opts">
+        <label class="opt"><input type="checkbox" id="fHbcu"><span>HBCU / MSI eligible or targeted</span></label>
+        <label class="opt"><input type="checkbox" id="fEval"><span>Program evaluation &amp; applied research</span></label>
+        <label class="opt"><input type="checkbox" id="fEarly"><span>Early career, postdoc, or student</span></label>
+        <label class="opt"><input type="checkbox" id="fSeed"><span>Seed / pilot (under $100K)</span></label>
+      </div></details>
+      <details class="fgroup" open><summary>Funder type</summary><div class="opts" id="fTypes"></div></details>
+    </aside>
+
+    <div>
+      <div class="toolbar">
+        <span class="count" id="cCount">—</span>
+        <span class="spacer"></span>
+        <button class="btn ghost sm" id="cIcs">📅 Export all to calendar</button>
+        <button class="btn ghost sm" id="cCsv">⬇ CSV</button>
+      </div>
+      <div id="cal" aria-live="polite"></div>
+
+      <hr>
+      <h2 id="rolling">Rolling and always-open programs</h2>
+      <p>No deadline pressure — which is exactly why people forget these exist. Several are excellent first targets.</p>
+      <div id="rollingList"></div>
+
+      <hr>
+      <h2 id="live">Closing soon on Grants.gov</h2>
+      <p>Live federal opportunities with a close date inside the next 30 days. Pulled from Grants.gov when you click.</p>
+      <button class="btn orange" id="soonGo">Show federal opportunities closing within 30 days</button>
+      <div id="soon" style="margin-top:1.2rem"></div>
+    </div>
+  </div>
+
+</div></main>
+<footer class="site"><div class="wrap footslot"></div></footer>
+<script src="assets/app.js?v=0dada977"></script>
+<script>
+(function(){
+'use strict';
+var DATA=[],SELF=[],SELT=[];
+var MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function early(p){ return p.career_stage.some(function(s){return ['early-career','postdoc','graduate','undergraduate'].indexOf(s)>=0;}); }
+function isEval(p){ return p.fields.indexOf('Program Evaluation')>=0 || /evaluation/i.test(p.blob); }
+function match(p){
+  if(!TK.profile.matches(p)) return false;
+  if(SELF.length && !p.fields.some(function(f){return SELF.indexOf(f)>=0;})) return false;
+  if(SELT.length && SELT.indexOf(p.sponsor_type)<0) return false;
+  if(document.getElementById('fHbcu').checked && !p.hbcu_msi) return false;
+  if(document.getElementById('fEval').checked && !isEval(p)) return false;
+  if(document.getElementById('fEarly').checked && !early(p)) return false;
+  if(document.getElementById('fSeed').checked && !(p.award_max>0&&p.award_max<100000)) return false;
+  return true;
+}
+function row(p){
+  var e=TK.esc, dd=TK.days(p._d);
+  var cls=dd<=30?'soon':(dd<=90?'near':'open');
+  return '<article class="res '+e(p.sponsor_type)+'">'+
+   '<h3><a href="'+e(p.url)+'" target="_blank" rel="noopener">'+e(p.name)+'</a></h3>'+
+   '<p class="spons">'+e(p.sponsor)+'</p>'+
+   '<div class="meta">'+
+     '<span class="due '+cls+'">'+TK.fmtDate(p._d)+' · '+dd+' days</span>'+
+     '<span><b>Award:</b> '+e(TK.range(p.award_min,p.award_max))+'</span>'+
+     '<span><b>Published cycle:</b> '+e(p.deadline||'—')+'</span>'+
+   '</div>'+
+   (p.hbcu_msi?'<div class="chips"><span class="chip hbcu">HBCU / MSI</span>'+(isEval(p)?'<span class="chip eval">Evaluation</span>':'')+'</div>':(isEval(p)?'<div class="chips"><span class="chip eval">Evaluation</span></div>':''))+
+  '</article>';
+}
+function render(){
+  var win=+document.getElementById('win').value;
+  var dated=DATA.filter(function(p){
+    if(p._d==='rolling'||!p._d) return false;
+    var dd=TK.days(p._d); return dd!=null&&dd>=0&&dd<=win&&match(p);
+  }).sort(function(a,b){return a._d-b._d;});
+
+  var groups={},order=[];
+  dated.forEach(function(p){
+    var k=p._d.getFullYear()+'-'+p._d.getMonth();
+    if(!groups[k]){groups[k]=[];order.push(k);}
+    groups[k].push(p);
+  });
+  var html='';
+  order.forEach(function(k){
+    var parts=k.split('-');
+    html+='<h3 style="margin-top:2rem;border-bottom:2px solid var(--rust);padding-bottom:.3rem">'+MON[+parts[1]]+' '+parts[0]+
+          ' <span style="font-family:var(--sans);font-size:.85rem;color:var(--muted);font-weight:600">'+groups[k].length+'</span></h3>';
+    groups[k].forEach(function(p){html+=row(p);});
+  });
+  document.getElementById('cal').innerHTML=html||'<div class="empty"><h3>Nothing in this window with these filters.</h3><p>Widen the time window or clear a filter. Many programs publish only a rough cycle, so they appear under “rolling” below.</p></div>';
+  document.getElementById('cCount').textContent=dated.length+' deadline'+(dated.length===1?'':'s')+' in the next '+win+' days';
+  window._dated=dated;
+
+  var roll=DATA.filter(function(p){ return (p._d==='rolling'||/rolling|continuous|anytime/i.test(p.deadline||''))&&match(p); });
+  document.getElementById('rollingList').innerHTML=roll.length?roll.map(function(p){
+    return '<article class="res '+TK.esc(p.sponsor_type)+'"><h3><a href="'+TK.esc(p.url)+'" target="_blank" rel="noopener">'+TK.esc(p.name)+'</a></h3>'+
+      '<p class="spons">'+TK.esc(p.sponsor)+'</p><p class="desc">'+TK.esc(p.description)+'</p>'+
+      '<div class="meta"><span class="due open">Rolling</span><span><b>Award:</b> '+TK.esc(TK.range(p.award_min,p.award_max))+'</span></div></article>';
+  }).join(''):'<p style="color:var(--muted)">No rolling programs match the current filters.</p>';
+}
+function facets(){
+  var fc={},tc={};
+  DATA.forEach(function(p){ p.fields.forEach(function(f){fc[f]=(fc[f]||0)+1;}); tc[p.sponsor_type]=(tc[p.sponsor_type]||0)+1; });
+  var NAMES={federal:'Federal agency',foundation:'Private foundation',state:'State / regional',nonprofit:'Association / nonprofit'};
+  document.getElementById('fFields').innerHTML=Object.keys(fc).sort().map(function(f){
+    return '<label class="opt"><input type="checkbox" data-fld="'+TK.esc(f)+'"><span>'+TK.esc(f)+'</span><span class="n">'+fc[f]+'</span></label>';
+  }).join('');
+  document.getElementById('fTypes').innerHTML=Object.keys(tc).sort().map(function(t){
+    return '<label class="opt"><input type="checkbox" data-typ="'+TK.esc(t)+'"><span>'+TK.esc(NAMES[t]||t)+'</span><span class="n">'+tc[t]+'</span></label>';
+  }).join('');
+}
+document.addEventListener('change',function(e){
+  if(e.target.dataset&&e.target.dataset.fld!=null){
+    SELF=[].slice.call(document.querySelectorAll('[data-fld]:checked')).map(function(i){return i.dataset.fld;});
+  }
+  if(e.target.dataset&&e.target.dataset.typ!=null){
+    SELT=[].slice.call(document.querySelectorAll('[data-typ]:checked')).map(function(i){return i.dataset.typ;});
+  }
+  if(DATA.length){ render(); syncFeed(); }
+});
+document.getElementById('cIcs').addEventListener('click',function(){
+  var L=(window._dated||[]);
+  if(!L.length){alert('Nothing to export in this window.');return;}
+  TK.ics(L.map(function(p){
+    return {date:p._d,title:'Grant deadline: '+p.name,
+      desc:p.sponsor+'\n'+TK.range(p.award_min,p.award_max)+'\nPublished cycle: '+(p.deadline||'')+'\n\nThis date is estimated from the program cycle. CONFIRM against the funder page:\n'+p.url,
+      url:p.url};
+  }),'funding-deadlines.ics');
+});
+document.getElementById('cCsv').addEventListener('click',function(){
+  var L=(window._dated||[]); if(!L.length) return;
+  TK.csv(L.map(function(p){
+    return {Deadline:TK.fmtDate(p._d),'Days out':TK.days(p._d),Program:p.name,Sponsor:p.sponsor,Type:p.sponsor_type,
+            'Award low':p.award_min||'','Award high':p.award_max||'','Published cycle':p.deadline,'HBCU/MSI':p.hbcu_msi?'Yes':'No',URL:p.url};
+  }),'funding-deadlines.csv');
+});
+document.getElementById('soonGo').addEventListener('click',function(){
+  var b=this,box=document.getElementById('soon');
+  b.disabled=true; b.innerHTML='<span class="spin"></span> Loading from Grants.gov…';
+  TK.liveSearch({oppStatuses:'posted',rows:100,eligibilities:'06',sortBy:'closeDate|asc'}).then(function(r){
+    b.disabled=false; b.textContent='Refresh';
+    var hits=(r.hits||[]).filter(function(o){
+      var dd=TK.daysFrom(o.closeDate);
+      return dd!=null&&dd>=0&&dd<=30;
+    }).sort(function(a,b2){return new Date(a.closeDate)-new Date(b2.closeDate);});
+    if(!hits.length){ box.innerHTML='<p style="color:var(--muted)">Nothing open to public institutions of higher education closes in the next 30 days in this pull. Try the full <a href="index.html">live search</a> with different filters.</p>'; return; }
+    box.innerHTML=hits.map(function(o){
+      var dd=TK.daysFrom(o.closeDate);
+      return '<article class="res federal"><h3><a href="'+TK.esc(o.url)+'" target="_blank" rel="noopener">'+TK.esc(o.title)+'</a></h3>'+
+        '<p class="spons">'+TK.esc(o.agency)+' · '+TK.esc(o.number)+'</p>'+
+        '<div class="meta"><span class="due '+(dd<=14?'soon':'near')+'">Closes '+TK.esc(o.closeDate)+' · '+(dd===0?'today':dd+' days')+'</span>'+
+        (o.aln&&o.aln.length?'<span><b>ALN:</b> '+TK.esc(o.aln.join(', '))+'</span>':'')+'</div></article>';
+    }).join('');
+  }).catch(function(){
+    b.disabled=false; b.textContent='Try again';
+    box.innerHTML='<div class="note danger">Could not reach Grants.gov right now. You can search directly at <a href="https://grants.gov/search-grants" rel="noopener">grants.gov</a>.</div>';
+  });
+});
+document.getElementById('win').addEventListener('change',function(){render();syncFeed();});
+
+function feedUrl(){
+  var q=[];
+  if(SELF.length) q.push('fields='+encodeURIComponent(SELF.join(',')));
+  if(document.getElementById('fHbcu').checked) q.push('hbcu=1');
+  if(document.getElementById('fEval').checked) q.push('eval=1');
+  q.push('days='+(+document.getElementById('win').value));
+  return location.origin+'/.netlify/functions/calendar'+(q.length?'?'+q.join('&'):'');
+}
+function syncFeed(){ document.getElementById('subOpen').href=feedUrl(); }
+document.getElementById('subCopy').addEventListener('click',function(){
+  var b=this;
+  navigator.clipboard.writeText(feedUrl()).then(function(){
+    var t=b.textContent; b.textContent='Copied ✓';
+    setTimeout(function(){b.textContent=t;},2200);
+  });
+});
+
+TK.load('data/programs.json').then(function(d){
+  DATA=d; DATA.forEach(function(p){ p._d=TK.nextDate(p.deadline); });
+  TK.profile.mount(function(){ render(); });
+  facets(); render(); syncFeed();
+}).catch(function(e){
+  document.getElementById('cal').innerHTML='<div class="note danger"><strong>Could not load program data.</strong> '+TK.esc(e.message)+'</div>';
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Search Funding — Dr. Bucky Greenlove’s Funding Search Toolkit</title>
+<meta name="description" content="Search live federal funding opportunities from Grants.gov alongside a curated, link-checked directory of federal, foundation, state, and HBCU-eligible research and program-evaluation funding across every field at a university.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=f9cb0a4c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brandbar">
+      <div class="mark" aria-hidden="true">G</div>
+      <div class="brandtxt">
+        <strong>Dr. Bucky Greenlove’s Funding Search Toolkit</strong>
+        <span>Find it · Vet it · Win it</span>
+      </div>
+    </div>
+  </div>
+  <nav class="main" aria-label="Main"><div class="wrap navslot"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Two searches, one place</p>
+    <h1>Find funding for research, applied projects, and program evaluation.</h1>
+    <p>Search <strong>live federal opportunities</strong> straight from the Grants.gov API, or work the <strong>curated directory</strong> — a hand-built, link-checked map of the recurring programs that actually fund university work, including the ones Grants.gov never lists.</p>
+  </div>
+</section>
+
+<main id="main"><div class="wrap">
+
+  <div class="grid g3" style="margin-bottom:1.8rem">
+    <div class="stat"><b id="statPrograms">—</b><span>curated programs, every link checked</span></div>
+    <div class="stat"><b id="statSponsors">—</b><span>distinct funders across all disciplines</span></div>
+    <div class="stat"><b id="statHbcu">—</b><span>open or targeted to HBCUs and MSIs</span></div>
+  </div>
+
+  <div id="profileBar"></div>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-cur" aria-controls="panel-cur" aria-selected="true">Curated directory</button>
+    <button role="tab" id="tab-live" aria-controls="panel-live" aria-selected="false">Live Grants.gov search</button>
+    <button role="tab" id="tab-star" aria-controls="panel-star" aria-selected="false">★ Starred (<span id="starN">0</span>)</button>
+  </div>
+
+  <!-- ============ CURATED ============ -->
+  <div id="panel-cur" role="tabpanel" aria-labelledby="tab-cur">
+    <div class="cols">
+      <aside class="card filters" aria-label="Filters">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem">
+          <h2 style="margin:0;font-size:1.05rem">Filters</h2>
+          <button class="btn ghost sm" id="clearF" style="margin-left:auto">Clear all</button>
+        </div>
+        <div id="facets"></div>
+      </aside>
+
+      <div>
+        <form class="searchbig" id="curForm" style="margin-bottom:1rem" role="search">
+          <input type="search" id="q" placeholder="e.g. program evaluation, water quality, teacher preparation, HBCU capacity…" aria-label="Search curated programs">
+          <button class="btn orange" type="submit">Search</button>
+        </form>
+
+        <div class="toolbar">
+          <span class="count" id="curCount">—</span>
+          <label for="sortBy" class="sr">Sort by</label>
+          <select id="sortBy" style="width:auto">
+            <option value="relevance">Sort: best match</option>
+            <option value="deadline">Sort: soonest deadline</option>
+            <option value="award">Sort: largest award</option>
+            <option value="sponsor">Sort: sponsor A–Z</option>
+          </select>
+          <span class="spacer"></span>
+          <button class="btn ghost sm" id="copyLink">🔗 Copy this search</button>
+          <button class="btn ghost sm" id="expCsv">⬇ CSV</button>
+          <button class="btn ghost sm" id="expIcs">📅 .ics</button>
+        </div>
+
+        <div id="curResults" aria-live="polite"></div>
+        <div style="text-align:center;margin-top:1.2rem">
+          <button class="btn ghost" id="moreBtn" hidden>Show more</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ LIVE ============ -->
+  <div id="panel-live" role="tabpanel" aria-labelledby="tab-live" hidden>
+    <div class="note"><strong>This queries Grants.gov in real time.</strong> It covers federal discretionary grants only — no foundations, no state programs, no NIH parent announcements that live in the NIH Guide, and no contracts (those are on SAM.gov). Use the curated directory for everything Grants.gov can’t see.</div>
+
+    <form class="card" id="liveForm" style="margin-bottom:1.2rem">
+      <div class="searchbig" style="margin-bottom:.9rem">
+        <input type="search" id="lq" placeholder="Keywords — try quoted phrases and OR, e.g. &quot;program evaluation&quot; OR &quot;evaluation research&quot;" aria-label="Keyword search of Grants.gov">
+        <button class="btn orange" type="submit" id="liveGo">Search Grants.gov</button>
+      </div>
+      <div class="grid g3" style="gap:.8rem">
+        <div><label for="lstat" style="font-size:.82rem;font-weight:700;color:var(--rust)">Status</label>
+          <select id="lstat">
+            <option value="forecasted|posted">Open + forecasted</option>
+            <option value="posted">Open now only</option>
+            <option value="forecasted">Forecasted only</option>
+            <option value="posted|forecasted|closed">Include recently closed</option>
+          </select></div>
+        <div><label for="lelig" style="font-size:.82rem;font-weight:700;color:var(--rust)">Eligibility</label>
+          <select id="lelig">
+            <option value="">Any applicant type</option>
+            <option value="06">Public / state-controlled institutions of higher education</option>
+            <option value="20">Private institutions of higher education</option>
+            <option value="13">Nonprofits without 501(c)(3), other than IHEs</option>
+            <option value="12">Nonprofits with 501(c)(3), other than IHEs</option>
+            <option value="21">Individuals</option>
+            <option value="25">Others (see announcement)</option>
+          </select></div>
+        <div><label for="lagency" style="font-size:.82rem;font-weight:700;color:var(--rust)">Agency shortcut</label>
+          <select id="lagency">
+            <option value="">All agencies</option>
+            <option value="HHS">HHS (NIH, CDC, HRSA, ACF, AHRQ, SAMHSA)</option>
+            <option value="NSF">National Science Foundation</option>
+            <option value="ED">Department of Education (incl. IES)</option>
+            <option value="USDA">USDA (incl. NIFA / 1890 programs)</option>
+            <option value="DOD">Department of Defense</option>
+            <option value="DOE">Department of Energy</option>
+            <option value="HUD">HUD (incl. PD&amp;R)</option>
+            <option value="USDOJ">Department of Justice (NIJ, BJA, OJJDP)</option>
+            <option value="NASA">NASA</option>
+            <option value="DOC">Commerce (NOAA, NIST)</option>
+            <option value="NEH">NEH</option>
+            <option value="EPA">EPA</option>
+          </select></div>
+      </div>
+      <details style="margin-top:.9rem"><summary style="cursor:pointer;font-size:.86rem;font-weight:700;color:var(--rust)">Advanced: ALN/CFDA number, opportunity number, posted-within window</summary>
+        <div class="grid g3" style="gap:.8rem;margin-top:.7rem">
+          <div><label for="laln" style="font-size:.82rem;font-weight:700">ALN (CFDA) number</label><input type="text" id="laln" placeholder="e.g. 93.866"></div>
+          <div><label for="lnum" style="font-size:.82rem;font-weight:700">Opportunity number</label><input type="text" id="lnum" placeholder="e.g. PA-PHE-26-001"></div>
+          <div><label for="ldate" style="font-size:.82rem;font-weight:700">Posted within</label>
+            <select id="ldate"><option value="">Any time</option><option value="7">Last week</option><option value="14">Last 2 weeks</option><option value="28">Last 4 weeks</option><option value="56">Last 8 weeks</option></select></div>
+        </div>
+      </details>
+    </form>
+
+    <div class="toolbar">
+      <span class="count" id="liveCount">Enter a search above.</span>
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="liveCsv" disabled>⬇ CSV</button>
+    </div>
+    <div id="liveResults" aria-live="polite"></div>
+    <div style="text-align:center;margin-top:1.2rem"><button class="btn ghost" id="liveMore" hidden>Load next 25</button></div>
+  </div>
+
+  <!-- ============ STARRED ============ -->
+  <div id="panel-star" role="tabpanel" aria-labelledby="tab-star" hidden>
+    <div class="toolbar">
+      <span class="count" id="starCount">—</span>
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="starShare">🔗 Share this shortlist</button>
+      <button class="btn ghost sm" id="starSub">📆 Subscribe to these deadlines</button>
+      <button class="btn ghost sm" id="starCsv">⬇ CSV</button>
+      <button class="btn ghost sm" id="starIcs">📅 .ics</button>
+      <button class="btn ghost sm" id="starClear">Clear</button>
+    </div>
+    <div id="starResults"></div>
+  </div>
+
+</div></main>
+
+<footer class="site"><div class="wrap footslot"></div></footer>
+
+<script src="assets/app.js?v=0dada977"></script>
+<script>
+(function(){
+'use strict';
+var DATA=[], VIEW=[], SHOWN=0, PAGE=25, LIVE={hits:[],start:0,total:0,params:null};
+
+/* ---------------- tabs ---------------- */
+var tabs=[['tab-cur','panel-cur'],['tab-live','panel-live'],['tab-star','panel-star']];
+tabs.forEach(function(t){
+  document.getElementById(t[0]).addEventListener('click',function(){
+    tabs.forEach(function(o){
+      var b=document.getElementById(o[0]),p=document.getElementById(o[1]);
+      var on=o[0]===t[0];
+      b.setAttribute('aria-selected',on?'true':'false'); p.hidden=!on;
+    });
+    if(t[0]==='tab-star') renderStars();
+  });
+});
+
+/* ---------------- facet config ---------------- */
+var FACETS=[
+  {key:'fields',   label:'Discipline',    multi:true},
+  {key:'sponsor_type', label:'Funder type', multi:true,
+     names:{federal:'Federal agency',foundation:'Private foundation',state:'State / regional',nonprofit:'Association / nonprofit'}},
+  {key:'career_stage', label:'Career stage', multi:true,
+     names:{any:'Any / open to all faculty','early-career':'Early career','mid-career':'Mid career',senior:'Senior',postdoc:'Postdoc',graduate:'Graduate student',undergraduate:'Undergraduate'}},
+  {key:'__special', label:'Quick filters', multi:true, custom:[
+     ['hbcu','HBCU / MSI eligible or targeted'],
+     ['eval','Program evaluation & applied research'],
+     ['rolling','Rolling / no fixed deadline'],
+     ['seed','Seed, pilot & travel (under $100K)'],
+     ['big','Large awards ($1M+)'],
+     ['soon','Deadline within 90 days']
+  ]},
+  {key:'cadence', label:'Deadline cadence', multi:true}
+];
+var SEL={};
+
+function special(p,k){
+  switch(k){
+    case 'hbcu': return !!p.hbcu_msi;
+    case 'eval': return p.fields.indexOf('Program Evaluation')>=0 || /evaluation/i.test(p.blob);
+    case 'rolling': return p._d==='rolling' || /rolling|continuous|anytime/i.test(p.deadline||'');
+    case 'seed': return p.award_max>0 && p.award_max<100000;
+    case 'big': return p.award_max>=1000000;
+    case 'soon': var d=TK.days(p._d); return d!=null&&d>=0&&d<=90;
+  }
+  return false;
+}
+function passes(p,skip){
+  for(var f=0;f<FACETS.length;f++){
+    var F=FACETS[f], sel=SEL[F.key];
+    if(!sel||!sel.length||F.key===skip) continue;
+    if(F.custom){ if(!sel.every(function(k){return special(p,k);})) return false; continue; }
+    var v=p[F.key]; v=Array.isArray(v)?v:[v];
+    if(!sel.some(function(s){return v.indexOf(s)>=0;})) return false;
+  }
+  return true;
+}
+function score(p,terms){
+  if(!terms.length) return 0;
+  var s=0, name=p.name.toLowerCase(), spon=p.sponsor.toLowerCase();
+  terms.forEach(function(t){
+    if(name.indexOf(t)>=0) s+=10;
+    if(spon.indexOf(t)>=0) s+=4;
+    if(p.blob.indexOf(t)>=0) s+=2;
+  });
+  return s;
+}
+function apply(){
+  var q=document.getElementById('q').value.trim().toLowerCase();
+  var terms=q?q.split(/\s+/).filter(function(t){return t.length>1;}):[];
+  VIEW=DATA.filter(function(p){
+    if(!TK.profile.matches(p)) return false;
+    if(!passes(p)) return false;
+    if(terms.length&&!terms.every(function(t){return p.blob.indexOf(t)>=0;})) return false;
+    return true;
+  });
+  var sort=document.getElementById('sortBy').value;
+  VIEW.forEach(function(p){p._s=score(p,terms);});
+  VIEW.sort(function(a,b){
+    if(sort==='deadline'){
+      var da=TK.days(a._d), db=TK.days(b._d);
+      if(da==null&&db==null) return a.name.localeCompare(b.name);
+      if(da==null) return 1; if(db==null) return -1; return da-db;
+    }
+    if(sort==='award') return (b.award_max||0)-(a.award_max||0);
+    if(sort==='sponsor') return a.sponsor.localeCompare(b.sponsor)||a.name.localeCompare(b.name);
+    return (b._s-a._s)||a.name.localeCompare(b.name);
+  });
+  SHOWN=0;
+  document.getElementById('curResults').innerHTML='';
+  document.getElementById('curCount').textContent=
+    VIEW.length+' program'+(VIEW.length===1?'':'s')+(terms.length?' matching “'+q+'”':'')+
+    (VIEW.length!==DATA.length?' of '+DATA.length:'');
+  more();
+  buildFacets();
+  syncUrl();
+}
+function more(){
+  var box=document.getElementById('curResults');
+  var slice=VIEW.slice(SHOWN,SHOWN+PAGE);
+  if(!slice.length&&SHOWN===0){
+    box.innerHTML='<div class="empty"><h3>Nothing matched.</h3><p>Try fewer filters or a broader term. The curated directory indexes recurring <em>programs</em>, not individual announcements — for a specific notice, use the live Grants.gov tab.</p></div>';
+  }
+  slice.forEach(function(p){ box.insertAdjacentHTML('beforeend',card(p)); });
+  SHOWN+=slice.length;
+  var b=document.getElementById('moreBtn');
+  b.hidden=SHOWN>=VIEW.length;
+  b.textContent='Show more ('+(VIEW.length-SHOWN)+' left)';
+}
+function dueBadge(p){
+  if(p._d==='rolling') return '<span class="due open">Rolling</span>';
+  var d=TK.days(p._d);
+  if(d==null) return '';
+  var cls=d<=30?'soon':(d<=90?'near':'open');
+  return '<span class="due '+cls+'">'+TK.fmtDate(p._d)+' · '+d+'d</span>';
+}
+function card(p){
+  var e=TK.esc;
+  var chips=[];
+  if(p.hbcu_msi) chips.push('<span class="chip hbcu">HBCU / MSI</span>');
+  if(special(p,'eval')) chips.push('<span class="chip eval">Evaluation</span>');
+  p.fields.slice(0,4).forEach(function(f){chips.push('<span class="chip">'+e(f)+'</span>');});
+  p.career_stage.filter(function(s){return s!=='any';}).slice(0,2).forEach(function(s){chips.push('<span class="chip new">'+e(s)+'</span>');});
+  return '<article class="res '+e(p.sponsor_type)+'" data-id="'+e(p.id)+'">'+
+    '<button class="star" data-star="'+e(p.id)+'" aria-pressed="'+(TK.stars.has(p.id)?'true':'false')+'" aria-label="Star '+e(p.name)+'">★</button>'+
+    '<h3><a href="'+e(p.url)+'" target="_blank" rel="noopener">'+e(p.name)+'</a></h3>'+
+    '<p class="spons">'+e(p.sponsor)+'</p>'+
+    '<p class="desc">'+e(p.description)+'</p>'+
+    '<div class="meta">'+
+      '<span><b>Award:</b> '+e(TK.range(p.award_min,p.award_max))+'</span>'+
+      '<span><b>Deadline:</b> '+e(p.deadline||'see announcement')+'</span>'+
+      '<span><b>Cycle:</b> '+e(p.cadence||'varies')+'</span>'+
+      dueBadge(p)+
+    '</div>'+
+    (p.eligibility?'<p class="elig"><b>Eligibility:</b> '+e(p.eligibility)+'</p>':'')+
+    '<div class="chips">'+chips.join('')+'</div>'+
+  '</article>';
+}
+function buildFacets(){
+  var host=document.getElementById('facets'); host.innerHTML='';
+  FACETS.forEach(function(F){
+    var counts={};
+    if(F.custom){
+      F.custom.forEach(function(c){
+        counts[c[0]]=DATA.filter(function(p){return TK.profile.matches(p)&&passes(p,F.key)&&special(p,c[0]);}).length;
+      });
+    }else{
+      DATA.forEach(function(p){
+        if(!TK.profile.matches(p)) return;
+        if(!passes(p,F.key)) return;
+        var v=p[F.key]; (Array.isArray(v)?v:[v]).forEach(function(x){ if(x) counts[x]=(counts[x]||0)+1; });
+      });
+    }
+    var keys=F.custom?F.custom.map(function(c){return c[0];}):Object.keys(counts).sort(function(a,b){return counts[b]-counts[a]||a.localeCompare(b);});
+    if(!keys.length) return;
+    var open=(SEL[F.key]&&SEL[F.key].length)||F.key==='fields'||F.key==='__special';
+    var html='<details class="fgroup"'+(open?' open':'')+'><summary>'+TK.esc(F.label)+'</summary><div class="opts">';
+    keys.forEach(function(k){
+      if(!F.custom&&!counts[k]) return;
+      var lbl=F.custom?(F.custom.filter(function(c){return c[0]===k;})[0][1]):((F.names&&F.names[k])||k);
+      var on=(SEL[F.key]||[]).indexOf(k)>=0;
+      html+='<label class="opt"><input type="checkbox" data-f="'+TK.esc(F.key)+'" value="'+TK.esc(k)+'"'+(on?' checked':'')+'>'+
+            '<span>'+TK.esc(lbl)+'</span><span class="n">'+(counts[k]||0)+'</span></label>';
+    });
+    host.insertAdjacentHTML('beforeend',html+'</div></details>');
+  });
+}
+
+/* ---------------- URL state (shareable saved searches) ---------------- */
+function syncUrl(){
+  var p=new URLSearchParams();
+  var q=document.getElementById('q').value.trim(); if(q) p.set('q',q);
+  Object.keys(SEL).forEach(function(k){ if(SEL[k]&&SEL[k].length) p.set(k,SEL[k].join('|')); });
+  var s=document.getElementById('sortBy').value; if(s!=='relevance') p.set('sort',s);
+  history.replaceState(null,'',p.toString()?('?'+p.toString()):location.pathname);
+}
+function readUrl(){
+  var p=new URLSearchParams(location.search);
+  if(p.get('q')) document.getElementById('q').value=p.get('q');
+  if(p.get('sort')) document.getElementById('sortBy').value=p.get('sort');
+  FACETS.forEach(function(F){ if(p.get(F.key)) SEL[F.key]=p.get(F.key).split('|'); });
+}
+
+/* ---------------- events ---------------- */
+document.getElementById('curForm').addEventListener('submit',function(e){e.preventDefault();apply();});
+document.getElementById('q').addEventListener('input',function(){clearTimeout(window._t);window._t=setTimeout(apply,250);});
+document.getElementById('sortBy').addEventListener('change',apply);
+document.getElementById('moreBtn').addEventListener('click',more);
+document.getElementById('clearF').addEventListener('click',function(){SEL={};document.getElementById('q').value='';apply();});
+document.getElementById('facets').addEventListener('change',function(e){
+  var i=e.target; if(!i.dataset.f) return;
+  var k=i.dataset.f; SEL[k]=SEL[k]||[];
+  if(i.checked){ if(SEL[k].indexOf(i.value)<0) SEL[k].push(i.value); }
+  else SEL[k]=SEL[k].filter(function(v){return v!==i.value;});
+  apply();
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-star]'); if(!b) return;
+  var on=TK.stars.toggle(b.dataset.star);
+  document.querySelectorAll('[data-star="'+b.dataset.star+'"]').forEach(function(x){x.setAttribute('aria-pressed',on?'true':'false');});
+  document.getElementById('starN').textContent=TK.stars.count();
+});
+document.getElementById('copyLink').addEventListener('click',function(){
+  var b=this; navigator.clipboard.writeText(location.href).then(function(){
+    var t=b.textContent; b.textContent='Link copied ✓';
+    setTimeout(function(){b.textContent=t;},1800);
+  });
+});
+function rows(list){
+  return list.map(function(p){
+    return {Program:p.name,Sponsor:p.sponsor,Type:p.sponsor_type,'Award low':p.award_min||'','Award high':p.award_max||'',
+      Deadline:p.deadline,Cycle:p.cadence,'HBCU/MSI':p.hbcu_msi?'Yes':'No',Disciplines:p.fields.join('; '),
+      'Career stage':p.career_stage.join('; '),Eligibility:p.eligibility,Description:p.description,URL:p.url};
+  });
+}
+function icsList(list){
+  return list.map(function(p){
+    var d=p._d; if(!d||d==='rolling') return null;
+    return {date:d,title:'Grant deadline: '+p.name,desc:p.sponsor+'\n'+TK.range(p.award_min,p.award_max)+'\nStated deadline: '+(p.deadline||'')+'\n\nDate is estimated from the program\'s published cycle — confirm against the funder announcement.\n'+p.url,url:p.url};
+  }).filter(Boolean);
+}
+document.getElementById('expCsv').addEventListener('click',function(){ if(VIEW.length) TK.csv(rows(VIEW),'funding-search-results.csv'); });
+document.getElementById('expIcs').addEventListener('click',function(){
+  var ev=icsList(VIEW); if(!ev.length){alert('None of these have a datable deadline. Try the Deadline Calendar page.');return;}
+  TK.ics(ev,'funding-deadlines.ics');
+});
+function starList(){ return DATA.filter(function(p){return TK.stars.has(p.id);}); }
+function renderStars(){
+  var L=starList(), box=document.getElementById('starResults');
+  document.getElementById('starCount').textContent=L.length+' starred';
+  box.innerHTML=L.length?L.map(card).join(''):'<div class="empty"><h3>Nothing starred yet.</h3><p>Click the ★ on any result to build a shortlist. It stays in this browser — good for prepping an OSP meeting or a department circulation.</p></div>';
+}
+document.getElementById('starCsv').addEventListener('click',function(){var L=starList();if(L.length)TK.csv(rows(L),'starred-funding.csv');});
+document.getElementById('starIcs').addEventListener('click',function(){var ev=icsList(starList());if(ev.length)TK.ics(ev,'starred-deadlines.ics');else alert('No datable deadlines among your starred programs.');});
+
+/* ---------------- live Grants.gov ---------------- */
+function liveParams(reset){
+  return {
+    keyword:document.getElementById('lq').value.trim(),
+    oppStatuses:document.getElementById('lstat').value,
+    eligibilities:document.getElementById('lelig').value,
+    agencies:document.getElementById('lagency').value,
+    cfda:document.getElementById('laln').value.trim(),
+    oppNum:document.getElementById('lnum').value.trim(),
+    dateRange:document.getElementById('ldate').value,
+    rows:25, startRecordNum:reset?0:LIVE.start
+  };
+}
+function liveCard(o){
+  var e=TK.esc, d=TK.daysFrom(o.closeDate);
+  var badge=d==null?'<span class="due open">No close date listed</span>'
+    :'<span class="due '+(d<=30?'soon':(d<=90?'near':'open'))+'">Closes '+e(o.closeDate)+' · '+(d<0?'closed':d+' days left')+'</span>';
+  return '<article class="res federal">'+
+    '<h3><a href="'+e(o.url)+'" target="_blank" rel="noopener">'+e(o.title)+'</a></h3>'+
+    '<p class="spons">'+e(o.agency)+' · '+e(o.number)+'</p>'+
+    '<div class="meta">'+
+      '<span><b>Status:</b> '+e(o.status)+'</span>'+
+      '<span><b>Type:</b> '+e(o.docType)+'</span>'+
+      '<span><b>Posted:</b> '+e(o.openDate||'—')+'</span>'+
+      (o.aln&&o.aln.length?'<span><b>ALN:</b> '+e(o.aln.join(', '))+'</span>':'')+
+      badge+
+    '</div></article>';
+}
+function runLive(reset){
+  var box=document.getElementById('liveResults'), cnt=document.getElementById('liveCount');
+  var btn=document.getElementById('liveGo');
+  if(reset){ box.innerHTML=''; LIVE.hits=[]; LIVE.start=0; }
+  cnt.innerHTML='<span class="spin" style="border-color:rgba(11,42,74,.25);border-top-color:var(--rust)"></span> Searching Grants.gov…';
+  btn.disabled=true;
+  var params=liveParams(reset);
+  TK.liveSearch(params).then(function(r){
+    btn.disabled=false;
+    if(r.error&&!(r.hits||[]).length){ cnt.textContent=r.error; return; }
+    var hits=r.hits||(r.data&&r.data.oppHits||[]).map(function(o){
+      return {id:o.id,number:o.number,title:o.title,agency:o.agency||o.agencyName,openDate:o.openDate,closeDate:o.closeDate,
+              status:o.oppStatus,docType:o.docType,aln:o.cfdaList||[],url:'https://grants.gov/search-results-detail/'+o.id};
+    });
+    var total=r.total!=null?r.total:(r.data&&r.data.hitCount)||hits.length;
+    LIVE.hits=LIVE.hits.concat(hits); LIVE.start+=hits.length; LIVE.total=total;
+    hits.forEach(function(o){ box.insertAdjacentHTML('beforeend',liveCard(o)); });
+    if(!LIVE.hits.length){
+      box.innerHTML='<div class="empty"><h3>No live opportunities matched.</h3><p>Grants.gov keyword search is literal. Try a broader single term, drop the eligibility filter, or include forecasted opportunities.</p></div>';
+      cnt.textContent='0 results';
+    }else{
+      cnt.textContent='Showing '+LIVE.hits.length+' of '+total.toLocaleString()+' live opportunities';
+    }
+    document.getElementById('liveMore').hidden=LIVE.hits.length>=total;
+    document.getElementById('liveCsv').disabled=!LIVE.hits.length;
+  }).catch(function(){
+    btn.disabled=false;
+    cnt.textContent='Could not reach Grants.gov. Check your connection, or search directly at grants.gov/search-grants.';
+  });
+}
+document.getElementById('liveForm').addEventListener('submit',function(e){e.preventDefault();runLive(true);});
+document.getElementById('liveMore').addEventListener('click',function(){runLive(false);});
+document.getElementById('liveCsv').addEventListener('click',function(){
+  TK.csv(LIVE.hits.map(function(o){
+    return {Title:o.title,Agency:o.agency,'Opportunity number':o.number,Status:o.status,Type:o.docType,
+            Posted:o.openDate,Closes:o.closeDate,ALN:(o.aln||[]).join('; '),URL:o.url};
+  }),'grants-gov-results.csv');
+});
+
+document.getElementById('starShare').addEventListener('click',function(){
+  var u=TK.stars.shareUrl('index.html');
+  if(!u){alert('Star a few programs first.');return;}
+  var b=this;
+  navigator.clipboard.writeText(u).then(function(){
+    var t=b.textContent; b.textContent='Link copied ✓';
+    setTimeout(function(){b.textContent=t;},2200);
+  });
+});
+document.getElementById('starSub').addEventListener('click',function(){
+  var u=TK.stars.feedUrl();
+  if(!u){alert('Star a few programs first.');return;}
+  var b=this;
+  navigator.clipboard.writeText(u).then(function(){
+    var t=b.textContent; b.textContent='Feed URL copied ✓';
+    setTimeout(function(){b.textContent=t;},2600);
+  });
+});
+document.getElementById('starClear').addEventListener('click',function(){
+  if(!confirm('Remove every starred program from this browser?')) return;
+  TK.stars.clear();
+  document.getElementById('starN').textContent=0;
+  document.querySelectorAll('[data-star]').forEach(function(x){x.setAttribute('aria-pressed','false');});
+  renderStars();
+});
+
+/* ---------------- boot ---------------- */
+TK.load('data/programs.json').then(function(d){
+  DATA=d;
+  DATA.forEach(function(p){ p._d=TK.nextDate(p.deadline); });
+  document.getElementById('statPrograms').textContent=DATA.length;
+  document.getElementById('statSponsors').textContent=Object.keys(DATA.reduce(function(a,p){a[p.sponsor]=1;return a;},{})).length;
+  document.getElementById('statHbcu').textContent=DATA.filter(function(p){return p.hbcu_msi;}).length;
+  document.getElementById('starN').textContent=TK.stars.count();
+  TK.profile.mount(function(){ apply(); });
+  readUrl(); apply();
+}).catch(function(err){
+  document.getElementById('curResults').innerHTML='<div class="note danger"><strong>Could not load the curated directory.</strong> '+TK.esc(err.message)+'</div>';
+});
+})();
+</script>
+</body>
+</html>

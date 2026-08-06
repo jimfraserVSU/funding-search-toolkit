@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reviewer Panels & Prompt Library — Dr. Bucky Greenlove’s Funding Search Toolkit</title>
+<meta name="description" content="A prompt library for simulating NIH, NSF, IES, NIFA, DOD, and foundation review panels — with accurate scoring scales, rating cards, and color-team reviews you can run on your own draft.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=f9cb0a4c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap"><div class="brandbar">
+    <div class="mark" aria-hidden="true">G</div>
+    <div class="brandtxt"><strong>Dr. Bucky Greenlove’s Funding Search Toolkit</strong><span>Find it · Vet it · Win it</span></div>
+  </div></div>
+  <nav class="main" aria-label="Main"><div class="wrap navslot"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Simulated review panels</p>
+    <h1>Get reviewed before you get reviewed.</h1>
+    <p>Copy a prompt into Claude or any capable AI assistant, paste your draft, and get a panel that scores you on the <em>actual</em> criteria with the <em>actual</em> scale — NIH’s three factors and 1–9, NSF’s five elements across two criteria, IES’s two opposite-facing scales, a 100-point NOFO rating-factor tally. Then fill in the rating card and take it to a real colleague.</p>
+  </div>
+</section>
+
+<main id="main"><div class="wrap">
+
+  <div class="note warn">
+    <p><strong>Read this before you use any of it.</strong> These prompts are for <em>your own draft, before you submit it</em>. That is pre-submission institutional work, and no agency rule reaches it.</p>
+    <p style="margin-top:.6rem"><strong>Two hard lines you must not cross:</strong></p>
+    <p style="margin:.4rem 0 0"><strong>1. Never put someone else’s application into an AI tool.</strong> If you serve on a study section or an NSF panel, NIH and NSF both flatly prohibit uploading any part of an application, review, or critique to a generative AI tool — NIH treats it as a violation of the confidentiality agreement you signed. Keep that workflow completely separate from this one.</p>
+    <p style="margin:.4rem 0 0"><strong>2. AI can critique your writing. It cannot be the author of your science.</strong> As of receipt dates on or after September 25, 2025, NIH will not consider applications “substantially developed by AI” or containing “sections substantially developed by AI.” NSF folded AI-mediated fabrication, falsification, and plagiarism into its research misconduct definition effective December 8, 2025, and encourages you to disclose AI use in the Project Description. Unverified AI-generated citations can constitute fabrication at both agencies. Use these tools as a reviewer and an editor — verify every fact and every citation yourself.</p>
+  </div>
+
+  <div class="note ok">
+    <p><strong>Does mock review actually work?</strong> The evidence is encouraging and imperfect. Johns Hopkins Neurology’s internal grant review program reported 58% funding for internally reviewed applications versus 22% for unreviewed ones in the same department. Columbia’s School of Nursing reported 42% versus 20%, on a $127,000 five-year investment that preceded $3 million in external funding. A mock-review program for early-career investigators reported 37% success across 212 participants.</p>
+    <p style="margin-top:.5rem">Every one of those comparisons is <strong>self-selected</strong> — faculty who volunteer for a nine-month bootcamp differ from those who don’t. The honest claim is that internal review is <em>associated</em> with substantially higher success and shows strong return on investment, not that it causes a 2.5× improvement. Run it anyway. The downside is a few hours.</p>
+  </div>
+
+  <h2>How to sequence them</h2>
+  <p class="lead">The mistake almost every academic mock review makes is holding one big event two weeks out, which produces feedback nobody has time to act on. Government contracting solved this decades ago: <strong>gate each review to a draft maturity level, and give each one a different question.</strong></p>
+
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Review</th><th>Draft maturity</th><th>The question it answers</th><th>Who should be in the room</th></tr></thead>
+    <tbody>
+      <tr><td><b>Go / No-Go</b></td><td>Concept only</td><td>Should we apply to this at all?</td><td>You, your chair, sponsored programs</td></tr>
+      <tr><td><b>Aims / SOAR</b></td><td>One page, ~10 weeks out</td><td>Are the aims clear, independent, and feasible?</td><td>2–3 peers, 30 minutes, written feedback in a week</td></tr>
+      <tr><td><b>Pink Team</b></td><td>20–40%</td><td>Does the outline map to the requirements? Are the win themes there?</td><td>Writers, a methods person, someone who knows the program</td></tr>
+      <tr><td><b>Red Team</b></td><td>80–90%, 2–3 weeks out</td><td>What score does this get, against the real criteria?</td><td>External reviewers who mirror the actual panel</td></tr>
+      <tr><td><b>Green</b></td><td>Parallel to Red</td><td>Does the budget match what the narrative promises?</td><td>Sponsored programs, a budget person</td></tr>
+      <tr><td><b>Gold Team</b></td><td>100%, 1–2 days out</td><td>Is it internally consistent and compliant? Go or no-go?</td><td>Chair or dean, sponsored programs</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Two details worth stealing. Michigan’s R01 Boot Camp <strong>pays external reviewers a $500 honorarium</strong> — it is the difference between a perfunctory read and a real one — and runs a session called “Everything But The Science” covering budget, biosketch, facilities, letters, and compliance as a first-class deliverable rather than an afterthought. IES assigns a <strong>synthesizer</strong> who reads back a summary of the discussion before final scoring, which forces the panel to converge on the actual score drivers rather than a list of grievances.</p>
+
+  <hr>
+
+  <h2 id="library">The prompt library</h2>
+  <div class="toolbar">
+    <label for="catf" class="sr">Filter by category</label>
+    <select id="catf" style="width:auto"><option value="">All categories</option></select>
+    <label for="qf" class="sr">Search prompts</label>
+    <input type="search" id="qf" placeholder="Search prompts…" style="max-width:280px">
+    <span class="spacer"></span>
+    <span class="count" id="pcount"></span>
+  </div>
+  <div id="lib"></div>
+
+  <hr>
+
+  <h2 id="ratingcard">Build a rating card</h2>
+  <p>Run the simulated panel, then fill this in — or hand it to a colleague and have them fill it in cold. Pick the funder’s real scale; the card adapts. It stays in your browser and exports as a file you can circulate.</p>
+
+  <div class="card">
+    <div class="grid g2" style="margin-bottom:1rem">
+      <div><label for="rcProj" style="font-weight:700;font-size:.85rem;color:var(--rust)">Project / proposal title</label><input type="text" id="rcProj" placeholder="Working title"></div>
+      <div><label for="rcRev" style="font-weight:700;font-size:.85rem;color:var(--rust)">Reviewer</label><input type="text" id="rcRev" placeholder="Name or ‘simulated panel — Claude’"></div>
+      <div><label for="rcScale" style="font-weight:700;font-size:.85rem;color:var(--rust)">Scale</label>
+        <select id="rcScale">
+          <option value="nih">NIH — 1 to 9 (1 = Exceptional, 9 = Poor; lower is better)</option>
+          <option value="nsf">NSF — Excellent / Very Good / Good / Fair / Poor</option>
+          <option value="ies">IES — criteria 1–7 (higher better), overall 1.0–5.0 (lower better)</option>
+          <option value="nofo">Federal NOFO — points out of 100</option>
+          <option value="nifa">NIFA — excellent…poor, then panel priority category</option>
+          <option value="generic">Generic — strong / adequate / weak</option>
+        </select></div>
+      <div><label for="rcDue" style="font-weight:700;font-size:.85rem;color:var(--rust)">Sponsor deadline</label><input type="text" id="rcDue" placeholder="e.g. October 20, 2026"></div>
+    </div>
+    <div id="rcRows"></div>
+    <div style="margin-top:1rem"><label for="rcTop" style="font-weight:700;font-size:.85rem;color:var(--rust)">The three changes that would most move the score</label>
+      <textarea id="rcTop" placeholder="1.&#10;2.&#10;3."></textarea></div>
+    <div style="margin-top:.8rem"><label for="rcKill" style="font-weight:700;font-size:.85rem;color:var(--rust)">Compliance / threshold problems (these outrank score)</label>
+      <textarea id="rcKill" style="min-height:70px" placeholder="Page limits, missing attachments, eligibility, registrations, cost share…"></textarea></div>
+    <div class="toolbar" style="margin:1.1rem 0 0">
+      <button class="btn orange" id="rcSave">Save to this browser</button>
+      <button class="btn ghost" id="rcMd">⬇ Download as Markdown</button>
+      <button class="btn ghost" id="rcCsvBtn">⬇ CSV</button>
+      <button class="btn ghost" id="rcPrint">🖨 Print</button>
+      <span id="rcMsg" style="font-size:.85rem;color:var(--green);font-weight:700"></span>
+    </div>
+  </div>
+
+  <hr>
+  <h2>Running a real panel with real people</h2>
+  <div class="grid g2">
+    <div class="card"><h3 style="margin-top:0">The 90-minute mock study section</h3>
+      <p style="font-size:.93rem">Three reviewers, one chair, one synthesizer. Send the draft and the criteria two weeks ahead. On the day: each reviewer states preliminary scores before any discussion (this prevents anchoring), primary presents for 8 minutes, others add for 4 each, 20 minutes open discussion, the synthesizer reads back the score drivers, everyone re-scores privately. The applicant listens and does not defend — that rule matters more than any other.</p></div>
+    <div class="card"><h3 style="margin-top:0">The 30-minute aims review</h3>
+      <p style="font-size:.93rem">Cheapest high-value thing you can do. Ten-minute presentation of the aims page only, ten minutes of questions, written feedback within a week. Run it ten to twelve weeks out, when the science can still change. Columbia built a program around exactly this and reported doubling their funding rate.</p></div>
+    <div class="card"><h3 style="margin-top:0">Recruiting reviewers</h3>
+      <p style="font-size:.93rem">The best reviewer is someone who has served on the actual panel or held the actual award. Second best is someone from an adjacent field who will not grant you any assumed knowledge. Pay them if you can — even a modest honorarium changes the quality of the read. Ask for a specific deliverable and a specific date, not “thoughts.”</p></div>
+    <div class="card"><h3 style="margin-top:0">Learn review from the inside</h3>
+      <p style="font-size:.93rem">Serving as a reviewer teaches more about grant writing than any workshop. NIH runs an Early Career Reviewer program, NSF recruits panelists continuously through program officers, and the W.T. Grant Foundation runs an Early-Career Reviewer Program. Email a program officer and say you are available.</p></div>
+  </div>
+
+</div></main>
+
+<footer class="site"><div class="wrap footslot"></div></footer>
+<script src="assets/app.js?v=0dada977"></script>
+<script>
+(function(){
+'use strict';
+var P=[], CATS=[];
+
+function block(p){
+  var e=TK.esc;
+  return '<details class="acc" data-cat="'+e(p.cat)+'" data-blob="'+e((p.title+' '+p.cat+' '+p.funder+' '+p.when).toLowerCase())+'" id="'+e(p.id)+'">'+
+   '<summary>'+e(p.title)+' <span class="badge" style="margin-left:auto">'+e(p.cat)+'</span></summary>'+
+   '<div class="body">'+
+     '<div class="scroll"><table class="tbl" style="margin-top:0">'+
+       '<tr><th style="width:130px">Funder</th><td>'+e(p.funder)+'</td></tr>'+
+       '<tr><th>Use it when</th><td>'+e(p.when)+'</td></tr>'+
+       '<tr><th>Scale</th><td>'+e(p.scale)+'</td></tr>'+
+       '<tr><th>Accuracy note</th><td>'+e(p.accuracy)+'</td></tr>'+
+     '</table></div>'+
+     '<h4>Rating card fields</h4>'+
+     '<div class="chips">'+p.card.map(function(c){return '<span class="chip">'+e(c)+'</span>';}).join('')+'</div>'+
+     '<div class="prompt"><div class="ptop"><b>Prompt — paste into Claude, then paste your draft</b><span class="spacer"></span>'+
+       '<button class="copy" type="button">Copy prompt</button></div>'+
+       '<pre>'+e(p.prompt)+'</pre></div>'+
+   '</div></details>';
+}
+function render(){
+  var c=document.getElementById('catf').value;
+  var q=document.getElementById('qf').value.trim().toLowerCase();
+  var L=P.filter(function(p){
+    if(c&&p.cat!==c) return false;
+    if(q&&(p.title+' '+p.cat+' '+p.funder+' '+p.when+' '+p.prompt).toLowerCase().indexOf(q)<0) return false;
+    return true;
+  });
+  var out='', last='';
+  L.forEach(function(p){
+    if(p.cat!==last){ out+='<h3 style="margin-top:2rem">'+TK.esc(p.cat)+'</h3>'; last=p.cat; }
+    out+=block(p);
+  });
+  document.getElementById('lib').innerHTML=out||'<div class="empty"><h3>No prompts matched.</h3></div>';
+  document.getElementById('pcount').textContent=L.length+' of '+P.length+' prompts';
+  if(location.hash){ var t=document.getElementById(location.hash.slice(1)); if(t){t.open=true;} }
+}
+document.getElementById('catf').addEventListener('change',render);
+document.getElementById('qf').addEventListener('input',render);
+
+/* ---- rating card ---- */
+var SCALES={
+ nih:{rows:['Factor 1 — Importance of the Research (Significance + Innovation)','Factor 2 — Rigor and Feasibility (Approach)','Factor 3 — Expertise and Resources','Overall Impact'],
+      opts:['','1 — Exceptional','2 — Outstanding','3 — Excellent','4 — Very Good','5 — Good','6 — Satisfactory','7 — Fair','8 — Marginal','9 — Poor','Appropriate','Additional expertise/resources needed'],
+      hint:'Factor 1 is a ceiling: a project of moderate importance cannot be lifted by a strong approach. Factor 3 is not scored — choose Appropriate or Additional needed.'},
+ nsf:{rows:['Intellectual Merit','Broader Impacts','Element 3 — plan quality + mechanism to assess success','Overall Rating'],
+      opts:['','Excellent','Very Good','V/G','Good','G/F','Fair','Poor'],
+      hint:'Evaluate all five review elements against BOTH criteria. Intermediate ratings (V/G, G/F) are accepted. The narrative matters more than the letter.'},
+ ies:{rows:['Significance (1–7)','Research Plan (1–7)','Personnel (1–7)','Resources (1–7)','Overall (1.0–5.0)'],
+      opts:['','7 — most positive','6','5','4','3','2','1 — most negative','1.0–1.5 Outstanding','1.6–2.0 Excellent','2.1–2.5 Very Good','2.6–3.0 Good','3.1–4.0 Fair','4.1–5.0 Poor'],
+      hint:'The two scales run in opposite directions. Criterion scores are NOT averaged to produce the overall score.'},
+ nofo:{rows:['Rating Factor 1','Rating Factor 2','Rating Factor 3','Rating Factor 4','Total out of 100'],
+      opts:null, hint:'Enter points. Weights vary by NOFO — take them from the Application Review Information section. Threshold review happens before scoring and is pass/fail.'},
+ nifa:{rows:['Scientific Merit','Qualifications of Personnel & Facilities','Project Relevance to the stated Program Area Priority','Panel consensus category'],
+      opts:['','excellent','very good','good','fair','poor','outstanding','high priority','medium priority','low priority','do not fund'],
+      hint:'Only outstanding, high priority, and medium priority are funding-eligible.'},
+ generic:{rows:['Significance / importance','Approach / methods','Team & resources','Fit with the funder','Overall'],
+      opts:['','Strong','Adequate','Weak'], hint:'Use when the funder publishes no rubric — most private foundations.'}
+};
+function rcRender(){
+  var s=SCALES[document.getElementById('rcScale').value];
+  var h='<p class="note" style="margin-top:0">'+TK.esc(s.hint)+'</p>';
+  s.rows.forEach(function(r,i){
+    h+='<div style="border-bottom:1px solid var(--line-s);padding:.7rem 0">'+
+       '<label style="font-weight:700;font-size:.9rem;color:var(--ink);display:block;margin-bottom:.35rem">'+TK.esc(r)+'</label>'+
+       '<div style="display:flex;gap:.6rem;flex-wrap:wrap">'+
+       (s.opts?'<select aria-label="Score for '+TK.esc(r)+'" data-rc="s'+i+'" style="width:auto;min-width:190px">'+s.opts.map(function(o){return '<option>'+TK.esc(o)+'</option>';}).join('')+'</select>'
+              :'<input type="number" aria-label="Points for '+TK.esc(r)+'" data-rc="s'+i+'" placeholder="points" style="width:110px">')+
+       '<input type="text" aria-label="Driving sentence for '+TK.esc(r)+'" data-rc="j'+i+'" placeholder="The one sentence in the draft that drove this score" style="flex:1;min-width:220px">'+
+       '</div>'+
+       '<textarea aria-label="Strengths and weaknesses for '+TK.esc(r)+'" data-rc="w'+i+'" style="min-height:60px;margin-top:.45rem" placeholder="Strengths, then weaknesses"></textarea></div>';
+  });
+  document.getElementById('rcRows').innerHTML=h;
+  rcLoad();
+}
+function rcData(){
+  var d={scale:document.getElementById('rcScale').value,
+         project:document.getElementById('rcProj').value,
+         reviewer:document.getElementById('rcRev').value,
+         due:document.getElementById('rcDue').value,
+         top:document.getElementById('rcTop').value,
+         kill:document.getElementById('rcKill').value, rows:{}};
+  document.querySelectorAll('[data-rc]').forEach(function(i){ d.rows[i.dataset.rc]=i.value; });
+  return d;
+}
+function rcLoad(){
+  var raw; try{ raw=JSON.parse(localStorage.getItem('bg_card')||'null'); }catch(e){}
+  if(!raw||raw.scale!==document.getElementById('rcScale').value) return;
+  document.getElementById('rcProj').value=raw.project||'';
+  document.getElementById('rcRev').value=raw.reviewer||'';
+  document.getElementById('rcDue').value=raw.due||'';
+  document.getElementById('rcTop').value=raw.top||'';
+  document.getElementById('rcKill').value=raw.kill||'';
+  document.querySelectorAll('[data-rc]').forEach(function(i){ if(raw.rows&&raw.rows[i.dataset.rc]!=null) i.value=raw.rows[i.dataset.rc]; });
+}
+document.getElementById('rcScale').addEventListener('change',rcRender);
+document.getElementById('rcSave').addEventListener('click',function(){
+  try{ localStorage.setItem('bg_card',JSON.stringify(rcData()));
+    document.getElementById('rcMsg').textContent='Saved.'; setTimeout(function(){document.getElementById('rcMsg').textContent='';},2000);
+  }catch(e){ document.getElementById('rcMsg').textContent='Could not save.'; }
+});
+document.getElementById('rcMd').addEventListener('click',function(){
+  var d=rcData(), s=SCALES[d.scale];
+  var L=['# Proposal Rating Card','','**Project:** '+(d.project||'—'),'**Reviewer:** '+(d.reviewer||'—'),
+         '**Sponsor deadline:** '+(d.due||'—'),'**Scale:** '+d.scale.toUpperCase(),'','---',''];
+  s.rows.forEach(function(r,i){
+    L.push('## '+r,'','**Score:** '+(d.rows['s'+i]||'—'),'','**Driving sentence:** '+(d.rows['j'+i]||'—'),'',
+           (d.rows['w'+i]||'_No comment recorded._'),'');
+  });
+  L.push('---','','## Three changes that would most move the score','',d.top||'_none recorded_','',
+         '## Compliance / threshold problems','',d.kill||'_none recorded_','',
+         '---','','_Generated with Dr. Bucky Greenlove’s Funding Search Toolkit. A simulated panel is a rehearsal, not a verdict._');
+  TK.download(L.join('\n'),'rating-card.md','text/markdown');
+});
+document.getElementById('rcCsvBtn').addEventListener('click',function(){
+  var d=rcData(), s=SCALES[d.scale];
+  TK.csv(s.rows.map(function(r,i){
+    return {Criterion:r,Score:d.rows['s'+i]||'','Driving sentence':d.rows['j'+i]||'','Strengths and weaknesses':d.rows['w'+i]||'',
+            Project:d.project,Reviewer:d.reviewer};
+  }),'rating-card.csv');
+});
+document.getElementById('rcPrint').addEventListener('click',function(){window.print();});
+
+TK.load('data/panels.json').then(function(d){
+  P=d;
+  CATS=['Simulated review panel','Color-team review','Section-level tools','Strategy tools'].filter(function(c){return P.some(function(p){return p.cat===c;});});
+  P.sort(function(a,b){return CATS.indexOf(a.cat)-CATS.indexOf(b.cat);});
+  var sel=document.getElementById('catf');
+  CATS.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;sel.appendChild(o);});
+  render(); rcRender();
+}).catch(function(e){
+  document.getElementById('lib').innerHTML='<div class="note danger"><strong>Could not load the prompt library.</strong> '+TK.esc(e.message)+'</div>';
+  rcRender();
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Funder Profiles — Dr. Bucky Greenlove’s Funding Search Toolkit</title>
+<meta name="description" content="Profiles of every funder in the directory, plus the registration and portal steps each one requires before you can submit.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=f9cb0a4c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap"><div class="brandbar">
+    <div class="mark" aria-hidden="true">G</div>
+    <div class="brandtxt"><strong>Dr. Bucky Greenlove’s Funding Search Toolkit</strong><span>Find it · Vet it · Win it</span></div>
+  </div></div>
+  <nav class="main" aria-label="Main"><div class="wrap navslot"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Funder profiles</p>
+    <h1>Who funds what, and what they need from you first.</h1>
+    <p>Every funder in the directory, with all of its programs in one place — plus the registrations and portals that have to be sorted out weeks before you can submit anything.</p>
+  </div>
+</section>
+
+<main id="main"><div class="wrap">
+
+  <h2 id="registrations">Before you can submit anything</h2>
+  <p class="lead">Registration failures are the most avoidable way to miss a deadline, and they take weeks, not days. Check these the day you decide to apply.</p>
+
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>System</th><th>What it is</th><th>Who sets it up</th><th>Lead time</th></tr></thead>
+    <tbody>
+      <tr><td><b><a href="https://sam.gov/" rel="noopener">SAM.gov</a></b></td><td>Federal entity registration; issues the UEI. Required for every federal grant and contract.</td><td>Institution (sponsored programs). Renews annually.</td><td><b>Weeks.</b> An expired registration blocks submission entirely and renewal is not instant.</td></tr>
+      <tr><td><b><a href="https://grants.gov/applicants/registration" rel="noopener">Grants.gov</a></b></td><td>Submission portal for most federal discretionary grants.</td><td>Institution assigns roles; the AOR must be authorized to submit.</td><td>Days to weeks for role assignment.</td></tr>
+      <tr><td><b><a href="https://public.era.nih.gov/commons/" rel="noopener">eRA Commons</a></b></td><td>NIH (and several other PHS agencies). Every PI needs a personal account linked to the institution.</td><td>Institutional signing official creates the account.</td><td>Days. Do it before you have a project.</td></tr>
+      <tr><td><b><a href="https://www.research.gov/" rel="noopener">Research.gov</a></b></td><td>NSF proposal preparation, submission, and reviewer work. Also where Data Management and Sharing Plans now live.</td><td>Institution adds you; you need an NSF ID.</td><td>Days.</td></tr>
+      <tr><td><b><a href="https://nspires.nasaprs.com/" rel="noopener">NSPIRES</a></b></td><td>NASA proposals.</td><td>Self-register, then link to the institution.</td><td>Days.</td></tr>
+      <tr><td><b><a href="https://proposalcentral.com/" rel="noopener">ProposalCentral</a></b></td><td>Used by many private biomedical funders and some federal programs. If your funder uses it, you have no alternative.</td><td>Self-register.</td><td>Same day, but budget time to learn it.</td></tr>
+      <tr><td><b><a href="https://www.fluidreview.com/" rel="noopener">Foundation portals</a></b></td><td>Most foundations run their own system (Fluxx, SM Apply, Submittable, or a bespoke one).</td><td>Self-register, but some require an invitation or a prior LOI.</td><td>Varies — check before the LOI deadline, not after.</td></tr>
+      <tr><td><b><a href="https://sam.gov/search/" rel="noopener">SAM.gov contract opportunities</a></b></td><td>Federal <em>contracts</em>, including evaluation and technical assistance work. Not on Grants.gov.</td><td>Same SAM registration.</td><td>Already done if SAM is current.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note"><strong>The private foundation trap.</strong> Many foundations require a 501(c)(3) determination letter. A public university is a state instrumentality, not a 501(c)(3), so it often cannot apply under its own EIN and must go through an affiliated foundation. Sort out which entity applies <em>before</em> you write the cover page. At VSU there are three separate exempt entities — see the <a href="vsu.html#facts">VSU Roadmap</a>.</div>
+
+  <hr>
+
+  <h2 id="profiles">Funder profiles</h2>
+  <div class="toolbar">
+    <label for="fq" class="sr">Search funders</label>
+    <input type="search" id="fq" placeholder="Search funders — NSF, Spencer, Virginia, NIH…" style="max-width:340px">
+    <label for="ft" class="sr">Filter by type</label>
+    <select id="ft" style="width:auto">
+      <option value="">All funder types</option>
+      <option value="federal">Federal agencies</option>
+      <option value="foundation">Private foundations</option>
+      <option value="state">State &amp; regional</option>
+      <option value="nonprofit">Associations &amp; nonprofits</option>
+    </select>
+    <label class="opt" style="margin:0"><input type="checkbox" id="fh"><span style="font-size:.9rem">HBCU / MSI programs only</span></label>
+    <span class="spacer"></span>
+    <span class="count" id="fcount"></span>
+  </div>
+  <div id="funders"></div>
+
+</div></main>
+<footer class="site"><div class="wrap footslot"></div></footer>
+<script src="assets/app.js?v=0dada977"></script>
+<script>
+(function(){
+'use strict';
+var DATA=[],GROUPS=[];
+var TYPE={federal:'Federal agency',foundation:'Private foundation',state:'State / regional',nonprofit:'Association / nonprofit'};
+
+function group(){
+  var m={};
+  DATA.forEach(function(p){
+    var k=p.sponsor;
+    if(!m[k]) m[k]={sponsor:k,type:p.sponsor_type,programs:[],fields:{},hbcu:0,min:null,max:0,rolling:0};
+    var g=m[k];
+    g.programs.push(p);
+    p.fields.forEach(function(f){g.fields[f]=(g.fields[f]||0)+1;});
+    if(p.hbcu_msi) g.hbcu++;
+    if(p.award_min&&(g.min===null||p.award_min<g.min)) g.min=p.award_min;
+    if(p.award_max>g.max) g.max=p.award_max;
+    if(p._d==='rolling') g.rolling++;
+  });
+  GROUPS=Object.keys(m).map(function(k){return m[k];})
+    .sort(function(a,b){ return b.programs.length-a.programs.length || a.sponsor.localeCompare(b.sponsor); });
+}
+function block(g){
+  var e=TK.esc;
+  var topFields=Object.keys(g.fields).sort(function(a,b){return g.fields[b]-g.fields[a];}).slice(0,6);
+  var next=g.programs.map(function(p){return p._d;}).filter(function(d){return d&&d!=='rolling'&&TK.days(d)>=0;})
+            .sort(function(a,b){return a-b;})[0];
+  return '<details class="acc" data-blob="'+e((g.sponsor+' '+topFields.join(' ')+' '+g.programs.map(function(p){return p.name;}).join(' ')).toLowerCase())+'" data-type="'+e(g.type)+'" data-hbcu="'+(g.hbcu?1:0)+'">'+
+   '<summary>'+e(g.sponsor)+
+     '<span class="badge" style="margin-left:auto">'+g.programs.length+' program'+(g.programs.length===1?'':'s')+'</span>'+
+     (g.hbcu?'<span class="chip hbcu">HBCU / MSI</span>':'')+
+   '</summary><div class="body">'+
+     '<div class="grid g3" style="gap:.8rem;margin-bottom:1rem">'+
+       '<div class="stat" style="box-shadow:none"><b style="font-size:1.3rem">'+e(TK.range(g.min||0,g.max))+'</b><span>award range across programs</span></div>'+
+       '<div class="stat" style="box-shadow:none"><b style="font-size:1.3rem">'+(next?e(TK.fmtDate(next)):'—')+'</b><span>next deadline in the directory</span></div>'+
+       '<div class="stat" style="box-shadow:none"><b style="font-size:1.3rem">'+e(TYPE[g.type]||g.type)+'</b><span>funder type</span></div>'+
+     '</div>'+
+     (topFields.length?'<div class="chips" style="margin-bottom:1rem">'+topFields.map(function(f){return '<span class="chip">'+e(f)+'</span>';}).join('')+'</div>':'')+
+     '<h3>Programs</h3>'+
+     '<div class="scroll"><table class="tbl"><thead><tr><th>Program</th><th style="width:110px">Award</th><th style="width:190px">Deadline</th><th style="width:90px">Cycle</th></tr></thead><tbody>'+
+     g.programs.sort(function(a,b){return a.name.localeCompare(b.name);}).map(function(p){
+       return '<tr><td><a href="'+e(p.url)+'" target="_blank" rel="noopener"><b>'+e(p.name)+'</b></a>'+
+              '<div style="font-size:.86rem;color:var(--muted);margin-top:.2rem">'+e(p.description)+'</div>'+
+              (p.eligibility?'<div style="font-size:.82rem;color:var(--ink);margin-top:.3rem"><b>Eligibility:</b> '+e(p.eligibility)+'</div>':'')+
+              (p.hbcu_msi?'<div class="chips" style="margin-top:.35rem"><span class="chip hbcu">HBCU / MSI</span></div>':'')+
+              '</td><td>'+e(TK.range(p.award_min,p.award_max))+'</td><td>'+e(p.deadline||'—')+'</td><td>'+e(p.cadence||'—')+'</td></tr>';
+     }).join('')+
+     '</tbody></table></div>'+
+   '</div></details>';
+}
+function render(){
+  var q=document.getElementById('fq').value.trim().toLowerCase();
+  var t=document.getElementById('ft').value;
+  var h=document.getElementById('fh').checked;
+  var L=GROUPS.filter(function(g){
+    if(t&&g.type!==t) return false;
+    if(h&&!g.hbcu) return false;
+    if(q){
+      var blob=(g.sponsor+' '+g.programs.map(function(p){return p.name+' '+p.blob;}).join(' ')).toLowerCase();
+      if(blob.indexOf(q)<0) return false;
+    }
+    return true;
+  });
+  document.getElementById('funders').innerHTML=L.length?L.map(block).join(''):'<div class="empty"><h3>No funders matched.</h3></div>';
+  document.getElementById('fcount').textContent=L.length+' of '+GROUPS.length+' funders';
+}
+['fq','ft','fh'].forEach(function(id){
+  document.getElementById(id).addEventListener(id==='fq'?'input':'change',render);
+});
+TK.load('data/programs.json').then(function(d){
+  DATA=d; DATA.forEach(function(p){ p._d=TK.nextDate(p.deadline); });
+  group(); render();
+}).catch(function(e){
+  document.getElementById('funders').innerHTML='<div class="note danger"><strong>Could not load funder data.</strong> '+TK.esc(e.message)+'</div>';
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proposal Studio — Dr. Bucky Greenlove’s Funding Search Toolkit</title>
+<meta name="description" content="Tools for writing a fundable proposal: a timeline generator, the actual review criteria for NIH, NSF, IES, NIFA, DOE, DOD and federal NOFOs, section-by-section guidance, AI-use policy, and what the evidence says actually improves funding rates.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=f9cb0a4c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap"><div class="brandbar">
+    <div class="mark" aria-hidden="true">G</div>
+    <div class="brandtxt"><strong>Dr. Bucky Greenlove’s Funding Search Toolkit</strong><span>Find it · Vet it · Win it</span></div>
+  </div></div>
+  <nav class="main" aria-label="Main"><div class="wrap navslot"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Proposal Studio</p>
+    <h1>Write it against the criteria, not against your instincts.</h1>
+    <p>Every funder publishes what it rewards. Almost nobody writes to it. This page gives you the actual criteria and scales, a timeline you can generate from your deadline, section-by-section guidance keyed to how reviewers actually read, and an honest account of what the evidence supports.</p>
+  </div>
+</section>
+
+<main id="main"><div class="wrap">
+
+  <div class="tocbox">
+    <strong>On this page</strong>
+    <ol>
+      <li><a href="#timeline">Generate your proposal timeline</a></li>
+      <li><a href="#criteria">What each funder actually scores</a></li>
+      <li><a href="#kill">The kill gates — how proposals die before review</a></li>
+      <li><a href="#sections">Section by section</a></li>
+      <li><a href="#ai">AI in proposal development: the current rules</a></li>
+      <li><a href="#evidence">What actually improves funding rates</a></li>
+    </ol>
+  </div>
+
+  <h2 id="timeline">1. Generate your proposal timeline</h2>
+  <p class="lead">Enter the sponsor deadline. This works backwards through the color-team review sequence and VSU’s published internal gates, then exports to your calendar.</p>
+
+  <div class="card">
+    <div class="grid g3" style="gap:.9rem;align-items:end">
+      <div><label for="tlDate" style="font-weight:700;font-size:.85rem;color:var(--rust)">Sponsor deadline</label>
+        <input type="date" id="tlDate"></div>
+      <div><label for="tlName" style="font-weight:700;font-size:.85rem;color:var(--rust)">Program / opportunity</label>
+        <input type="text" id="tlName" placeholder="e.g. NSF HBCU-EiR"></div>
+      <div><label for="tlInst" style="font-weight:700;font-size:.85rem;color:var(--rust)">Institutional gates</label>
+        <select id="tlInst">
+          <option value="vsu">Virginia State University (Cayuse, GNoI, 30/7-day rules)</option>
+          <option value="generic">Generic university (10 / 5 business day routing)</option>
+          <option value="none">None — just the review sequence</option>
+        </select></div>
+    </div>
+    <div class="toolbar" style="margin:1rem 0 0">
+      <button class="btn orange" id="tlGo">Build timeline</button>
+      <button class="btn ghost" id="tlIcs" disabled>📅 Add to calendar (.ics)</button>
+      <button class="btn ghost" id="tlMd" disabled>⬇ Markdown</button>
+      <span id="tlWarn" style="font-size:.86rem;font-weight:700;color:var(--warn)"></span>
+    </div>
+    <div id="tlOut" style="margin-top:1.2rem"></div>
+  </div>
+
+  <h2 id="criteria">2. What each funder actually scores</h2>
+  <p>Compiled from primary sources in August 2026. Scales and structures change — check the current announcement, always.</p>
+
+  <details class="acc" open><summary>NIH — Simplified Review Framework (due dates on or after January 25, 2025)</summary><div class="body">
+    <p>NIH kept the five regulatory criteria but reorganized them into <strong>three factors</strong>, and two of the old criteria lost their separate numeric scores.</p>
+    <div class="scroll"><table class="tbl">
+      <thead><tr><th>Factor</th><th>Contains</th><th>Scored?</th><th>What reviewers are asked</th></tr></thead><tbody>
+      <tr><td><b>Factor 1<br>Importance of the Research</b></td><td>Significance + Innovation</td><td><b>1–9</b></td><td>“What specifically will be learned and how valuable will that knowledge be?” Novelty is judged by how much it drives importance, not on its own.</td></tr>
+      <tr><td><b>Factor 2<br>Rigor and Feasibility</b></td><td>Approach (absorbs Inclusion and clinical trial timeline)</td><td><b>1–9</b></td><td>“Will the proposed approach produce unbiased, reproducible, and robust data?” And can it be done, well, in the time proposed?</td></tr>
+      <tr><td><b>Factor 3<br>Expertise and Resources</b></td><td>Investigators + Environment</td><td><b>Not scored</b></td><td>A dropdown: “Appropriate” or “Additional expertise and/or resources needed.” Comments only if there is a gap.</td></tr>
+    </tbody></table></div>
+    <p><strong>The 1–9 scale:</strong> 1 Exceptional · 2 Outstanding · 3 Excellent · 4 Very Good · 5 Good · 6 Satisfactory · 7 Fair · 8 Marginal · 9 Poor. Whole numbers only. Overall impact averaged across the panel and multiplied by 10 gives the 10–90 priority score.</p>
+    <div class="note"><strong>The rule everyone misses.</strong> NIH’s own scoring guidance states that “a project of moderate or limited importance (Factor 1) cannot be made more impactful by a strong approach (Factor 2) and/or appropriate expertise and resources (Factor 3).” <strong>Factor 1 is a ceiling.</strong> If your significance argument is weak, no amount of methodological polish rescues it. Also: “Scores in the high range should be based on strengths, not merely the absence of weaknesses.”</div>
+    <div class="note warn"><strong>What has changed since, and it matters a lot.</strong> Peer review was centralized in the Center for Scientific Review in mid-2025. And under NOT-OD-26-069, in effect through the October 2026 Advisory Council round, <strong>only 30–35% of applications in most meetings are discussed</strong> rather than the usual ~50%. The middle third is designated <strong>“competitive but not discussed”</strong> — no priority score, but program staff may still recommend it for funding based on programmatic priority and portfolio balance. The lowest third is “not competitive and not discussed.”</div>
+    <p style="margin-bottom:0"><strong>What this means for how you write.</strong> Under a 30–35% discussion rate, your Specific Aims page is effectively the whole application for most submissions. Treat it as a separately workshopped, separately deadlined document. Also note: <strong>six applications per PI per calendar year</strong>, excluding T-series and R13 conference grants.</p>
+  </div></details>
+
+  <details class="acc"><summary>NSF — Intellectual Merit and Broader Impacts (PAPPG 24-1 as supplemented)</summary><div class="body">
+    <div class="note"><strong>There is no PAPPG 25-1 or 26-1.</strong> PAPPG 24-1 (effective May 20, 2024) remains the base document; NSF deferred a new PAPPG and is issuing supplements instead. <strong>Supplement 1</strong> (Dec 8, 2025) raised Planning proposals to $200K, RAPID to $300K, EAGER to $400K, the equipment threshold to $10,000, added research security requirements, and folded AI into the research misconduct definition. <strong>Supplement 2</strong> (Jan 22, 2026) removed the 12-month public access embargo, requires Author Accepted Manuscript deposit at publication, moved Data Management and Sharing Plans to a dedicated Research.gov tool as of April 27, 2026, and requires proposals to address sharing “as an integral part of review.” Cite it as “PAPPG 24-1 as supplemented.”</div>
+    <p><strong>Intellectual Merit</strong> “encompasses the potential to advance knowledge.” <strong>Broader Impacts</strong> “encompasses the potential to benefit society and contribute to the achievement of specific, desired societal outcomes.” Both are evaluated against the <em>same five review elements</em> — this is a 2×5 grid, not a narrative:</p>
+    <ol>
+      <li>Potential to advance knowledge (IM) and to benefit society or advance desired societal outcomes (BI)</li>
+      <li>Extent to which the activities suggest and explore creative, original, or potentially transformative concepts</li>
+      <li>Is the plan well-reasoned, well-organized, based on a sound rationale — <strong>and does it incorporate a mechanism to assess success?</strong></li>
+      <li>How well qualified is the individual, team, or organization?</li>
+      <li>Are resources adequate, at the home organization or through collaborations?</li>
+    </ol>
+    <p><strong>Element 3 is where Broader Impacts sections die.</strong> A list of activities with no evaluation plan fails a criterion NSF applies explicitly.</p>
+    <p><strong>Rating scale:</strong> Excellent / Very Good / Good / Fair / Poor, entered on the reviewer form in Research.gov. Worth knowing: these adjectives do <em>not</em> appear in the PAPPG, NSF publishes no official definitions for them, and reviewers commonly give intermediate ratings like V/G when five points feel too coarse. The narrative carries far more weight than the letter.</p>
+    <p style="margin-bottom:0"><strong>Project Summary — one page, three separately labeled sections:</strong> Overview, Intellectual Merit, Broader Impacts. Missing any of the three is a Return Without Review trigger. Reviewers are typically three to ten people, as ad hoc reviewers, panelists, or both; panel review produces a panel summary you receive. Expect up to six months.</p>
+  </div></details>
+
+  <details class="acc"><summary>IES — the two scales that run in opposite directions</summary><div class="body">
+    <p>Criteria for the main research competitions: <strong>Significance, Research Plan, Personnel, Resources.</strong> Significance is judged against the Goal you submitted under — Exploration, Development and Innovation, Efficacy and Replication, Effectiveness, or Measurement — not against a general sense of importance. Pull the criterion text from your specific RFA; IES defines them competition by competition.</p>
+    <div class="scroll"><table class="tbl">
+      <thead><tr><th></th><th>Scale</th><th>Direction</th><th>Bands</th></tr></thead><tbody>
+      <tr><td><b>Criterion scores</b></td><td>1–7, whole numbers</td><td><b>Higher is better</b></td><td>6–7 very positive · 3–5 mixed · 1–2 negative</td></tr>
+      <tr><td><b>Overall score</b></td><td>1.0–5.0, in tenths</td><td><b>Lower is better</b></td><td>1.0–1.5 Outstanding · 1.6–2.0 Excellent · 2.1–2.5 Very Good · 2.6–3.0 Good · 3.1–4.0 Fair · 4.1–5.0 Poor</td></tr>
+    </tbody></table></div>
+    <p style="margin-bottom:0">Critically: <strong>“Criterion scores are not averaged or mathematically manipulated to determine an overall score.”</strong> The overall is holistic. IES also assigns a <strong>synthesizer</strong> — a panel member who reads back a summary of the discussion before final scoring. It is the best idea in federal peer review and worth stealing for any mock panel you run.</p>
+  </div></details>
+
+  <details class="acc"><summary>USDA NIFA / AFRI — the panel-manager model</summary><div class="body">
+    <p>Criteria: <strong>Scientific Merit</strong> (including novelty, innovation, uniqueness, originality, and whether the probability of success is appropriate given the level of originality), <strong>Qualifications of Project Personnel and Adequacy of Facilities</strong> (including performance record on prior support), and <strong>Project Relevance</strong> — documentation that the work is directed toward a <em>specific Program Area Priority named in the RFA</em>.</p>
+    <p>A panel manager, an active established scientist, selects panelists, assigns proposals, and chairs. Panels are balanced by geography, institution type and size, rank, gender, and ethnicity, with no more than one panelist from a single institution and rarely more than one from a state. Typically 3–4 panelists per proposal plus up to 3 ad hoc reviewers.</p>
+    <p style="margin-bottom:0"><strong>Two-stage rating.</strong> Individual reviewers use excellent / very good / good / fair / poor. The panel then assigns a consensus category: <strong>outstanding, high priority, medium priority, low priority, or do not fund</strong> — and <strong>only the first three are funding-eligible.</strong></p>
+  </div></details>
+
+  <details class="acc"><summary>DOE and DOD — mail-in review and Broad Agency Announcements</summary><div class="body">
+    <p><strong>DOE Office of Science</strong> criteria are set in 10 CFR 605.10(d) <em>in descending order of importance</em>: scientific and/or technical merit or educational benefit; appropriateness of the method or approach; competency of personnel and adequacy of resources; reasonableness and appropriateness of the budget; then other factors set in the solicitation. DOE also weighs “program policy factors such as ensuring an appropriate balance among the program areas.” Most DOE Office of Science programs use mail-in peer review by three or more external reviewers rather than convened panels, and many gate on a pre-application or letter of intent.</p>
+    <p style="margin-bottom:0"><strong>DOD BAAs</strong> operate under FAR 35.016 and work differently from everything else: proposals “need not be evaluated against each other since they are not submitted in accordance with a common work statement.” There is no curve and no percentile. Selection rests on technical merit, importance to agency programs, and fund availability. The typical structure is a <strong>2–5 page white paper</strong> first — its stated purpose is “to preclude unwarranted effort on the part of an offeror whose work is not of interest to the Government” — followed by an invited full proposal with a contractor-developed statement of work. Outcomes are <strong>Selectable</strong> or <strong>Not Selectable</strong>, and agencies may fund only <em>portions</em> of a proposal.</p>
+  </div></details>
+
+  <details class="acc"><summary>Federal NOFOs generally — rating factors and the three-stage review</summary><div class="body">
+    <p>Since the 2024 Uniform Guidance rewrite, federal NOFOs follow a standard skeleton (2 CFR 200 Appendix I). <strong>Section 6, Application Review Information</strong>, is the section you write to, and it must contain three things: the <strong>responsiveness review</strong> and what disqualifies an application before merit evaluation, the <strong>merit review criteria</strong> with relative weights, and the <strong>review and selection process</strong> including program policy factors the selecting official may use.</p>
+    <p>A verified live example — HUD PD&amp;R’s Automated Permitting Systems Demonstration NOFO — allocates 100 points as: Contribution of the Proposed Project 30 · Soundness of Approach 30 · Project Management and Capacity of the Team 20 · Budget and Timeline Reasonableness 20. It runs a three-stage review: <strong>threshold review, merit review, then a risk review</strong> under 2 CFR 200.206 covering financial stability, management systems, performance history, and audit findings.</p>
+    <p style="margin-bottom:0"><strong>Weights vary by NOFO — never assume.</strong> And allocate your pages roughly in proportion to the points. If a 10-point factor is getting 30% of your narrative, you are donating pages.</p>
+  </div></details>
+
+  <details class="acc"><summary>Private foundations — LOI-first, and fit decides most of it</summary><div class="body">
+    <p>Most foundations screen a letter of inquiry or preproposal before any peer review, and most declines happen there on <strong>fit</strong>, not quality. The <strong>W.T. Grant Foundation</strong> publishes the most explicit criteria found anywhere in the private sector: <strong>Fit with Research Interests</strong>, <strong>Conceptualization and Relevance</strong> (mastery of theory and empirical findings, plus a compelling theory of change), <strong>Methods</strong> (rigor, adequate power, appropriate sampling and measurement), and <strong>Feasibility</strong> (realistic timeline, staffing, resources, and a track record).</p>
+    <p>W.T. Grant runs two pathways: <strong>Officers’ Research Grants</strong> decided on the merit of the letter of inquiry alone in about 14 weeks, and <strong>Major Research Grants</strong> that take 10–12 months through six stages — including a stage where the <strong>applicant responds in writing to reviewer comments before the funding decision</strong>. That is essentially a journal-style revise-and-resubmit inside a grant review, and it is worth modeling.</p>
+    <p><strong>Spencer changed its process in October 2025.</strong> Large Research Grants and Research-Practice Partnerships now begin with an evaluated preproposal; roughly 500 teams advance to full proposals receiving two peer reviews. Teams that do not advance get “light feedback” only, where they previously received two full reviews. Other field-initiated programs, including Small Research Grants, now use a two-stage screen.</p>
+    <p style="margin-bottom:0"><strong>RWJF</strong> states selection criteria inside each individual Call for Proposals rather than foundation-wide, and runs an always-open rolling mechanism (Pioneering Ideas) alongside its timed CFPs.</p>
+  </div></details>
+
+  <h2 id="kill">3. The kill gates — how proposals die before anyone reads the science</h2>
+  <p class="lead">There is a review that happens before merit review, and it is pass/fail. A large share of unfunded applications never reach a reviewer at all.</p>
+
+  <div class="grid g2">
+    <div class="card"><h3 style="margin-top:0">NSF: Return Without Review</h3>
+      <p style="font-size:.93rem">PAPPG 24-1 Chapter IV lists eleven triggers. The ones that catch people: <strong>page limits and formatting</strong>, <strong>not responsive to the funding opportunity</strong>, <strong>previously declined and not substantially revised</strong>, and <strong>“does not contain each of the required sections”</strong> — which most often means a Project Summary missing one of its three labeled parts. Reconsideration exists but is slow: a written request to the Assistant Director within 90 days, answered within 45.</p></div>
+    <div class="card"><h3 style="margin-top:0">NIH: incomplete means withdrawn</h3>
+      <p style="font-size:.93rem">NIH’s current language is unusually hard-line. <strong>“Placeholder attachments must not be used”</strong> — they pass eRA validations but the application is incomplete and will be withdrawn. NIH “will not solicit or accept revised, corrected, or replacement materials,” will not edit or redact anything submitted, and states that <strong>correcting issues in an on-time submission is not an acceptable reason for late submission.</strong> Submit early enough to survive a failed validation.</p></div>
+    <div class="card"><h3 style="margin-top:0">NOFOs: threshold and risk review</h3>
+      <p style="font-size:.93rem">Eligibility, registrations, required attachments and certifications, page and format rules, cost share, and the portal deadline down to the time zone. Then, separately, a <strong>risk review</strong> of your organization under 2 CFR 200.206 that can attach specific award conditions even to a winning application. HUD also layers general administrative and departmental policy requirements on top of every NOFO — separate documents with their own kill conditions.</p></div>
+    <div class="card"><h3 style="margin-top:0">The institutional gate</h3>
+      <p style="font-size:.93rem">Your own university can stop you. At VSU that means the 30-day Grant Notice of Intent, the pre-proposal planning packet, an FCOI disclosure on file before any federal submission, and the proposal routed in Cayuse at least 7 days out. VSU states that proposals not approved in Cayuse <strong>may be refused by the university at the time of funding</strong>. See the <a href="vsu.html">VSU Roadmap</a>.</p></div>
+  </div>
+
+  <h2 id="sections">4. Section by section</h2>
+
+  <details class="acc"><summary>Specific Aims / Project Summary — the page that decides everything else</summary><div class="body">
+    <p>Under NIH’s current 30–35% discussion rate, this page <em>is</em> the application for most submissions. Structure it so a reviewer can underline each move:</p>
+    <ul>
+      <li><strong>Hook</strong> — the problem, in terms a non-specialist accepts. Not background nobody disputes.</li>
+      <li><strong>Gap</strong> — stated as a gap, in a sentence a reviewer could underline. Not implied by a literature summary.</li>
+      <li><strong>Critical need</strong> — why this gap is worth money.</li>
+      <li><strong>Objective and central hypothesis</strong> — falsifiable, one sentence.</li>
+      <li><strong>Rationale</strong> — why this team, with this preliminary data, now.</li>
+      <li><strong>The aims</strong> — <strong>independent of one another.</strong> If Aim 2 collapses when Aim 1 fails, reviewers will say so. Each with a working hypothesis, an approach, and an expected outcome. Aims are not tasks; “collect survey data” is a task.</li>
+      <li><strong>Payoff</strong> — concrete expected impact, promising no more than the aims deliver.</li>
+    </ul>
+    <p>For NSF, the Project Summary is one page with three separately labeled sections — Overview, Intellectual Merit, Broader Impacts — and omitting any of them is a Return Without Review trigger.</p>
+    <p style="margin-bottom:0">Workshop this page ten to twelve weeks out, alone, before the rest exists. Use the <a href="panel.html#specific-aims">Aims Workshop prompt</a>.</p>
+  </div></details>
+
+  <details class="acc"><summary>Significance — the ceiling on your score</summary><div class="body">
+    <p>At NIH this is half of Factor 1, and Factor 1 caps everything. The common failure is writing significance as importance-of-the-topic rather than importance-of-this-knowledge. “Diabetes is a major public health problem” is not a significance argument; it is a premise nobody contests.</p>
+    <p style="margin-bottom:0">Answer, concretely: <strong>what specifically will be known at the end that is not known now, who changes what they do because of it, and what is the size of that change?</strong> Then defend that the answer is worth the money. If you cannot name what a reviewer would <em>do differently</em> after reading your results, the section is not finished.</p>
+  </div></details>
+
+  <details class="acc"><summary>Approach — where rigor and feasibility are decided</summary><div class="body">
+    <p>NIH’s Factor 2 asks two separable questions: will this produce <strong>unbiased, reproducible, robust</strong> data (rigor), and can it be <strong>done well in the time proposed</strong> (feasibility)? Answer both explicitly. Most drafts answer only the first.</p>
+    <ul>
+      <li>Design justified against the question, not against convenience</li>
+      <li>Sampling and power — a real calculation with stated assumptions, or for qualitative work a defensible sampling logic and stopping rule</li>
+      <li>Measures with psychometric or validation evidence</li>
+      <li>Analysis plan specific enough that someone else could execute it</li>
+      <li><strong>Threats and alternatives</strong> — a named potential problem with a named mitigation for each aim. This section separates competitive from non-competitive applications more reliably than any other.</li>
+      <li>Timeline that accommodates IRB approval, hiring, and data acquisition, not just analysis</li>
+      <li>Where required, inclusion of women, minorities, and individuals across the lifespan — substantively, not as a paragraph of assurance</li>
+    </ul>
+    <p style="margin-bottom:0"><strong>Over-scoping is the most common early-career error and it is fatal here.</strong> Reviewers reward a project that will finish.</p>
+  </div></details>
+
+  <details class="acc"><summary>Broader Impacts and societal benefit</summary><div class="body">
+    <p>NSF evaluates Broader Impacts against all five review elements — including whether the plan “incorporates a mechanism to assess success.” Broader Impacts with no evaluation plan, no named person, and no budget line reads as unserious, and at least one panelist will say so.</p>
+    <p><strong>Requirements for a serious section:</strong> a named societal outcome, an activity designed for this project rather than pulled from the default menu, a logic model, an assessment plan with measures and intervals, a named responsible person, named partners who have agreed in writing, and a budget line you can point to.</p>
+    <p style="margin-bottom:0"><strong>For HBCUs, MSIs, and primarily undergraduate institutions:</strong> institutional identity is not an argument by itself. Access is. What communities, student populations, regional problems, and long-standing relationships does this institution have that a large research university does not? Make the access concrete. See the <a href="panel.html#capacity-narrative">Capacity Narrative prompt</a>.</p>
+  </div></details>
+
+  <details class="acc"><summary>Budget and budget justification</summary><div class="body">
+    <p>Budget is an “additional review consideration” at NIH — evaluated, but it must not affect the impact score. That does not make it safe. An internally inconsistent budget makes a reviewer doubt the whole project, and that doubt lands on feasibility, which <em>is</em> scored.</p>
+    <p><strong>The consistency test:</strong> every person named in the narrative has an effort line; every effort line has a named task; travel matches the fieldwork promised; equipment matches the methods; participant payments match the sample size; subawards match the partner roles and each has a scope, a budget, and a letter; the requested total is the same number everywhere it appears.</p>
+    <p style="margin-bottom:0"><strong>Get your rates from your sponsored programs office, not from a previous proposal.</strong> Rate agreements expire. Confirm the F&amp;A rate and base, whether exclusions were applied correctly, fringe rates by employee category, salary escalation, and any sponsor cap. And understand that <em>voluntary committed</em> cost share becomes a binding, auditable obligation.</p>
+  </div></details>
+
+  <details class="acc"><summary>Letters of support and collaborator commitments</summary><div class="body">
+    <p style="margin-bottom:0">A generic enthusiasm letter is worse than no letter, because it signals a soft commitment. Draft the specific commitment language for each collaborator yourself and let them edit it: access to a named site, a defined number of consultation hours, a named dataset, a specific deliverable, a specific population. Then check that the narrative promises exactly what the letters commit to — and no more. Reviewers do compare them.</p>
+  </div></details>
+
+  <h2 id="ai">5. AI in proposal development: the current rules</h2>
+  <div class="note danger">
+    <p><strong>If you review for NIH or NSF, this is absolute: do not put any part of an application, review, or critique into any AI tool.</strong> NIH prohibits reviewers from using language models to analyze or formulate critiques, and treats uploading application content as a violation of the confidentiality and nondisclosure agreement reviewers sign. NSF prohibits reviewers from uploading proposals, review information, or related records to non-approved generative AI tools. The only NIH exception is accessibility technology, with advance notice to the Designated Federal Officer.</p>
+  </div>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>What you want to do</th><th>NIH</th><th>NSF</th></tr></thead><tbody>
+    <tr><td>Brainstorm, outline, edit, tighten your own prose</td><td>Permitted; disclosure encouraged</td><td>Permitted; disclosure encouraged in the Project Description</td></tr>
+    <tr><td>Have AI draft substantial sections of the application</td><td class="danger"><b>Prohibited.</b> Applications “substantially developed by AI,” or containing sections substantially developed by AI, “will not be considered by NIH” — for receipt dates on or after Sept 25, 2025</td><td>Not explicitly prohibited, but AI-mediated fabrication, falsification, or plagiarism is research misconduct under PAPPG 24-1 Supplement 1</td></tr>
+    <tr><td>Use AI-generated citations you have not verified</td><td class="danger"><b>Potential research misconduct</b> — presenting non-existent references as real can constitute fabrication</td><td class="danger"><b>Potential research misconduct</b></td></tr>
+    <tr><td>Run an AI mock review on your <em>own</em> pre-submission draft</td><td colspan="2">Not addressed by either agency — this is institutional pre-submission work, not peer review, so the reviewer bans do not reach it. Apply the confidentiality logic anyway: use enterprise or zero-retention tooling, especially with unpublished data or student information.</td></tr>
+  </tbody></table></div>
+  <p><strong>The practical line.</strong> NIH has not banned AI assistance. It has banned applications authored by AI, and it has banned presenting unverified AI output as your own verified work. Disclosure is affirmatively encouraged at both agencies — NIH asks researchers to “clearly describe in applications, manuscripts, and presentations the use of the AI tools and how they may have been used.” Use AI as a reviewer, a critic, and an editor. Verify every fact and every citation yourself, every time.</p>
+  <p><strong>One caution about commercial AI grant-writing tools.</strong> Most are built for the nonprofit sector and work by reusing prior narrative — which is precisely the behavior NIH’s originality policy targets. None of them are cleared for confidential peer-review material.</p>
+
+  <h2 id="evidence">6. What actually improves funding rates</h2>
+  <p class="lead">Graded honestly, because the folklore in this area is thick.</p>
+
+  <div class="grid g2">
+    <div class="card"><h3 style="margin-top:0">Strongest evidence: internal review</h3>
+      <p style="font-size:.93rem">Johns Hopkins Neurology’s two-step internal grant review — a 10-minute aims presentation 10 weeks out, then NIH-style scored peer review 5 weeks out — reported <strong>22 of 38 applications funded (58%)</strong>, and within the same department, internally reviewed R-grants succeeded at 58% versus 22% for unreviewed. Columbia’s School of Nursing reported <strong>42% versus 20%</strong>, on a five-year investment of $127,000 preceding $3 million in external funding. A mock-review program for early-career investigators reported 37% success across 212 participants and $50.2M.</p>
+      <p style="font-size:.93rem;margin-bottom:0"><strong>The caveat matters.</strong> Every one of these comparisons is self-selected — people who volunteer for a nine-month bootcamp differ systematically from those who don’t. The defensible claim is association and strong ROI, not a 2.5× causal effect.</p></div>
+
+    <div class="card"><h3 style="margin-top:0">Officially endorsed, not quantified</h3>
+      <p style="font-size:.93rem"><strong>Program officer contact.</strong> NIH directs applicants to contact the program officer who manages grants in their scientific area to discuss relevance, study section, budget, and scope. Know the division of labor: Program Officers handle science, strategy, and funding; Scientific Review Officers run the review and cannot discuss funding. No study quantifies an effect on success rates — treat it as sound practice, not a multiplier.</p>
+      <p style="font-size:.93rem;margin-bottom:0"><strong>Resubmission.</strong> Structurally advantaged — reviewers see your Introduction and the prior critiques. NIH allows one A1, not before the summary statement arrives and not more than 37 months after the original. Current A0-versus-A1 differentials could not be verified; be skeptical of the folklore numbers.</p></div>
+
+    <div class="card"><h3 style="margin-top:0">Sensible craft, no outcome evidence</h3>
+      <p style="font-size:.93rem;margin-bottom:0">White space, chunking, figure placement, bolding, headings that carry meaning, and short sentences in load-bearing positions. All of it traces to practitioner advice rather than any study of grant outcomes — there is no grant-specific readability trial. The underlying cognitive-load research is real and the advice is sensible, but the link to funding is inferred. Do it because it costs nothing, not because it is proven.</p></div>
+
+    <div class="card"><h3 style="margin-top:0">The underexploited move: targeting</h3>
+      <p style="font-size:.93rem;margin-bottom:0">The genuinely underused category is <strong>analytics for positioning</strong> — using NIH RePORTER, NSF Award Search, and similar tools to reverse-engineer what a program <em>actually funds</em> as opposed to what its announcement says it funds. Read fifteen recent awards in your target program before you write a word. This is capture planning adapted from contracting: stop responding to solicitations and start positioning for them, building teams and program officer relationships before the announcement drops.</p></div>
+  </div>
+
+  <div class="note ok" style="margin-top:1.6rem"><strong>If you do only three things.</strong> Workshop your one-page aims ten weeks out with two colleagues. Run a Red Team that scores the near-final draft against the actual published criteria using the actual scale. Submit a full business day early. Everything else on this page is an amplifier of those three.</div>
+
+</div></main>
+<footer class="site"><div class="wrap footslot"></div></footer>
+<script src="assets/app.js?v=0dada977"></script>
+<script>
+(function(){
+'use strict';
+var BUILT=null;
+function d(base,off){ var x=new Date(base.getTime()); x.setDate(x.getDate()+off); return x; }
+function bd(date,n){ /* n business days before */ var x=new Date(date.getTime()),c=0;
+  while(c<n){ x.setDate(x.getDate()-1); var w=x.getDay(); if(w!==0&&w!==6) c++; } return x; }
+function build(){
+  var v=document.getElementById('tlDate').value;
+  var warn=document.getElementById('tlWarn'); warn.textContent='';
+  if(!v){ warn.textContent='Pick a deadline first.'; return; }
+  var dl=new Date(v+'T12:00:00');
+  var name=document.getElementById('tlName').value.trim()||'this proposal';
+  var inst=document.getElementById('tlInst').value;
+  var left=Math.round((dl-new Date())/86400000);
+  if(left<0){ warn.textContent='That date is in the past.'; return; }
+
+  var E=[];
+  var push=function(date,title,desc,kind){ E.push({date:date,title:title,desc:desc,kind:kind||''}); };
+
+  push(d(dl,-60),'Go / No-Go decision — '+name,'Run the fit screen: eligibility hard gates, fit rating against the funder’s own language, implied number of awards, and the real cost of applying. Decide before you invest.','');
+  push(d(dl,-56),'Contact the program officer','Read 10–15 recently funded awards in this program first (RePORTER / NSF Award Search). Send a sub-200-word email with 2–3 answerable questions and a one-page concept summary attached.','');
+  push(d(dl,-49),'Team and partners locked','Run the expertise gap analysis. Request letters of support with specific commitment language — not enthusiasm.','');
+  push(d(dl,-42),'Build the compliance matrix','Extract every requirement from the announcement: threshold, scored, format, admin. Allocate pages in proportion to points.','');
+  push(d(dl,-42),'Specific Aims / summary workshop (SOAR)','One page only. 10-minute presentation to 2–3 colleagues, written feedback within a week. This is the cheapest high-value review available.','');
+
+  if(inst==='vsu'){
+    push(d(dl,-45),'VSU: consult Research Development','Dr. Lora Battle Bailey, lbbailey@vsu.edu, 804-524-5385.','');
+    push(d(dl,-30),'VSU HARD GATE: Grant Notice of Intent (GNoI) due','Required no less than 30 days before the sponsor deadline.','gate');
+    push(d(dl,-30),'VSU HARD GATE: pre-proposal planning packet due','Checklist plus Procurement, IT, HR, Facilities, and Cost Sharing forms — 30 calendar days out. Triggers a convened meeting with each unit you flag.','gate');
+    push(d(dl,-30),'VSU: FCOI Financial Interests Report on file','Required before submitting to ANY federal agency. Non-compliance delays the submission.','gate');
+    push(d(dl,-30),'VSU: obtain the CURRENT F&A rate agreement from OSRP','The published agreement period ended 06/30/2025. Ask for the signed PDF — do not assume 44%.','gate');
+  } else if(inst==='generic'){
+    push(bd(dl,10),'Institutional routing opens (10 business days out)','Most universities require the full proposal in the routing system 5–10 business days before the sponsor deadline. Confirm your own rule.','gate');
+  }
+
+  push(d(dl,-28),'Pink Team — outline validation','Draft at 20–40%. Does the outline map to every requirement? Are the win themes present and early? Is there a structurally better version we should switch to now, while it is still cheap?','');
+  push(d(dl,-21),'Budget locked; subaward packets requested','Every partner needs a scope, budget, justification, commitment letter, and their own institutional signature. This always takes longer than planned.','');
+  push(d(dl,-21),'IRB / IACUC submission moving','If human or animal subjects are involved, start now — approval is required before any data collection begins.','');
+  push(d(dl,-17),'Red Team — score it as the panel will','80–90% draft. Score against the actual published criteria using the actual scale. Find the weak discriminators, the compliance gaps, and the reviewer’s first objection.','gate');
+  push(d(dl,-14),'Green Team — budget realism','Does the budget match everything the narrative promises? Every named person has effort; every effort line has a named task.','');
+  push(d(dl,-14),'Verify all registrations are ACTIVE','SAM.gov (renewal can take weeks), Grants.gov roles, and eRA Commons / Research.gov / NSPIRES / ProposalCentral as applicable.','');
+  push(d(dl,-10),'Red Team findings resolved','Every finding marked resolved, partially resolved, or consciously ignored — with a reason.','');
+
+  if(inst==='vsu'){
+    push(d(dl,-7),'VSU HARD GATE: route in Cayuse SP','Complete proposal plus signed cost-share form, no less than 7 days out. Chain: Chair → Dean → OSRP Director. Proposals not approved in Cayuse may be refused by the university.','gate');
+  } else if(inst==='generic'){
+    push(bd(dl,5),'Institutional routing deadline (5 business days out)','Full proposal in the routing system with all approvals started.','gate');
+  }
+
+  push(d(dl,-2),'Gold Team — executive gate','Internal consistency (budget ↔ narrative ↔ timeline ↔ letters), page limits, formatting, every attachment, all institutional identifiers, and the embarrassment scan. GO or NO-GO.','gate');
+  push(d(dl,-1),'SUBMIT — one full business day early','Failed validations are not an acceptable reason for late submission at NIH, and no corrections are accepted after the deadline. Leave yourself room to fix and resubmit.','gate');
+  push(dl,'SPONSOR DEADLINE — '+name,'Confirm receipt. Save the confirmation and tracking number.','gate');
+
+  E.sort(function(a,b){return a.date-b.date;});
+  BUILT={events:E,name:name,dl:dl};
+
+  var now=new Date();
+  var html='<div class="note'+(left<21?' warn':'')+'"><strong>'+left+' days'+(left<21?' — that is tight.':'')+'</strong> '+
+    (left<21?'Several early steps below are already behind you. Prioritize the hard gates, call your sponsored programs office today, and be honest about whether this cycle is the right one.'
+           :'The schedule below works backwards from your deadline. Dates already past are marked.')+'</div>';
+  html+='<ol class="tl" style="margin-top:1.2rem">';
+  E.forEach(function(e){
+    var past=e.date<now;
+    html+='<li class="'+(e.kind==='gate'?'gate':(past?'done':''))+'">'+
+      '<span class="when">'+TK.fmtDate(e.date)+(past?' · already passed':'')+'</span>'+
+      '<span class="what">'+TK.esc(e.title)+'</span><p>'+TK.esc(e.desc)+'</p></li>';
+  });
+  document.getElementById('tlOut').innerHTML=html+'</ol>';
+  document.getElementById('tlIcs').disabled=false;
+  document.getElementById('tlMd').disabled=false;
+}
+document.getElementById('tlGo').addEventListener('click',build);
+document.getElementById('tlDate').addEventListener('change',function(){ if(BUILT) build(); });
+document.getElementById('tlIcs').addEventListener('click',function(){
+  if(!BUILT) return;
+  TK.ics(BUILT.events.map(function(e){return {date:e.date,title:e.title,desc:e.desc};}),'proposal-timeline.ics');
+});
+document.getElementById('tlMd').addEventListener('click',function(){
+  if(!BUILT) return;
+  var L=['# Proposal Timeline — '+BUILT.name,'','**Sponsor deadline:** '+TK.fmtDate(BUILT.dl),''];
+  BUILT.events.forEach(function(e){
+    L.push('## '+TK.fmtDate(e.date)+(e.kind==='gate'?' — HARD GATE':''),'','**'+e.title+'**','',e.desc,'');
+  });
+  L.push('---','','_Dr. Bucky Greenlove’s Funding Search Toolkit_');
+  TK.download(L.join('\n'),'proposal-timeline.md','text/markdown');
+});
+})();
+</script>
+</body>
+</html>

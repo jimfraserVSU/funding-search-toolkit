@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Search Playbook — Dr. Bucky Greenlove’s Funding Search Toolkit</title>
+<meta name="description" content="How to actually find funding: building keyword strings, reading a NOFO, setting up alerts, understanding limited submissions, and the databases worth using.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=f9cb0a4c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%2314291F'/><text y='72' x='50' font-size='62' text-anchor='middle' fill='%23B34A1E' font-family='Georgia,serif' font-weight='bold'>G</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site">
+  <div class="wrap"><div class="brandbar">
+    <div class="mark" aria-hidden="true">G</div>
+    <div class="brandtxt"><strong>Dr. Bucky Greenlove’s Funding Search Toolkit</strong><span>Find it · Vet it · Win it</span></div>
+  </div></div>
+  <nav class="main" aria-label="Main"><div class="wrap navslot"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Search playbook</p>
+    <h1>Searching well is a skill. Here it is.</h1>
+    <p>Most people search for funding the way they search for a restaurant, and then conclude there is nothing out there. There is a great deal out there. It is indexed badly, split across a dozen systems, and described in the funder’s vocabulary rather than yours.</p>
+  </div>
+</section>
+
+<main id="main"><div class="wrap">
+
+  <div class="tocbox"><strong>On this page</strong>
+    <ol>
+      <li><a href="#map">Where funding actually lives</a></li>
+      <li><a href="#keywords">Building a keyword string that works</a></li>
+      <li><a href="#nofo">Reading a NOFO in the right order</a></li>
+      <li><a href="#alerts">Setting up alerts so it comes to you</a></li>
+      <li><a href="#limited">Limited submissions and internal competitions</a></li>
+      <li><a href="#databases">The databases, ranked honestly</a></li>
+      <li><a href="#first">First-time applicant checklist</a></li>
+    </ol>
+  </div>
+
+  <h2 id="map">1. Where funding actually lives</h2>
+  <p class="lead">No single system contains everything. Knowing which system holds which kind of money is most of the skill.</p>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Source</th><th>What is in it</th><th>What is NOT in it</th></tr></thead><tbody>
+      <tr><td><b><a href="https://grants.gov/search-grants" rel="noopener">Grants.gov</a></b></td><td>Federal discretionary grants and cooperative agreements from all agencies, posted and forecasted.</td><td>Federal <em>contracts</em>. Most NIH parent announcements as you would search them. Foundations. State money. Subawards.</td></tr>
+      <tr><td><b><a href="https://grants.nih.gov/funding/searchguide/index.html" rel="noopener">NIH Guide</a></b></td><td>Every NIH funding opportunity, including parent announcements, PAs, PARs, RFAs, and notices. Weekly digest.</td><td>Everything non-NIH.</td></tr>
+      <tr><td><b><a href="https://www.nsf.gov/funding/opportunities" rel="noopener">NSF Funding Opportunities</a></b></td><td>All NSF solicitations and Dear Colleague Letters, browsable by directorate.</td><td>Everything non-NSF. DCLs in particular rarely surface elsewhere.</td></tr>
+      <tr><td><b><a href="https://sam.gov/search/" rel="noopener">SAM.gov</a></b></td><td>Federal <em>contract</em> opportunities — including a great deal of evaluation, technical assistance, and applied research work. Sources sought and RFIs too.</td><td>Grants.</td></tr>
+      <tr><td><b><a href="https://www.federalregister.gov/" rel="noopener">Federal Register</a></b></td><td>Some agencies announce funding availability here first, especially education, housing, and agriculture. Free API, no key.</td><td>Most agencies. Use it as a supplement.</td></tr>
+      <tr><td><b><a href="https://reporter.nih.gov/" rel="noopener">NIH RePORTER</a></b> / <a href="https://www.nsf.gov/awardsearch/" rel="noopener">NSF Award Search</a></td><td>What has <em>actually been funded</em>. The most underused tool in the entire process.</td><td>Open opportunities. This is for targeting, not discovery.</td></tr>
+      <tr><td><b>Foundation websites</b></td><td>The real source. Foundations rarely syndicate anywhere reliable.</td><td>Aggregation. You have to go to them — which is why the <a href="index.html">curated directory</a> exists.</td></tr>
+      <tr><td><b>State &amp; regional</b></td><td>Virginia agencies, Virginia Humanities, the Commission for the Arts, GO Virginia, regional community foundations. Often less competitive per dollar.</td><td>Any federal aggregator. Nobody indexes these well.</td></tr>
+      <tr><td><b>Your own institution</b></td><td>Internal seed grants, travel funds, course-development money, Title III activity funds, bridge funding.</td><td>Any public system. Ask your research office directly.</td></tr>
+      <tr><td><b>Subawards</b></td><td>A large-university PI needs a partner with your access, population, or expertise. Frequently the fastest route to first external funding.</td><td>Any search system at all. This is a relationship, not a listing.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="keywords">2. Building a keyword string that works</h2>
+  <p>Grants.gov keyword search is literal. It does not know that your “community-engaged research” is the funder’s “stakeholder partnership,” and it will happily return zero results while $40M sits one synonym away.</p>
+
+  <h3>The method</h3>
+  <ol>
+    <li><strong>Write your project in three vocabularies.</strong> Yours, the funder’s, and the policy world’s. “Neighborhood disinvestment” (yours), “community development” (funder), “place-based revitalization” (policy). Search all three.</li>
+    <li><strong>Search the narrowest term first.</strong> If it returns nothing, broaden one step at a time. Starting broad and filtering down buries you.</li>
+    <li><strong>Use quoted phrases and OR.</strong> <code>"program evaluation" OR "evaluation research" OR "impact evaluation"</code> works far better than <code>evaluation</code>, which returns everything.</li>
+    <li><strong>Search by method, not just topic.</strong> Funders often name the method: “randomized controlled trial,” “quasi-experimental,” “mixed methods,” “community-based participatory research,” “implementation science.”</li>
+    <li><strong>Search by population.</strong> “rural,” “under-resourced,” “historically underserved,” “first-generation,” “limited-resource farmers,” “justice-involved.”</li>
+    <li><strong>Search by ALN (CFDA) number.</strong> Once you find one relevant program, search its ALN to surface everything else under that authority. This is the highest-yield single trick on this page.</li>
+    <li><strong>Search by agency, empty keyword.</strong> Browse everything an agency has open. Ten minutes, and you will find things no keyword would have surfaced.</li>
+    <li><strong>Include forecasted opportunities.</strong> A forecast is a gift — months of lead time to build the team before anyone else starts writing.</li>
+  </ol>
+
+  <div class="note"><strong>The reverse search.</strong> Find three funded projects like yours in RePORTER or NSF Award Search. Note the program, the mechanism, the ALN, and the program officer. Then go find that program’s current announcement. You are now searching from a known-good example rather than guessing at vocabulary.</div>
+
+  <h3>Starter strings worth trying</h3>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>If you do…</th><th>Try…</th></tr></thead><tbody>
+      <tr><td>Program evaluation</td><td><code>"program evaluation" OR "evaluation research" OR "impact evaluation" OR "outcome evaluation"</code>; also browse ED, DOJ, HHS/ACF, and SAM.gov contracts</td></tr>
+      <tr><td>Education research</td><td><code>"education research" OR "student outcomes" OR "teacher preparation" OR "postsecondary success"</code>; check IES separately, it is its own world</td></tr>
+      <tr><td>Health disparities</td><td><code>"health disparities" OR "health equity" OR "social determinants" OR "minority health"</code>; NIH Guide, not just Grants.gov</td></tr>
+      <tr><td>Community-based work</td><td><code>"community-based participatory" OR "community engagement" OR "stakeholder partnership" OR "community-academic partnership"</code></td></tr>
+      <tr><td>HBCU capacity</td><td><code>"historically black" OR HBCU OR "minority serving" OR "minority-serving institution" OR "institutional capacity"</code></td></tr>
+      <tr><td>Workforce &amp; economic development</td><td><code>workforce OR "economic development" OR apprenticeship OR "career pathways" OR reentry</code></td></tr>
+      <tr><td>Agriculture &amp; food systems</td><td><code>"limited resource" OR "small farm" OR "food security" OR "specialty crop" OR "sustainable agriculture"</code></td></tr>
+      <tr><td>Arts &amp; humanities</td><td>Skip Grants.gov mostly — go to NEH, NEA, IMLS, ACLS, Mellon, and Virginia Humanities directly</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="nofo">3. Reading a NOFO in the right order</h2>
+  <p class="lead">Do not read a funding announcement front to back. Read it in the order that lets you quit fastest.</p>
+  <ol class="tl">
+    <li><span class="when">First — 2 minutes</span><span class="what">Eligibility</span><p>Institution type, PI requirements, citizenship, career stage, prior-award limits, cost share. If you are not eligible, you are done. Most people read this fourth and lose an afternoon.</p></li>
+    <li><span class="when">Second — 3 minutes</span><span class="what">Award information</span><p>Number of awards, size, period, and total program funding. Divide total by award size — that is roughly how many will be funded. If it is three awards nationally, know that now.</p></li>
+    <li><span class="when">Third — 10 minutes</span><span class="what">The review criteria</span><p>Section 6 in the current NOFO structure. This is what you are actually being graded on. Note the weights. Your page allocation should roughly follow the points.</p></li>
+    <li><span class="when">Fourth — 15 minutes</span><span class="what">Program description</span><p>Now, knowing what you are graded on, read what they want. Look for the priorities stated in passing — they are usually the real ones.</p></li>
+    <li><span class="when">Fifth</span><span class="what">Application contents and format</span><p>Build the compliance matrix here. Every page limit, every attachment, every certification.</p></li>
+    <li><span class="when">Sixth</span><span class="what">Everything referenced but not included</span><p>General administrative requirements, addenda, program-wide terms, agency-wide policy documents. These carry their own kill conditions and people routinely skip them.</p></li>
+    <li class="gate"><span class="when">Then — before writing</span><span class="what">Decide</span><p>Run the <a href="panel.html#fit-screen">Go / No-Go screen</a>. A medium fit is usually a no.</p></li>
+  </ol>
+
+  <h2 id="alerts">4. Setting up alerts so it comes to you</h2>
+  <div class="grid g2">
+    <div class="card"><h3 style="margin-top:0">Grants.gov saved searches</h3>
+      <p style="font-size:.93rem;margin-bottom:0">Create a free Grants.gov account, build a search with your best keyword string and eligibility filters, and save it. You get email when anything new matches. Build three or four narrow ones rather than one broad one — a broad alert becomes noise you stop reading, which is worse than no alert.</p></div>
+    <div class="card"><h3 style="margin-top:0">NIH Guide weekly</h3>
+      <p style="font-size:.93rem;margin-bottom:0">Subscribe to the NIH Guide weekly table of contents. It is the only reliable way to see NIH notices, and policy notices (like changes to review or AI policy) appear there first. Skim the notices section even when nothing applies to you.</p></div>
+    <div class="card"><h3 style="margin-top:0">Agency listservs and RSS</h3>
+      <p style="font-size:.93rem;margin-bottom:0">NSF publishes updates by directorate. IES, NIJ, NEH, and IMLS all run announcement lists. Sign up for the two or three closest to your work. Dear Colleague Letters from NSF often have short fuses and appear nowhere else.</p></div>
+    <div class="card"><h3 style="margin-top:0">Foundation watching</h3>
+      <p style="font-size:.93rem;margin-bottom:0">Foundations do not syndicate. Pick six that fit your work and check them quarterly, or subscribe to their newsletters. Note their cycle — many post the same call the same month every year, so you can plan a year out.</p></div>
+    <div class="card"><h3 style="margin-top:0">This site</h3>
+      <p style="font-size:.93rem;margin-bottom:0">Star programs in the <a href="index.html">curated directory</a> to build a shortlist, then export the deadlines as an <code>.ics</code> file with 30-day reminders. Save a filtered search as a link and email it to a colleague.</p></div>
+    <div class="card"><h3 style="margin-top:0">Your research office</h3>
+      <p style="font-size:.93rem;margin-bottom:0">Most research offices circulate opportunity digests and hold a subscription to Pivot-RP or a similar database that individual faculty cannot afford. Ask. At VSU, Research Development is Dr. Lora Battle Bailey.</p></div>
+  </div>
+
+  <h2 id="limited">5. Limited submissions and internal competitions</h2>
+  <p>Some programs cap how many applications a single institution may submit — sometimes one. If you discover this two weeks out, you have already lost, because the internal selection deadline was months earlier.</p>
+  <p><strong>How to protect yourself:</strong> the moment a program interests you, search the announcement for “limited submission,” “per institution,” “only one application,” “nominat,” and “institutional.” If any appear, email your research office <em>that day</em>. Ask two questions: is there an internal competition, and what is its deadline? Then ask a third: is there a list of limited-submission opportunities you can be added to?</p>
+  <div class="note warn"><strong>At VSU specifically:</strong> no limited-submission policy, internal competition process, or opportunity list appears anywhere on the public site. That does not mean nothing is happening — it means you must ask OSRP and Research Development directly rather than assume. See the <a href="vsu.html#confirm">list of things to confirm</a>.</div>
+  <p>Common limited-submission programs: NSF S-STEM and major center awards, NIH institutional training grants (T32) and instrumentation (S10), NEH Summer Stipends (usually two nominations per campus), many foundation programs including Sloan, Beckman, Searle, and Research Corporation, and most institutional infrastructure awards.</p>
+
+  <h2 id="databases">6. The databases, ranked honestly</h2>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Tool</th><th>What it does well</th><th>Honest caveat</th></tr></thead><tbody>
+      <tr><td><b>Pivot-RP</b> (Clarivate)</td><td>The dominant academic funding database. Opportunities plus scholar profiles for matchmaking, saved searches, email alerts, institutional dashboards.</td><td>Institutional subscription. Ask whether your library or research office has one before paying attention to anything else.</td></tr>
+      <tr><td><b>GrantForward</b></td><td>Competitor academic database with researcher-profile-based matching and alerts.</td><td>Also subscription. Coverage differs from Pivot in ways worth testing if you have both.</td></tr>
+      <tr><td><b>InfoEd SPIN</b></td><td>Long-established academic funding database.</td><td>Usually bundled with InfoEd’s eRA suite rather than sold standalone.</td></tr>
+      <tr><td><b>Candid / Foundation Directory</b></td><td>Best-in-class for private foundation intelligence, built on 990 filings — you can see what a foundation has actually given, to whom, and how much.</td><td>Weak on federal. Many public libraries provide free access — check before subscribing.</td></tr>
+      <tr><td><b>Instrumentl</b></td><td>AI matching across a very large funder set, with giving-history analysis.</td><td>Primarily built for nonprofits, with universities a secondary market. Performance claims are vendor-asserted.</td></tr>
+      <tr><td><b>Dimensions</b> (Digital Science)</td><td>Links grants, publications, patents, and policy documents. Genuinely strong for funder landscape analytics and collaborator mapping.</td><td>Not an alerting tool. Use it for targeting and positioning, not discovery.</td></tr>
+      <tr><td><b>RePORTER / NSF Award Search</b></td><td><strong>Free, and the most underused tools in the process.</strong> Reverse-engineer what a program actually funds versus what its announcement claims.</td><td>None, really. Just do it.</td></tr>
+      <tr><td><b>AI grant-writing tools</b></td><td>Fast narrative reuse and boilerplate management.</td><td><strong>Two real problems for academic use:</strong> they work by reusing prior narrative, which is precisely what NIH’s originality policy targets; and none are cleared for confidential material. See the <a href="proposal.html#ai">AI policy section</a>.</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>The honest read on the category:</strong> discovery tools have clear value. The AI <em>drafting</em> tools are the least mature and the most legally exposed segment. The genuinely underexploited category is analytics used for targeting — which is free.</p>
+
+  <h2 id="first">7. First-time applicant checklist</h2>
+  <div class="card">
+    <ol>
+      <li><strong>Meet your research office before you have a project.</strong> They are not a rubber stamp; they know which programs your institution wins and which internal deadlines will surprise you.</li>
+      <li><strong>Get your registrations done now.</strong> eRA Commons, Research.gov, an ORCID. They take days you will not have later.</li>
+      <li><strong>File your conflict-of-interest disclosure and finish RCR training.</strong> At many institutions, including VSU, an outstanding disclosure will hold your submission.</li>
+      <li><strong>Read fifteen funded abstracts</strong> in your target program on RePORTER or NSF Award Search. Notice the scale, the framing, the team composition. This calibrates you faster than any workshop.</li>
+      <li><strong>Start smaller than you think.</strong> A seed grant, a foundation small grant, a state award, or a subaward on someone else’s project builds the track record that reviewers look for. Reviewers ask whether you have done this before.</li>
+      <li><strong>Email a program officer.</strong> Under 200 words, two or three answerable questions, a one-page concept attached. Use the <a href="panel.html#po-contact">PO contact prompt</a>.</li>
+      <li><strong>Find a mentor who has held the award you want.</strong> Ask to read their funded application <em>and</em> their summary statement. The summary statement teaches more than the application.</li>
+      <li><strong>Write the one-page aims first</strong> and workshop it ten weeks out, before the rest exists.</li>
+      <li><strong>Schedule a Red Team.</strong> Put it on the calendar the day you decide to apply, not the week you need it.</li>
+      <li><strong>Plan to be rejected.</strong> Most first applications are not funded. The summary statement is the most valuable document you will get all year — a resubmission written from it starts with an enormous structural advantage.</li>
+    </ol>
+  </div>
+
+  <div class="note ok"><strong>One last thing.</strong> The most common reason people do not get funded is that they do not apply. The second is that they apply to the wrong thing. Both are fixable in an afternoon with a good search and an honest Go / No-Go.</div>
+
+</div></main>
+<footer class="site"><div class="wrap footslot"></div></footer>
+<script src="assets/app.js?v=0dada977"></script>
+</body>
+</html>
