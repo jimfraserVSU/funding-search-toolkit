@@ -309,6 +309,15 @@ function card(p){
     '</div>'+
     (p.eligibility?'<p class="elig"><b>Eligibility:</b> '+e(p.eligibility)+'</p>':'')+
     '<div class="chips">'+chips.join('')+'</div>'+
+    '<p style="margin:.7rem 0 0">'+
+      /* Straight into the pipeline. A star says "interesting"; this says
+         "I am doing something about it", which is the harder thing to
+         reconstruct three months later. */
+      '<button class="btn sm '+(TK.pipeline.has(p.id)?'ghost':'')+'" type="button" data-track="'+e(p.id)+'">'+
+        (TK.pipeline.has(p.id)?'✓ In my pipeline':'+ Track this')+'</button>'+
+      /* Only shown for funders whose IRS record we could identify. */
+      (p.ein?' <a class="btn sm ghost" href="foundations.html?ein='+e(p.ein)+'">See what they fund</a>':'')+
+    '</p>'+
   '</article>';
 }
 function buildFacets(){
@@ -370,6 +379,19 @@ document.getElementById('facets').addEventListener('change',function(e){
   apply();
 });
 document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-track]');
+  if(t){
+    var id=t.dataset.track, p=DATA.filter(function(x){return x.id===id;})[0];
+    if(!p) return;
+    if(TK.pipeline.has(id)){ location.href='pipeline.html'; return; }
+    TK.pipeline.upsert({key:id,id:id,title:p.name,sponsor:p.sponsor,url:p.url,
+      amount:p.award_max||p.award_min||'',status:'considering',
+      notes:p.deadline?('Sponsor cycle: '+p.deadline):''});
+    document.querySelectorAll('[data-track="'+id+'"]').forEach(function(x){
+      x.textContent='✓ In my pipeline'; x.classList.add('ghost');
+    });
+    return;
+  }
   var b=e.target.closest('[data-star]'); if(!b) return;
   var on=TK.stars.toggle(b.dataset.star);
   document.querySelectorAll('[data-star="'+b.dataset.star+'"]').forEach(function(x){x.setAttribute('aria-pressed',on?'true':'false');});

@@ -82,8 +82,9 @@ function group(){
   var m={};
   DATA.forEach(function(p){
     var k=p.sponsor;
-    if(!m[k]) m[k]={sponsor:k,type:p.sponsor_type,programs:[],fields:{},hbcu:0,min:null,max:0,rolling:0};
+    if(!m[k]) m[k]={sponsor:k,type:p.sponsor_type,programs:[],fields:{},hbcu:0,min:null,max:0,rolling:0,ein:'',einName:''};
     var g=m[k];
+    if(p.ein&&!g.ein){ g.ein=p.ein; g.einName=p.ein_name||''; }
     g.programs.push(p);
     p.fields.forEach(function(f){g.fields[f]=(g.fields[f]||0)+1;});
     if(p.hbcu_msi) g.hbcu++;
@@ -110,6 +111,9 @@ function block(g){
        '<div class="stat" style="box-shadow:none"><b style="font-size:1.3rem">'+e(TYPE[g.type]||g.type)+'</b><span>funder type</span></div>'+
      '</div>'+
      (topFields.length?'<div class="chips" style="margin-bottom:1rem">'+topFields.map(function(f){return '<span class="chip">'+e(f)+'</span>';}).join('')+'</div>':'')+
+     /* For a private foundation or nonprofit we know the EIN of, jump
+        straight to what it actually paid out rather than what it says. */
+     (g.ein?'<p style="margin:0 0 1rem"><a class="btn sm" href="foundations.html?ein='+e(g.ein)+'">See what they actually fund →</a><span class="fine" style="display:inline-block;margin-left:.6rem">IRS Form 990 record'+(g.einName&&g.einName.toLowerCase()!==g.sponsor.toLowerCase()?' — filed as “'+e(g.einName)+'”':'')+'</span></p>':'')+
      '<h3>Programs</h3>'+
      '<div class="scroll"><table class="tbl"><thead><tr><th>Program</th><th style="width:110px">Award</th><th style="width:190px">Deadline</th><th style="width:90px">Cycle</th></tr></thead><tbody>'+
      g.programs.sort(function(a,b){return a.name.localeCompare(b.name);}).map(function(p){
