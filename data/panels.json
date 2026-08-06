@@ -1,0 +1,390 @@
+[
+ {
+  "id": "nih-study-section",
+  "title": "NIH Study Section (2025 Simplified Review Framework)",
+  "cat": "Simulated review panel",
+  "funder": "NIH",
+  "when": "Near-final draft, 4\u20136 weeks before the due date.",
+  "scale": "Factor 1 and Factor 2 scored 1\u20139 (1=Exceptional, 9=Poor). Factor 3 is not scored \u2014 'Appropriate' or 'Additional expertise and/or resources needed'. Overall Impact 1\u20139, \u00d710 = priority score.",
+  "accuracy": "Reflects NOT-OD-24-010 and the Simplified Review Framework in effect for due dates on or after January 25, 2025. Also reflects NOT-OD-26-069, which through the October 2026 Council round reduces the share of applications discussed to 30\u201335% and creates the 'competitive but not discussed' designation.",
+  "prompt": "You are convening a simulated NIH study section under the Simplified Review Framework (in effect for due dates on or after January 25, 2025). Review the application I paste below.\n\nFIRST, tell me what you are missing. If I have not given you the Specific Aims, Research Strategy, and the NOFO/FOA number, say so and review only what you can defensibly review. Do not invent content that is not on the page.\n\nConvene THREE reviewers with distinct, named perspectives appropriate to this science \u2014 for example a methodologist, a content-area expert, and a reviewer from an adjacent field who will not grant me any assumed knowledge. Each writes independently BEFORE any discussion.\n\nEach reviewer produces:\n\nFACTOR 1 \u2014 IMPORTANCE OF THE RESEARCH (Significance + Innovation) \u2014 SCORED 1\u20139\n  - What specifically will be learned, and how valuable is that knowledge?\n  - Is the novelty real, and does that novelty actually drive the importance?\n  - Strengths (bulleted). Weaknesses (bulleted).\n  - Score with a one-sentence justification.\n\nFACTOR 2 \u2014 RIGOR AND FEASIBILITY (Approach) \u2014 SCORED 1\u20139\n  - Will the approach produce unbiased, reproducible, robust data?\n  - Can this be done well, by this team, in this timeframe, with this budget?\n  - Is the strategy for handling threats to feasibility credible or hand-waving?\n  - Where relevant: inclusion of women, minorities, and individuals across the lifespan; clinical trial study timeline.\n  - Strengths. Weaknesses. Score with justification.\n\nFACTOR 3 \u2014 EXPERTISE AND RESOURCES \u2014 NOT SCORED\n  - Choose exactly one: \"Appropriate\" OR \"Additional expertise and/or resources needed.\"\n  - Write comments ONLY if you identified a gap.\n\nADDITIONAL REVIEW CRITERIA (evaluated, unscored, may affect overall impact): human subjects protections, vertebrate animals, biohazards, and \u2014 if applicable \u2014 resubmission/renewal/revision.\nADDITIONAL REVIEW CONSIDERATIONS (must NOT affect the score): authentication of key resources; budget and period of support.\n\nAPPLY THESE SCORING RULES EXACTLY \u2014 most simulations get them wrong:\n  1. High scores must be justified by STRENGTHS, not by the absence of weaknesses.\n  2. Low scores must be justified by WEAKNESSES.\n  3. FACTOR 1 IS A CEILING. A project of moderate or limited importance cannot be rescued by a strong approach or by excellent expertise and resources. If Factor 1 is a 5, the overall impact cannot be a 2.\n  4. Whole numbers only. No 4.5.\n\nTHEN run the panel meeting:\n  - Reviewer 1 presents; Reviewers 2 and 3 state agreement and disagreement.\n  - Surface the genuine disagreements rather than smoothing them over. Where reviewers split, say why.\n  - Each reviewer states a final OVERALL IMPACT score (1\u20139) with the single sentence that drives it.\n  - Report the averaged overall impact and the \u00d710 priority score.\n\nFINALLY, produce the summary statement as NIH currently writes it under NOT-OD-26-069: one sentence describing the degree of consensus, then bullets listing the SCORE-DRIVING points only. Then state which bucket this application lands in:\n  - DISCUSSED AND SCORED (roughly the top 30\u201335%)\n  - COMPETITIVE BUT NOT DISCUSSED (middle third \u2014 no priority score assigned, but program staff may still recommend it)\n  - NOT COMPETITIVE AND NOT DISCUSSED (lowest third)\n\nCLOSE with the three specific, concrete revisions that would move the overall impact score the most, ranked by score impact per hour of my effort. Name the page and the paragraph.\n\nBe a hard reviewer. A generous review is a useless one \u2014 the real panel will not be generous.\n\nAPPLICATION FOLLOWS:\n---",
+  "card": [
+   "Factor 1 \u2014 Importance (1\u20139)",
+   "Factor 2 \u2014 Rigor & Feasibility (1\u20139)",
+   "Factor 3 \u2014 Expertise & Resources (Appropriate / Additional needed)",
+   "Overall Impact (1\u20139)",
+   "Priority score (\u00d710)",
+   "Discussion bucket",
+   "Top 3 score-moving revisions"
+  ]
+ },
+ {
+  "id": "nsf-panel",
+  "title": "NSF Merit Review Panel (Intellectual Merit \u00d7 Broader Impacts)",
+  "cat": "Simulated review panel",
+  "funder": "NSF",
+  "when": "Near-final draft, 3\u20135 weeks out.",
+  "scale": "Excellent / Very Good / Good / Fair / Poor, applied as an overall rating. Reviewers may give intermediate ratings (V/G, G/F).",
+  "accuracy": "Built on PAPPG 24-1 as supplemented (Supplement 1 eff. Dec 8, 2025; Supplement 2 eff. Jan 22, 2026). There is no PAPPG 25-1 or 26-1. The E/V/G/F/P adjectival scale lives on the reviewer form, not in the PAPPG \u2014 NSF publishes no official definitions for the five levels, so treat them as convention.",
+  "prompt": "You are running a simulated NSF review panel under PAPPG 24-1 as supplemented. Review the proposal I paste below.\n\nFIRST, state what you are missing. NSF proposals are returned without review for structural failures, so before any merit discussion run the RETURN WITHOUT REVIEW CHECK against the PAPPG 24-1 Chapter IV list. Answer yes/no for each:\n  1. Inappropriate for NSF funding?\n  2. Insufficient lead time before the activity begins?\n  3. Duplicate of, or substantially similar to, another proposal under NSF consideration?\n  4. Fails proposal preparation requirements \u2014 page limits, formatting, electronic submission?\n  5. Not responsive to the funding opportunity?\n  6. Previously reviewed and declined without substantial revision?\n  7. MISSING ANY REQUIRED SECTION? In particular: does the Project Summary contain all THREE separately labeled parts \u2014 Overview, Intellectual Merit, Broader Impacts \u2014 in one page or less?\nAny \"yes\" is fatal. Say so plainly and stop the merit review until I fix it.\n\nTHEN convene THREE panelists with genuinely different vantage points on this work. Each evaluates the FIVE REVIEW ELEMENTS separately against BOTH criteria \u2014 this is a 2\u00d75 grid, not a single narrative:\n\nELEMENT 1: Potential to (a) advance knowledge within or across fields [Intellectual Merit] and (b) benefit society or advance desired societal outcomes [Broader Impacts]\nELEMENT 2: Extent to which the activities suggest and explore creative, original, or potentially transformative concepts\nELEMENT 3: Is the plan well-reasoned, well-organized, based on a sound rationale \u2014 and does it incorporate a mechanism to ASSESS SUCCESS? (Proposals routinely lose points here for having no assessment plan for Broader Impacts.)\nELEMENT 4: How well qualified is the individual, team, or organization?\nELEMENT 5: Are resources adequate, at the home organization or through collaborations?\n\nFor each of the 10 cells give a short strength/weakness verdict. Do not let Broader Impacts collapse into a sentence about outreach \u2014 evaluate it with the same rigor as Intellectual Merit, because NSF weights them as co-equal criteria.\n\nEach panelist then writes:\n  - Summary of the proposal in their own words (if they cannot, that is itself a finding)\n  - Intellectual Merit: strengths, then weaknesses\n  - Broader Impacts: strengths, then weaknesses\n  - Overall Rating: Excellent / Very Good / Good / Fair / Poor (intermediate ratings like V/G are allowed)\n  - The narrative matters more than the letter. Justify the letter in the narrative.\n\nTHEN produce a PANEL SUMMARY in the conventional structure: Intellectual Merit strengths and weaknesses, Broader Impacts strengths and weaknesses, a summary of the panel discussion including where panelists disagreed, and a consensus competitiveness tier. Note explicitly that tier vocabulary varies by directorate and is not NSF-wide policy.\n\nALSO check the current-policy items that catch people out:\n  - Data management and sharing: Supplement 2 requires sharing to be addressed as an integral part of review, removes the 12-month embargo, and moved DMSPs to a dedicated Research.gov tool as of April 27, 2026. Is sharing addressed substantively or as boilerplate?\n  - Does the proposal disclose any use of generative AI in developing the proposal? NSF encourages this disclosure in the Project Description.\n\nCLOSE with the three revisions that would most raise the rating, ranked, with the page and paragraph named.\n\nPROPOSAL FOLLOWS:\n---",
+  "card": [
+   "Return Without Review check (pass/fail, with reason)",
+   "Intellectual Merit \u2014 strengths / weaknesses",
+   "Broader Impacts \u2014 strengths / weaknesses",
+   "Element-by-element 2\u00d75 verdict",
+   "Overall Rating (E/V/G/F/P) per panelist",
+   "Panel consensus tier",
+   "Top 3 rating-moving revisions"
+  ]
+ },
+ {
+  "id": "ies-panel",
+  "title": "IES Peer Review Panel (with synthesizer role)",
+  "cat": "Simulated review panel",
+  "funder": "Institute of Education Sciences",
+  "when": "Full draft, 4 weeks out.",
+  "scale": "Criterion scores 1\u20137 where 7 is most positive. Overall score 1.0\u20135.0 in tenths where 1.0 is most positive. The two scales run in OPPOSITE directions.",
+  "accuracy": "Follows the IES Guide for Grant Peer Review Panel Members (Jan 2025). Criterion evaluation questions beyond Significance are defined competition-by-competition in each RFA and keyed to the Goal \u2014 paste your RFA's criterion text for a faithful review.",
+  "prompt": "You are running a simulated IES peer review panel. Review the application I paste below.\n\nFIRST tell me: which IES GOAL is this submitted under \u2014 Exploration, Development and Innovation, Efficacy and Replication, Effectiveness, or Measurement? The criteria are keyed to the Goal. If I have not told you, ask, and if I have pasted the RFA use its criterion language verbatim instead of generic language.\n\nConvene THREE primary reviewers plus one SYNTHESIZER (a distinctive and genuinely useful IES role \u2014 see below).\n\nEach reviewer scores FOUR criteria on the 1\u20137 scale where 7 IS THE MOST POSITIVE and 1 the most negative. Bands: 6\u20137 = very positive critique; 3\u20135 = mixed; 1\u20132 = negative.\n\n  SIGNIFICANCE \u2014 \"Does the applicant provide a compelling rationale for the significance of the project as defined in the Significance section for the goal under which the applicant is submitting?\" Judge against the Goal's own definition, not a general sense of importance.\n  RESEARCH PLAN \u2014 design, sample, measures, analysis, and their fit to the Goal's requirements. For Efficacy/Effectiveness: is the counterfactual credible, is power adequate, is the analysis pre-specified?\n  PERSONNEL \u2014 expertise, effort allocation, and whether the named people can actually do the named work.\n  RESOURCES \u2014 institutional capacity, data access, partner commitments. Are letters of support specific or generic?\n\nThen each reviewer assigns an OVERALL SCORE on the 1.0\u20135.0 scale IN TENTHS, where 1.0 IS MOST POSITIVE:\n  1.0\u20131.5 Outstanding | 1.6\u20132.0 Excellent | 2.1\u20132.5 Very Good | 2.6\u20133.0 Good | 3.1\u20134.0 Fair | 4.1\u20135.0 Poor\n\nCRITICAL RULE: criterion scores are NOT averaged or mathematically manipulated to produce the overall score. The overall score is a holistic judgment. Do not compute it.\n\nRUN THE MEETING in the IES sequence:\n  1. Post the primary reviewers' scores.\n  2. First reviewer presents the critique and a summary of the research.\n  3. Other reviewers state agreements and disagreements.\n  4. Full panel discussion.\n  5. THE SYNTHESIZER reads back a written summary of the discussion \u2014 the actual score drivers, not a recap of the proposal.\n  6. Primary reviewers may revise scores after hearing the synthesis. Show any changes and why.\n  7. Final private scores.\n\nCLOSE with: the score-driving weaknesses in rank order, and for each, the specific revision that addresses it. Flag separately anything that is a Goal-fit problem rather than a quality problem \u2014 submitting strong Development work under an Efficacy goal is a fatal mismatch, not a weakness.\n\nAPPLICATION FOLLOWS:\n---",
+  "card": [
+   "Goal identified",
+   "Significance (1\u20137)",
+   "Research Plan (1\u20137)",
+   "Personnel (1\u20137)",
+   "Resources (1\u20137)",
+   "Overall (1.0\u20135.0, holistic)",
+   "Synthesizer's score drivers",
+   "Goal-fit verdict"
+  ]
+ },
+ {
+  "id": "nofo-rating-factors",
+  "title": "Federal NOFO Rating-Factor Panel (HUD PD&R style, 100 points)",
+  "cat": "Simulated review panel",
+  "funder": "HUD PD&R, DOJ, ED, ACF, and most discretionary NOFOs",
+  "when": "Full draft, 2\u20134 weeks out.",
+  "scale": "Points against the NOFO's published rating factors, normally summing to 100.",
+  "accuracy": "Structured on the 2 CFR 200 Appendix I NOFO skeleton and a verified live example (HUD PDR-2600-DC-029O: Contribution 30 / Soundness of Approach 30 / Management and Capacity 20 / Budget and Timeline 20). Weights vary by NOFO \u2014 always paste your own Section 6.",
+  "prompt": "You are a federal merit review panel scoring an application against a NOFO's published rating factors.\n\nSTEP 0 \u2014 I must give you the NOFO's \"Application Review Information\" section. If I have not pasted it, ask for it and do not proceed with invented weights. If I paste only the narrative, tell me the review is unreliable without the criteria and say so at the top of your output.\n\nSTEP 1 \u2014 THRESHOLD / RESPONSIVENESS REVIEW. Before merit, applications die here. Check and report pass/fail on each:\n  - Eligible applicant type, and does the applicant meet every stated eligibility condition?\n  - Registrations current: SAM.gov UEI active, Grants.gov roles, agency portal accounts\n  - Every required form, attachment, and certification present \u2014 no placeholders\n  - Page limits, margins, font size, line spacing, file format\n  - Cost share required? Met? Documented with commitment letters?\n  - Submitted through the correct portal by the stated time (note: many NOFOs close at 11:59:59 pm ET, some at 5:00 pm)\n  - Any disqualifying condition named in the NOFO (delinquent federal debt, prior performance, duplicate submission)\nAny failure here means the application is never scored. Say so bluntly.\n\nSTEP 2 \u2014 MERIT REVIEW. Convene three reviewers. For EACH rating factor:\n  - Award points out of that factor's maximum\n  - Quote the specific sentence in the application that earned the points\n  - Name what a full-points response would have contained that this one does not\n  - Note any factor where the applicant answered a question the NOFO did not ask (wasted pages)\nReport each reviewer's factor scores and total out of 100, then the panel's consensus total.\n\nSTEP 3 \u2014 RISK REVIEW under 2 CFR 200.206: financial stability, quality of management systems, history of performance, audit findings, ability to meet reporting requirements. Flag anything that would trigger specific award conditions.\n\nSTEP 4 \u2014 COMPLIANCE MATRIX. Build a table: every requirement from the Program Description, Application Contents, and Merit Review sections | where it is addressed (page/section) | adequacy | owner. Every row without a page number is a gap that costs points.\n\nCLOSE with:\n  - Consensus score out of 100 and an honest read on whether that is competitive for this program\n  - The five point-recovering edits in order of points-per-hour\n  - Anything in Step 1 that must be fixed regardless of score\n\nMATERIALS FOLLOW:\n---",
+  "card": [
+   "Threshold/responsiveness pass or fail",
+   "Points per rating factor",
+   "Consensus total /100",
+   "Risk review flags",
+   "Compliance matrix gaps",
+   "Top 5 point-recovering edits"
+  ]
+ },
+ {
+  "id": "nifa-panel",
+  "title": "USDA NIFA / AFRI Panel (panel-manager model)",
+  "cat": "Simulated review panel",
+  "funder": "USDA NIFA",
+  "when": "Full draft, 3\u20134 weeks out.",
+  "scale": "Individual reviewers: excellent / very good / good / fair / poor. Panel consensus categories: outstanding, high priority, medium priority, low priority, do not fund \u2014 only the first three are funding-eligible.",
+  "accuracy": "Follows the NIFA Peer Review Process document and the AFRI Application Review Criteria. Typical load is 3\u20134 panelists per application plus up to 3 ad hoc reviewers.",
+  "prompt": "You are a USDA NIFA panel manager convening a simulated AFRI review panel. Review the application I paste below.\n\nAssemble FOUR panelists balanced the way NIFA balances panels \u2014 different institution types and sizes, different regions, different career stages \u2014 and say in one line what each brings. No more than one panelist may plausibly come from a single institution.\n\nEach panelist first summarizes how well the application addressed EACH criterion, then assesses it overall. That two-level structure is the NIFA convention; follow it.\n\nCRITERIA:\n\n1. SCIENTIFIC MERIT\n   - Novelty, innovation, uniqueness, and originality \u2014 judged explicitly, not assumed\n   - Conceptual adequacy and appropriateness of the approach\n   - Is the probability of success appropriate GIVEN the level of scientific originality? (High-risk work is allowed to be riskier; incremental work is not allowed to be shaky.)\n   - Adequacy of plans for data analysis and interpretation\n\n2. QUALIFICATIONS OF PROJECT PERSONNEL AND ADEQUACY OF FACILITIES\n   - Qualifications of the individual or team, INCLUDING PERFORMANCE RECORD on prior support\n   - Institutional facilities, equipment, and resources\n   - Effort commitments realistic?\n\n3. PROJECT RELEVANCE\n   - Documentation that the work is directed toward a SPECIFIC Program Area Priority named in this RFA. Quote the priority and quote where the application maps to it. A strong project aimed at the wrong priority scores badly.\n   - Relevance to stakeholders and, where applicable, to small, part-time, and limited-resource producers\n\nIf this is an 1890 institution capacity or Evans-Allen-adjacent submission, evaluate the capacity-building rationale separately: what institutional capability will exist at the end that does not exist now, and how is it sustained after the award?\n\nEach panelist rates: excellent / very good / good / fair / poor, with justification.\n\nTHEN, as panel manager, run the ranking session. Sort the application into one consensus category: OUTSTANDING / HIGH PRIORITY / MEDIUM PRIORITY / LOW PRIORITY / DO NOT FUND. State plainly whether this falls inside the funding-eligible top three.\n\nCLOSE with the specific revisions that would move it one category up.\n\nAPPLICATION FOLLOWS:\n---",
+  "card": [
+   "Scientific Merit rating",
+   "Personnel & Facilities rating",
+   "Project Relevance rating (with the priority quoted)",
+   "Panel consensus category",
+   "Funding-eligible? yes/no",
+   "Category-moving revisions"
+  ]
+ },
+ {
+  "id": "dod-baa",
+  "title": "DOD / AFRL Broad Agency Announcement White Paper Screen",
+  "cat": "Simulated review panel",
+  "funder": "DOD, AFRL, ONR, ARO, DARPA",
+  "when": "White paper stage, before you invest in a full proposal.",
+  "scale": "Selectable / Not Selectable. There is no curve and no comparative ranking \u2014 each proposal stands on its own merits.",
+  "accuracy": "Follows FAR 35.016 and the AFRL BAA Guide for Industry. BAA proposals are 'evaluated in accordance with evaluation criteria specified therein through a peer or scientific review process' and 'need not be evaluated against each other.'",
+  "prompt": "You are a government technical evaluator screening a white paper submitted under a Broad Agency Announcement.\n\nUnderstand the structure before you start: a BAA white paper exists to preclude unwarranted effort on work the government is not interested in. The outcome is binary \u2014 'not of interest' or 'invited to submit a full proposal.' There is no ranking against other submissions. Cost and technical are reviewed simultaneously.\n\nIf I have pasted the BAA, evaluate ONLY against the criteria published in it and quote them. If I have not, say so and use the FAR 35.016 default basis: technical merit, importance to agency programs, and fund availability.\n\nEvaluate:\n\n1. TECHNICAL MERIT AND APPROACH\n   - Is the technical concept sound and clearly stated in the first paragraph? (A white paper that buries the concept on page 3 fails on readability alone.)\n   - What is the state of the art, and what specifically does this advance?\n   - Technical risks named honestly, with mitigations \u2014 or hidden?\n   - Are deliverables concrete and verifiable?\n\n2. IMPORTANCE TO AGENCY PROGRAMS\n   - Which specific research area or thrust in the BAA does this serve? Quote it.\n   - What does the government get that it cannot get elsewhere?\n   - Transition path: who uses this, and at what technology readiness level?\n\n3. OFFEROR CAPABILITY\n   - Relevant past performance, facilities, personnel, and any required clearances or security posture\n\n4. COST REALISM AND REASONableness\n   - Is the rough order of magnitude consistent with the scope described?\n   - Is the period of performance credible?\n\nVERDICT: SELECTABLE (recommended for acceptance if sufficient funding is available) or NOT SELECTABLE, with the controlling reason in one sentence.\n\nALSO: identify which PORTIONS of this effort the government might fund separately \u2014 AFRL and others may award part of a proposal. Say which part is the strongest standalone increment.\n\nCLOSE with: the rewrite that would most raise the probability of an invitation, and \u2014 if the answer is that this is aimed at the wrong thrust \u2014 say that first and loudest.\n\nWHITE PAPER FOLLOWS:\n---",
+  "card": [
+   "Technical merit verdict",
+   "Agency-importance verdict (thrust quoted)",
+   "Capability verdict",
+   "Cost realism verdict",
+   "SELECTABLE / NOT SELECTABLE",
+   "Strongest fundable increment",
+   "Highest-leverage rewrite"
+  ]
+ },
+ {
+  "id": "foundation-loi",
+  "title": "Foundation LOI Screen (W.T. Grant four-criteria model)",
+  "cat": "Simulated review panel",
+  "funder": "W.T. Grant, Spencer, RWJF, and most private foundations",
+  "when": "Before you submit a letter of inquiry or preproposal.",
+  "scale": "Advance / do not advance, with a criterion-by-criterion read. Foundations rarely publish numeric rubrics.",
+  "accuracy": "Criteria drawn from the W.T. Grant 2026 Application Guide, which is the most explicit published private-funder rubric found. Spencer's process changed in October 2025 \u2014 preproposal first, with light feedback for teams that do not advance. RWJF states selection criteria inside each individual Call for Proposals, not foundation-wide.",
+  "prompt": "You are a foundation program officer screening a letter of inquiry / preproposal. Most LOIs are declined at this stage by staff, not by peer reviewers, and the decision is usually made in under ten minutes. Read accordingly.\n\nFIRST, the brutal one: FIT WITH RESEARCH INTERESTS. Foundations decline most LOIs for fit, not quality. Tell me, in the first line of your response, whether this is inside or outside the funder's stated interests, and quote the funder language I gave you. If I did not paste the funder's program description, ask for it \u2014 a fit judgment without it is worthless.\n\nFor the W.T. Grant reducing-inequality program specifically, fit means: does the study examine a PROGRAM, POLICY, OR PRACTICE that could reduce inequality in academic, social, behavioral, or economic outcomes for young people ages 5\u201325, along dimensions of race, ethnicity, economic standing, sexual or gender minority status, language minority status, or immigrant origins? If the study merely documents inequality without examining something that could reduce it, it fails fit.\n\nTHEN evaluate the remaining three criteria:\n\nCONCEPTUALIZATION AND RELEVANCE\n  - Does the writer demonstrate mastery of the relevant theory and empirical findings, or name-drop?\n  - Is there a compelling THEORY OF CHANGE explaining why this program, policy, or practice is likely to produce the outcome? This is the single most common failure \u2014 an interesting question with no articulated mechanism.\n\nMETHODS\n  - Are the methods (quantitative, qualitative, or mixed) matched to the questions actually asked?\n  - Is there adequate statistical power to detect meaningful effects? If qualitative, is the sampling logic and stopping rule defensible?\n  - Are sampling and measurement appropriate in size and composition?\n\nFEASIBILITY\n  - Are timeline, staffing, and resources realistic for the money requested?\n  - Does the team have a track record of conducting strong research of this type?\n  - Are partner commitments real (named, signed, specific) or aspirational?\n\nALSO CHECK the mechanics that get LOIs desk-rejected: page limit, font (many foundations specify 12-pt Times New Roman, single-spaced), character-limited fields, required attachments, institutional signature, and \u2014 for private foundations \u2014 whether the applicant can supply a 501(c)(3) determination letter. Public universities often cannot use their own EIN for this and must apply through an affiliated foundation.\n\nVERDICT: ADVANCE TO FULL PROPOSAL / DECLINE, plus the two-sentence feedback the applicant would actually receive.\n\nCLOSE with the single change that would most raise the odds \u2014 and if the honest answer is 'a different funder,' name two better-fitting funders and why.\n\nLOI FOLLOWS:\n---",
+  "card": [
+   "Fit verdict (funder language quoted)",
+   "Conceptualization & theory of change",
+   "Methods",
+   "Feasibility",
+   "Mechanics/eligibility check",
+   "ADVANCE / DECLINE",
+   "Better-fitting funders if declined"
+  ]
+ },
+ {
+  "id": "pink-team",
+  "title": "Pink Team \u2014 outline validation at 20\u201340% draft",
+  "cat": "Color-team review",
+  "funder": "Any",
+  "when": "When the draft is 20\u201340% complete. Too early feels wrong; that is the point.",
+  "scale": "No score. The output is a structural verdict and an outline rewrite.",
+  "accuracy": "Adapted from government-contracting color-team practice. The transferable insight is that each review is gated to a draft maturity level and answers a different question \u2014 most academic mock reviews collapse them into one late event that generates feedback nobody can act on.",
+  "prompt": "You are running a PINK TEAM review. The draft I am giving you is deliberately incomplete \u2014 roughly 20\u201340%. Do not comment on prose, typos, or polish. Anyone who does that at Pink Team has misunderstood the exercise.\n\nPink Team answers exactly three questions:\n\n1. DOES THE OUTLINE MAP TO THE REQUIREMENTS?\n   Build a two-column table. Left: every requirement from the solicitation \u2014 from the program description, the application contents section, and each merit review criterion. Right: the section and heading of my draft that answers it.\n   - Rows with nothing on the right are gaps. List them in priority order.\n   - Sections of my draft with nothing on the left are candidates for deletion. Say so.\n   If I have not given you the solicitation, ask for it. A Pink Team without the requirements list is just an opinion.\n\n2. ARE THE WIN THEMES PRESENT AND EARLY?\n   A win theme is an explicit claim about why THIS team, THIS approach, THIS moment \u2014 repeated at the head of each major section rather than left implicit.\n   - State back to me the win themes you can actually detect from the draft.\n   - If you cannot state them, that is the finding: the reader will not find them either.\n   - Propose three win themes this project could credibly own, each in one sentence, and say where each should appear.\n\n3. IS THE APPROACH SOUND ENOUGH TO KEEP BUILDING ON?\n   - Name the one assumption that, if wrong, collapses the project. Is it defended anywhere?\n   - Is the scope right for the money and the period of performance?\n   - Is there a structurally better version of this project we should switch to NOW, while switching is still cheap? Be willing to say yes.\n\nDELIVERABLE: a revised section-by-section outline with a one-sentence statement of what each section must prove, plus an ordered list of what to write next. Rank by what unblocks the most downstream writing.\n\nDRAFT AND SOLICITATION FOLLOW:\n---",
+  "card": [
+   "Requirement\u2192section map",
+   "Unaddressed requirements",
+   "Sections to cut",
+   "Detectable win themes",
+   "Proposed win themes",
+   "Load-bearing assumption",
+   "Revised outline + write-next order"
+  ]
+ },
+ {
+  "id": "red-team",
+  "title": "Red Team \u2014 score it exactly as the evaluators will (80\u201390% draft)",
+  "cat": "Color-team review",
+  "funder": "Any",
+  "when": "80\u201390% complete, far enough out to act on it \u2014 typically 2\u20133 weeks before the deadline.",
+  "scale": "Whatever scale the actual funder uses. That is the entire point.",
+  "accuracy": "Red Team is the non-negotiable review. Skipping it leaves the gaps most likely to cost the award. In a research context 'Red Team' means scoring against the actual published criteria using the actual scale \u2014 not giving general writing feedback.",
+  "prompt": "You are a RED TEAM. Your job is not to help me. Your job is to score this draft exactly as the real evaluation panel will, using the real scale, and to find the gaps that will cost me the award.\n\nBEFORE YOU START: tell me which scale you are using and where it comes from. If I have given you the solicitation, use its criteria and weights verbatim. If I have not, ask \u2014 and if I refuse, say clearly at the top that the scoring is indicative only.\n\nRULES OF ENGAGEMENT:\n  - Score against the criteria as written, not against your sense of good research.\n  - Assume the reviewer is reading this as the eleventh application of the weekend, at 9pm, on a screen. If a point requires careful reading to find, it does not count.\n  - Do not award credit for things I clearly intend but did not write.\n  - Where the draft is incomplete, score the gap as a gap. Do not extend charity.\n\nPRODUCE:\n\nA. SCORECARD. Each criterion, the score, and the ONE sentence in my draft that drove it. If no sentence drove it, say \"nothing in the draft addresses this.\"\n\nB. WEAK DISCRIMINATORS. Every place I made a claim that any competent competitor could also make. \"We will use a mixed-methods design\" discriminates nothing. Name each and propose the specific, evidenced version that would actually discriminate.\n\nC. COMPLIANCE GAPS. Page limits, required sections, formatting, attachments, registrations, cost share, certifications. Anything that could get this returned without review or found non-responsive. Treat this as pass/fail, separate from score.\n\nD. THE REVIEWER'S FIRST OBJECTION. Write the single most damaging sentence a hostile reviewer would write in the summary statement. Then write my best available rebuttal \u2014 and tell me honestly whether the rebuttal belongs in the proposal or whether the underlying problem needs fixing instead.\n\nE. REVERSE OUTLINE. Reconstruct the outline from what is actually on the page \u2014 one sentence per paragraph, in order. Then show it to me next to the requirements. Any requirement without a line is a gap; any paragraph without a requirement is a cut candidate.\n\nF. TRIAGE. Given the days remaining that I will tell you, rank every fix by points-gained-per-hour. Be explicit about what I should NOT spend time on.\n\nBe harsh. Reviewers are not cruel, but they are tired, and they are looking for reasons to move down the pile.\n\nDRAFT AND SOLICITATION FOLLOW:\n---",
+  "card": [
+   "Scorecard with driving sentences",
+   "Weak discriminators",
+   "Compliance gaps (pass/fail)",
+   "Most damaging reviewer objection",
+   "Reverse outline vs. requirements",
+   "Fix triage by points per hour"
+  ]
+ },
+ {
+  "id": "gold-team",
+  "title": "Gold Team \u2014 executive gate, 24\u201348 hours out",
+  "cat": "Color-team review",
+  "funder": "Any",
+  "when": "100% draft, 1\u20132 days before submission. Last stop.",
+  "scale": "Go / No-go, plus a submission-mechanics checklist.",
+  "accuracy": "Gold Team is the executive gate: strategic alignment confirmed, prior review findings resolved, budget consistent with the technical promise. It is followed by a white-glove production pass on formatting and submission mechanics.",
+  "prompt": "You are the GOLD TEAM \u2014 the final executive gate, 24\u201348 hours before submission. Do not reopen the science. Do not suggest a new framing. At this point, the only acceptable findings are things that would cause a rejection or an embarrassment.\n\nRUN EXACTLY THIS CHECKLIST AND REPORT PASS/FAIL ON EACH:\n\n1. PRIOR FINDINGS RESOLVED. I will paste the Red Team findings. For each, state: resolved / partially resolved / ignored. Anything ignored, say so plainly and tell me if it is survivable.\n\n2. INTERNAL CONSISTENCY \u2014 the failure mode that actually kills good proposals:\n   - Does the budget match the personnel described in the narrative? Every named person has effort; every effort line has a named person.\n   - Do the aims/objectives in the summary match the aims in the body, in the same order, with the same numbers and the same wording?\n   - Does the timeline accommodate everything promised, including IRB approval, hiring, and data acquisition?\n   - Do the letters of support commit to exactly what the narrative says they commit to?\n   - Do figures, tables, and appendices get referenced in the text, and do the numbers in them match the numbers in the prose?\n   - Is the requested total the same number in every place it appears?\n\n3. STRATEGIC ALIGNMENT. Read the first page as a program officer would. Does it say, within the first 150 words, what will be done, why it matters, and why us? If not, fix that first.\n\n4. SUBMISSION MECHANICS \u2014 white glove:\n   - Page count against the limit, for each limited section separately\n   - Font, size, margins, line spacing, and whether figures/captions violate the font rule\n   - Every required attachment present, correctly named, and correctly formatted (PDF vs. Word, no password protection, no placeholder files)\n   - All institutional identifiers correct: UEI, EIN, congressional district, F&A rate, fringe rates, authorized official\n   - Registrations active: SAM.gov, Grants.gov roles, eRA Commons / Research.gov / NSPIRES / ProposalCentral as applicable\n   - Portal and deadline time zone confirmed, and the plan to submit at least one full business day early\n   - Institutional routing approval complete and the authorized official available to submit\n\n5. THE EMBARRASSMENT SCAN: wrong funder name anywhere, text from a previous proposal, tracked changes or comments left in, \"TBD\", \"[insert]\", lorem text, placeholder citations, unverified references.\n\nVERDICT: GO or NO-GO, and if NO-GO, the shortest path to GO.\n\nMATERIALS FOLLOW:\n---",
+  "card": [
+   "Prior findings resolved?",
+   "Internal consistency (budget/aims/timeline/letters)",
+   "First-150-words test",
+   "Submission mechanics checklist",
+   "Embarrassment scan",
+   "GO / NO-GO"
+  ]
+ },
+ {
+  "id": "specific-aims",
+  "title": "Specific Aims / One-Pager Workshop (SOAR model)",
+  "cat": "Section-level tools",
+  "funder": "NIH, and adaptable to any one-page summary",
+  "when": "10\u201312 weeks out, when feedback can still change the science. The single cheapest structural improvement available.",
+  "scale": "No score. Clarity and feasibility of the aims only.",
+  "accuracy": "Modeled on Columbia's SOAR (Specific Objectives and Aims Review) \u2014 a ~30-minute peer review of the aims alone, 2\u20133 months before submission \u2014 and on Johns Hopkins' Aims Presentation at 10 weeks with written feedback in 7 days. Under NIH's current 30\u201335% discussion rate, the aims page is effectively the whole application for most submissions.",
+  "prompt": "You are running a SOAR-style review of a Specific Aims page. This is a ~30-minute exercise on ONE page, done early enough that the science can still change. Do not review anything but the aims page, even if I paste more.\n\nRead it once, quickly, the way a reviewer skimming a stack would. Then answer:\n\nTHE ONE-READ TEST\n  - In one sentence, what is the problem?\n  - In one sentence, what will they do about it?\n  - In one sentence, what will be known at the end that is not known now?\n  If you cannot answer any of these from a single read, stop and say so. That is the finding, and it outranks everything else.\n\nPARAGRAPH-BY-PARAGRAPH DIAGNOSIS\n  1. OPENING HOOK: Does the first sentence establish the problem's importance in terms a non-specialist reviewer accepts? Or does it start with background nobody disputes?\n  2. GAP: Is the knowledge gap stated as a gap, or merely implied by a literature summary? A reviewer must be able to underline the gap sentence.\n  3. CRITICAL NEED / PAYOFF: Why does this gap matter enough to spend the money?\n  4. CENTRAL HYPOTHESIS OR OBJECTIVE: Is it falsifiable and stated as one sentence?\n  5. RATIONALE: Why is this team, with this preliminary data, positioned to close this gap now?\n  6. THE AIMS THEMSELVES:\n     - Are they INDEPENDENT? If Aim 2 cannot proceed unless Aim 1 succeeds, that is a feasibility flag reviewers reliably catch.\n     - Does each aim have a working hypothesis, an approach, and an expected outcome?\n     - Are they aims, or are they tasks? \"Collect survey data\" is a task.\n     - Is the number of aims right for the mechanism and budget?\n  7. PAYOFF PARAGRAPH: Does it state the expected impact on the field concretely, and does it avoid promising more than the aims deliver?\n\nFEASIBILITY GUT-CHECK\n  - Can this be done in the period requested, by this team, with this money? Where is it over-scoped? Over-scoping is the most common early-career error and it is fatal at Factor 2.\n\nREWRITE\n  Give me a tightened version of the page that preserves my science and my voice. Then list, separately, every place where I must supply something you cannot invent \u2014 a number, a citation, a preliminary result. Do not fabricate any of them.\n\nAIMS PAGE FOLLOWS:\n---",
+  "card": [
+   "One-read test (3 sentences, or failure)",
+   "Hook / gap / need / hypothesis / rationale diagnosis",
+   "Aim independence check",
+   "Aims vs. tasks",
+   "Feasibility & scope",
+   "Tightened rewrite + what I must supply"
+  ]
+ },
+ {
+  "id": "broader-impacts",
+  "title": "Broader Impacts Stress Test",
+  "cat": "Section-level tools",
+  "funder": "NSF (and adaptable to any societal-benefit requirement)",
+  "when": "Any time after the science is settled.",
+  "scale": "Evaluated against the same five review elements as Intellectual Merit.",
+  "accuracy": "NSF evaluates Broader Impacts against all five review elements, including element 3 \u2014 whether the plan 'incorporates a mechanism to assess success.' Broader Impacts without an assessment plan is the most reliably criticized weakness in NSF panels.",
+  "prompt": "You are an NSF panelist who takes Broader Impacts as seriously as Intellectual Merit \u2014 because NSF does, and because most panels contain at least one reviewer who will.\n\nEvaluate the Broader Impacts I paste against ALL FIVE review elements, the same ones applied to Intellectual Merit:\n\n1. POTENTIAL TO BENEFIT SOCIETY / ADVANCE DESIRED SOCIETAL OUTCOMES\n   - Which societal outcome, specifically? Name it.\n   - Who benefits, how many, and how would we know?\n   - Is the benefit a consequence of THIS project, or something that would happen anyway?\n\n2. CREATIVE, ORIGINAL, POTENTIALLY TRANSFORMATIVE\n   - Is this a genuinely designed activity, or the default menu (a website, a workshop, \"we will recruit undergraduates\")?\n   - What here has not been proposed by a hundred other proposals this cycle?\n\n3. WELL-REASONED, WELL-ORGANIZED, SOUND RATIONALE \u2014 AND A MECHANISM TO ASSESS SUCCESS\n   - Is there a logic model connecting activities to outcomes?\n   - IS THERE AN EVALUATION PLAN? What is measured, by whom, when, compared to what, and what happens if it is not working? This is where most Broader Impacts sections fail outright.\n   - Is there a named external evaluator or advisory structure where the scale warrants it?\n\n4. QUALIFICATIONS\n   - Who is doing this work? Is that person named, funded, and qualified? Broader Impacts assigned to \"the PI, in addition to everything else\" is not staffed.\n   - Are partners named, and have they agreed in writing?\n\n5. RESOURCES\n   - Is it budgeted? Point to the budget line. Unbudgeted Broader Impacts read as unserious.\n\nTHEN:\n  - INTEGRATION TEST: Is Broader Impacts woven into the project, or bolted on at the end? Name the paragraphs that would have to change if the impacts activity disappeared. If the answer is \"none,\" it is bolted on.\n  - INSTITUTIONAL LEVERAGE: If the applicant is at an HBCU, MSI, or primarily undergraduate institution, is that institutional context used as a genuine strength \u2014 access to students, community partnerships, regional need \u2014 or merely asserted? Assertion earns nothing.\n  - Propose THREE stronger Broader Impacts activities specific to this project and this institution, each with an outcome, a measure, a responsible person, and a rough cost.\n\nCLOSE with an E/V/G/F/P rating on Broader Impacts alone and the single change with the largest effect.\n\nBROADER IMPACTS SECTION FOLLOWS:\n---",
+  "card": [
+   "Societal outcome named?",
+   "Originality vs. default menu",
+   "Assessment/evaluation plan present?",
+   "Staffed and budgeted?",
+   "Integration test",
+   "Institutional leverage",
+   "BI rating + top change"
+  ]
+ },
+ {
+  "id": "budget-justification",
+  "title": "Budget & Budget Justification Review",
+  "cat": "Section-level tools",
+  "funder": "Any",
+  "when": "As soon as the scope is stable \u2014 budgets take longer than people expect, and OSP needs lead time.",
+  "scale": "Allowable / allocable / reasonable / necessary, plus internal consistency with the narrative.",
+  "accuracy": "The allowability, allocability, reasonableness, and necessity standard is the Uniform Guidance test that VSU's own post-award office applies. Budget and period of support are an 'additional review consideration' at NIH \u2014 evaluated, but must not affect the impact score.",
+  "prompt": "You are a sponsored programs officer and a reviewer at the same time. Review the budget and budget justification I paste below.\n\nPART 1 \u2014 THE UNIFORM GUIDANCE TEST. For every line: is it ALLOWABLE (permitted by the sponsor and by regulation), ALLOCABLE (benefits this project in proportion to the charge), REASONABLE (a prudent person would agree), and NECESSARY (the project fails or degrades without it)? Flag any line that fails one.\n\nPART 2 \u2014 NARRATIVE CONSISTENCY. This is where budgets actually get marked down:\n  - Every person named in the narrative has an effort line. Every effort line has a named role and a described task.\n  - Effort is plausible: nobody is at 140% across projects; the PI's effort is enough to actually lead the work.\n  - Travel matches the fieldwork, conferences, and partner meetings the narrative promises \u2014 no more, no less.\n  - Equipment matches the methods. Methods requiring equipment that is not budgeted or not documented as available is a feasibility flag.\n  - Participant support, incentives, and subject payments match the sample size in the design. Do the arithmetic and show it.\n  - Subawards match the partner roles, and each has a scope, a budget, and a commitment letter.\n  - Consultants have a rate, a scope, and a letter. No fringe on consultants.\n  - Publication, data storage, and dissemination costs exist if the narrative promises dissemination.\n\nPART 3 \u2014 THE RATE CHECK. Ask me, do not assume:\n  - Which F&A rate applies \u2014 on-campus or off-campus \u2014 and is the rate agreement CURRENT? An expired rate agreement is a real and common trap.\n  - Is the base MTDC, and have exclusions been applied correctly (equipment over the capitalization threshold, tuition, participant support, the portion of each subaward above $25,000)?\n  - Are fringe rates correct and differentiated by employee category?\n  - Salary escalation applied to out-years at a defensible rate?\n  - Any sponsor-imposed cap: salary cap, F&A cap, or a cap on a specific category?\n  - Cost share: required or voluntary? Voluntary committed cost share becomes a binding, auditable obligation \u2014 is that understood?\n\nPART 4 \u2014 THE JUSTIFICATION AS PROSE. A justification is an argument, not a restatement of the spreadsheet. For each major category, does it explain WHY, not just WHAT? Rewrite the two weakest paragraphs as models.\n\nPART 5 \u2014 THE REVIEWER'S EYE. Where does this budget make a reviewer doubt the project \u2014 under-resourced for what is promised, over-resourced for what is delivered, or internally contradictory? Name it in one sentence.\n\nCLOSE with a prioritized fix list and a list of the questions I must take to my sponsored programs office rather than guess at.\n\nBUDGET AND JUSTIFICATION FOLLOW:\n---",
+  "card": [
+   "Allowable/allocable/reasonable/necessary flags",
+   "Narrative\u2194budget consistency",
+   "Rate and base check",
+   "Cost-share exposure",
+   "Justification prose rewrite",
+   "Questions for OSP"
+  ]
+ },
+ {
+  "id": "compliance-matrix",
+  "title": "NOFO Compliance Matrix Builder",
+  "cat": "Section-level tools",
+  "funder": "Any",
+  "when": "The day you decide to apply. Before you write a word.",
+  "scale": "Requirement coverage \u2014 every row must resolve to a page.",
+  "accuracy": "Adapted from government-contracting practice, where reviewer findings are tied to specific solicitation requirements rather than subjective feedback, so gaps surface against the evaluation standard instead of in isolation.",
+  "prompt": "You are building a compliance matrix from a funding announcement. This is the artifact that prevents the most common cause of losing: answering a question the funder did not ask while missing one they did.\n\nI will paste the announcement. Read ALL of it \u2014 program description, eligibility, application contents and format, submission requirements, and the review criteria \u2014 and extract EVERY requirement, including the ones stated as a passing clause in the middle of a paragraph.\n\nProduce a table with these columns:\n\n  # | REQUIREMENT (verbatim or tightly paraphrased) | SOURCE (section and page) | TYPE | WHERE IT WILL BE ADDRESSED | OWNER | DUE | STATUS\n\nTYPE is one of:\n  THRESHOLD \u2014 failure means the application is never scored (eligibility, registration, deadline, page limit, required attachment, cost share)\n  SCORED \u2014 maps to a merit review criterion; note the points or weight\n  FORMAT \u2014 font, margins, spacing, file type, naming convention, character limits\n  ADMIN \u2014 forms, certifications, signatures, assurances, institutional identifiers\n\nThen produce THREE derived lists:\n\n1. THRESHOLD CHECKLIST \u2014 every pass/fail item on one page, in submission order, so it can be walked the day before submission.\n2. THE SCORING MAP \u2014 each scored criterion, its weight, and the section of my proposal that must earn it. Where weights differ, note explicitly that page allocation should roughly follow points. If I am giving 30% of my pages to a 10-point criterion, tell me.\n3. THE QUIET REQUIREMENTS \u2014 obligations buried in prose rather than listed: required partnerships, letters, data sharing, evaluation plans, dissemination, human subjects, specific populations, required use of a particular framework or dataset, reporting commitments, sustainability plans.\n\nFINALLY: list every item where the answer depends on my institution rather than on me \u2014 F&A rate, UEI, authorized official, registrations, institutional data, IRB status. Mark each with who I must ask.\n\nIf the announcement references other documents (general administrative requirements, an addendum, a program-wide terms document), say so \u2014 those carry their own kill conditions and must be read too.\n\nANNOUNCEMENT FOLLOWS:\n---",
+  "card": [
+   "Full requirement matrix",
+   "Threshold checklist",
+   "Scoring map + page allocation",
+   "Quiet requirements",
+   "Institution-dependent items"
+  ]
+ },
+ {
+  "id": "reverse-outline",
+  "title": "Reverse Outline & Reviewer-Fatigue Pass",
+  "cat": "Section-level tools",
+  "funder": "Any",
+  "when": "Late draft, after the science is settled.",
+  "scale": "No score. Structure and readability only.",
+  "accuracy": "Reverse outlining is a well-established revision technique. Formatting advice about white space, chunking, and figure placement is practitioner wisdom \u2014 there is no grant-outcome study establishing that it changes funding rates. Present it as sensible craft, not evidence.",
+  "prompt": "Two passes on a near-final draft. Do not comment on the science.\n\nPASS 1 \u2014 REVERSE OUTLINE\nReconstruct the outline from what is actually on the page. For every paragraph in order, write ONE sentence stating what that paragraph does \u2014 not what it is about, what it DOES (\"establishes the gap,\" \"defends the sample size,\" \"restates aim 2\").\nThen tell me:\n  - Which paragraphs do nothing? They are cut candidates.\n  - Which do two jobs at once? They should split.\n  - Where does the argument jump \u2014 a claim that depends on something not yet established?\n  - Does the order of the aims/objectives stay constant everywhere they appear? Inconsistent ordering between summary and body is a reliable irritant.\n  - Put the reverse outline next to the review criteria. Any criterion with no paragraph doing its job is a gap.\n\nPASS 2 \u2014 THE TIRED REVIEWER PASS\nAssume the reader is on their eleventh application, at night, on a screen, having already formed opinions. They will skim headings, first sentences, figures, and bold text. Judge the draft on that basis alone:\n  - HEADINGS: Do they carry meaning on their own? \"Approach\" carries nothing; \"Aim 2: Testing whether X mediates Y in a matched cohort\" carries the argument. Rewrite every uninformative heading.\n  - FIRST SENTENCES: Read only the first sentence of every paragraph, in order. Does that alone tell the story? If not, rewrite the ones that break the chain \u2014 this is the highest-value edit available late in a draft.\n  - DENSITY: Flag every page with no white space, no visual anchor, and no entry point.\n  - FIGURES: Does each figure have a caption that states the takeaway rather than describing the axes? Is each referenced at the point in the text where the reader needs it?\n  - EMPHASIS: Is bolding used sparingly enough to mean something? Is anything critical buried mid-paragraph that should be surfaced?\n  - JARGON AND ACRONYMS: Every acronym defined at first use in each major section. Every term of art a reviewer from an adjacent field would not know \u2014 flag it.\n  - SENTENCE LENGTH: Flag any sentence over ~40 words in a load-bearing position.\n\nDELIVERABLE: the reverse outline, the ordered list of cuts and splits, rewritten headings, rewritten first sentences for the paragraphs that break the chain, and a one-page \"what a skimmer takes away\" summary \u2014 which is what most reviewers will actually retain.\n\nDRAFT FOLLOWS:\n---",
+  "card": [
+   "Reverse outline (one line per paragraph)",
+   "Cut and split candidates",
+   "Criterion coverage gaps",
+   "Rewritten headings",
+   "Rewritten first sentences",
+   "What a skimmer takes away"
+  ]
+ },
+ {
+  "id": "po-contact",
+  "title": "Program Officer Pre-Submission Inquiry",
+  "cat": "Strategy tools",
+  "funder": "Any federal agency",
+  "when": "6\u201310 weeks before the deadline, after you have a concept but before you have written much.",
+  "scale": "No score.",
+  "accuracy": "NIH directs applicants to contact the program officer who manages grants in their scientific area to discuss relevance, study section assignment, budget, and scope. Note the division of labor: Program Officers handle science, strategy, and funding; Scientific Review Officers run the review and cannot discuss funding. No study quantifies a success-rate effect from PO contact \u2014 it is officially encouraged best practice, not a proven multiplier.",
+  "prompt": "Help me contact a program officer well.\n\nFIRST, get me oriented:\n  - Based on the announcement and my concept below, WHO should I be contacting \u2014 which agency, division, and program? If it is NIH, which institute, and why that one? Institute fit determines the payline I am judged against, so this matters more than people think.\n  - Am I contacting a PROGRAM OFFICER (science, fit, strategy, funding) or a SCIENTIFIC REVIEW OFFICER (review logistics, study section assignment)? They answer different questions and the SRO cannot discuss funding.\n  - What should I read before I write \u2014 recently funded awards in this program via RePORTER or NSF Award Search, the program's own priorities, and any recent policy notices. Tell me specifically what to look for: what does this program ACTUALLY fund, as opposed to what the announcement says it funds?\n\nTHEN draft the email. Constraints:\n  - Under 200 words. Program officers are busy and a long first email reads as a request for free consulting.\n  - Subject line that states the program and the question.\n  - One short paragraph on who I am and the institution, one on the concept \u2014 specific enough to be judged, short enough to be read \u2014 and one with the ACTUAL QUESTIONS.\n  - Attach or offer a one-page concept summary; do not paste it into the body.\n  - Never ask \"would this be competitive?\" \u2014 nobody can answer that. Ask answerable questions.\n\nGOOD QUESTIONS TO CHOOSE FROM (pick the 2\u20133 that fit my situation):\n  - Is this responsive to the program's current priorities, or is another program a better fit?\n  - Is the scope appropriate for this mechanism and this budget range?\n  - Which study section or review panel would likely handle this?\n  - Is there a funded project in the portfolio that overlaps enough to be a concern?\n  - Are there upcoming changes to the program I should know about?\n  - For an HBCU/MSI or capacity-building angle: is the institutional development component viewed as part of the merit here, or separate?\n\nALSO draft:\n  - The ONE-PAGE CONCEPT SUMMARY to attach: problem, gap, approach, why this team, budget range, period.\n  - Three follow-up questions for a call, if they offer one.\n  - A short, gracious follow-up if there is no reply after two weeks \u2014 and advice on when to stop.\n\nFINALLY, tell me plainly what a program officer CANNOT do: they cannot promise funding, cannot review my draft line by line, and cannot tell me my score in advance. Setting that expectation prevents the most common awkwardness.\n\nMY CONCEPT AND THE ANNOUNCEMENT FOLLOW:\n---",
+  "card": [
+   "Correct contact identified (PO vs SRO, which IC/division)",
+   "Portfolio homework to do first",
+   "Draft email under 200 words",
+   "One-page concept summary",
+   "Call questions",
+   "Follow-up plan"
+  ]
+ },
+ {
+  "id": "resubmission",
+  "title": "Resubmission Introduction / Response to Reviewers",
+  "cat": "Strategy tools",
+  "funder": "NIH, NSF, and foundations that permit resubmission",
+  "when": "After the summary statement, after you have stopped being angry about it.",
+  "scale": "No score.",
+  "accuracy": "NIH permits ONE resubmission (A1) per original, not before the summary statement arrives and not more than 37 months after the original. Contact your program officer before resubmitting. Current A0-vs-A1 success-rate differentials could not be verified \u2014 do not rely on the folklore multiplier.",
+  "prompt": "Help me turn a summary statement into a resubmission.\n\nSTEP 1 \u2014 TRIAGE THE CRITIQUE. I will paste the reviews. Sort every comment into four buckets and say which is which:\n  A. FATAL \u2014 goes to the core of significance or feasibility. Requires changing the science, not the prose.\n  B. SUBSTANTIVE \u2014 a real weakness, fixable with new analysis, new preliminary data, a design change, or a new collaborator.\n  C. CLARITY \u2014 the reviewer misunderstood something that IS in the application. My fault for how it was written, not what was proposed.\n  D. WRONG \u2014 the reviewer is mistaken or applied a standard the announcement does not contain. Rare. Be honest about how rare.\nFor each comment, quote it, classify it, and state the specific action.\n\nSTEP 2 \u2014 FIND THE UNSPOKEN OBJECTION. Reviewers often score on something they do not name directly. Read across all reviews: what is the common concern underneath the specific comments? Under NIH's current practice \u2014 a consensus sentence plus score-driving bullets \u2014 the real objection is often compressed into very little text. Name it.\n\nSTEP 3 \u2014 DECIDE. Before writing anything, give me an honest recommendation:\n  - Resubmit to the same program?\n  - Substantially reframe and submit elsewhere?\n  - Or is this not salvageable in its current form?\nBase it on whether the Fatal bucket is empty. At NIH, remember Factor 1 is a ceiling: if the panel doubted the IMPORTANCE of the work, no amount of methodological improvement will lift it. Say so if that is the case.\n\nSTEP 4 \u2014 DRAFT THE INTRODUCTION (one page for NIH). Rules:\n  - Open by thanking the panel, briefly and once. No grovelling and no defensiveness.\n  - Address concerns in the order of their importance to the score, not the order they appeared.\n  - For each: state the concern in one line, state what changed, and point to where in the application. Reviewers check.\n  - Where I disagree, disagree ONCE, respectfully, with evidence \u2014 then move on. Litigating a disagreement across a paragraph reads badly.\n  - Mark substantive changes in the application itself as the announcement instructs.\n  - Never say the reviewer failed to understand. Say the application was not clear.\n\nSTEP 5 \u2014 THE MECHANICS: confirm I am within the resubmission window and the one-A1 limit, that I have the summary statement in hand, that I have contacted my program officer, and that no overlapping-aims application is simultaneously under review.\n\nCLOSE with a ranked work plan: what to do first, what genuinely needs new data, and how long each will take.\n\nSUMMARY STATEMENT AND ORIGINAL APPLICATION FOLLOW:\n---",
+  "card": [
+   "Comment triage (fatal/substantive/clarity/wrong)",
+   "The unspoken objection",
+   "Resubmit / reframe / retire recommendation",
+   "Draft Introduction",
+   "Resubmission eligibility check",
+   "Ranked work plan"
+  ]
+ },
+ {
+  "id": "fit-screen",
+  "title": "Go / No-Go Fit Screen",
+  "cat": "Strategy tools",
+  "funder": "Any",
+  "when": "Before you commit. Ten minutes here saves six weeks.",
+  "scale": "Go / No-go / Go-if.",
+  "accuracy": "Most declines are fit and eligibility problems, not quality problems. This screen is deliberately unsentimental.",
+  "prompt": "Be unsentimental. Most people apply to things they should not apply to, and the cost is measured in weeks of their life. I will paste a funding announcement and describe my project. Tell me whether to go.\n\n1. ELIGIBILITY \u2014 HARD GATES. Answer each yes/no/unclear, quoting the announcement:\n   - Is my institution type eligible? (Public IHE? HBCU-only? 1890 institution? Nonprofit 501(c)(3) required \u2014 noting that a public university often cannot use its own EIN and must apply through an affiliated foundation?)\n   - Am I eligible as PI? Rank, degree, citizenship, career stage, terminal-degree date windows, prior-award limits?\n   - Limited submission \u2014 does the institution get only one nomination? If so, there is an internal deadline before the real one and it may already have passed.\n   - Registrations required, and how long do they take? SAM.gov renewal alone can take weeks.\n   - Cost share required? Can my institution actually commit it, and who signs?\n   - Any restriction on concurrent or prior awards?\n   Any \"no\" ends this. Say so in the first line.\n\n2. FIT \u2014 quote the funder's own priority language and quote my project description next to it. Rate the fit HIGH / MEDIUM / LOW and defend it. A MEDIUM is usually a no unless something else is exceptional.\n\n3. COMPETITIVENESS \u2014 an honest read:\n   - What is the expected number of awards and the applicant pool? If the announcement gives total funding and award size, do the division and tell me the implied number of awards.\n   - What would the strongest realistic competitor look like? Where do I lose to them?\n   - Do I have the preliminary data, partnerships, or track record this program's funded portfolio suggests it expects?\n\n4. COST OF APPLYING \u2014 be concrete: hours to write, hours of colleagues' and staff time, institutional resources consumed, internal deadlines, and the opportunity cost of what I am not doing instead.\n\n5. VERDICT \u2014 one of:\n   GO \u2014 with the three things that must be true for it to be competitive\n   NO-GO \u2014 with the reason in one sentence, and two better-fitting opportunities to look at instead\n   GO IF \u2014 naming the specific condition (a partner secured, preliminary data obtained, a co-PI added) and the date by which it must be resolved\n\nIf the answer is no-go, say it plainly in the first line. Do not bury it under encouragement.\n\nANNOUNCEMENT AND PROJECT DESCRIPTION FOLLOW:\n---",
+  "card": [
+   "Eligibility hard gates",
+   "Fit rating with quoted language",
+   "Implied number of awards",
+   "Strongest competitor gap",
+   "Cost of applying",
+   "GO / NO-GO / GO-IF"
+  ]
+ },
+ {
+  "id": "capacity-narrative",
+  "title": "HBCU / MSI Institutional Capacity Narrative",
+  "cat": "Strategy tools",
+  "funder": "NSF HBCU-UP & EiR, NIH RCMI, USDA 1890, DoD HBCU/MI, ED Title III, NASA MUREP, DOE MSIPP",
+  "when": "Whenever the program asks about institutional capacity, infrastructure, or broadening participation.",
+  "scale": "No score \u2014 but capacity narratives are frequently the weakest section in otherwise strong applications.",
+  "accuracy": "Capacity-building programs judge what institutional capability will exist at the end that does not exist now, and how it is sustained. Asserting institutional identity earns nothing; demonstrating leverage does.",
+  "prompt": "You are a reviewer for an institutional capacity-building program. These programs fund CAPACITY, not just projects, and the most common failure is a strong research plan bolted to a vague institutional story.\n\nReview the capacity narrative I paste against these questions:\n\n1. THE DELTA. What institutional capability will exist at the end of this award that does not exist today? State it as a before/after. If the answer is only \"more publications\" or \"more students trained,\" the capacity case is not made. Name the specific durable asset \u2014 a core facility, a functioning research administration process, a sustained partnership, a new degree pathway, a data infrastructure, a cohort of faculty with new methodological training.\n\n2. THE BASELINE, HONESTLY. Does the narrative state where the institution is now with real numbers \u2014 research expenditures, current external awards, doctoral or master's production, faculty release time, existing facilities? Reviewers distrust narratives with no baseline. Where the applicant has not supplied numbers, tell them exactly which institutional office to get them from (institutional research, sponsored programs, the Common Data Set) rather than inventing any.\n\n3. LEVERAGE, NOT ASSERTION. Being an HBCU, MSI, land-grant, or primarily undergraduate institution is not an argument by itself. What does this institution have ACCESS to that a large research university does not \u2014 specific communities, specific student populations, specific regional problems, specific longstanding relationships? Make the access concrete and name it.\n\n4. SUSTAINABILITY. What happens in year six? Who pays for the thing that was built? Is there an institutional commitment in writing, and at what level of authority? Reviewers read \"we will seek additional funding\" as \"this ends when the money ends.\"\n\n5. INSTITUTIONAL COMMITMENT EVIDENCE. Is there a letter from the provost or president, and does it commit to something specific \u2014 space, a line, release time, matching, a policy change \u2014 or does it merely express enthusiasm? Rewrite any enthusiastic-but-empty commitment language into specific commitments the institution could actually make, and flag them for the applicant to negotiate internally.\n\n6. GOVERNANCE AND MANAGEMENT. Who runs this, with what authority, reporting to whom? Multi-component capacity awards fail on management structure more than on science. Is there an advisory board, an evaluation plan, and a decision process when something is not working?\n\n7. THE EVALUATION PLAN. Capacity programs expect one. What is measured, by whom, against what baseline, at what interval? Is there an external evaluator where the scale warrants it?\n\n8. STUDENT PATHWAY. If students are involved: recruitment, mentoring structure, what they actually do, what they get, and what happens to them after. Vague \"students will participate\" language earns nothing.\n\nCLOSE with: the three weakest claims in the narrative and a rewritten version of each, plus a list of the institutional facts the applicant must obtain \u2014 with the office to ask.\n\nCAPACITY NARRATIVE FOLLOWS:\n---",
+  "card": [
+   "The capability delta (before/after)",
+   "Baseline numbers present?",
+   "Leverage vs. assertion",
+   "Sustainability plan",
+   "Commitment letter specificity",
+   "Governance & evaluation",
+   "Student pathway",
+   "Rewritten weak claims + facts to obtain"
+  ]
+ },
+ {
+  "id": "plain-language",
+  "title": "Plain-Language Significance Rewrite",
+  "cat": "Section-level tools",
+  "funder": "Any",
+  "when": "Any time. Especially useful for public abstracts, lay summaries, and the first paragraph of anything.",
+  "scale": "No score.",
+  "accuracy": "Panels routinely include at least one reviewer from outside the immediate specialty, and NSF Project Summaries are public documents. Writing for the adjacent-field reader is not dumbing down; it is the actual audience.",
+  "prompt": "Rewrite for the reviewer who is smart, busy, and not in my subfield \u2014 which describes most of the panel.\n\nFor the text I paste:\n\n1. THE JARGON AUDIT. List every term, acronym, and construction that an intelligent reader from an adjacent field would not immediately parse. For each: keep it (and define it), replace it, or cut it. Be specific about which.\n\n2. THE BURIED LEDE. Find the most important sentence in the passage. Is it first? If not, move it and show me the result. Most academic paragraphs put the payoff last; reviewers read the first sentence and skim the rest.\n\n3. THE SO-WHAT CHAIN. For each major claim, ask \"so what?\" until you reach something a non-specialist cares about. Show the chain. If the chain breaks before it gets there, that is the finding \u2014 the significance argument is incomplete, not just badly worded.\n\n4. NOMINALIZATIONS AND PASSIVES. Find noun-forms hiding verbs (\"the implementation of,\" \"the utilization of,\" \"an examination of\") and passive constructions that hide who does what. Rewrite them. Do not overcorrect into breeziness \u2014 this is a scientific document.\n\n5. THE REWRITE. Give me:\n   (a) a version at roughly the same length, tightened;\n   (b) a version at HALF the length, for a page-limited section or an abstract;\n   (c) a 100-word lay version for a public abstract or a press-facing summary.\n   Preserve my voice and my precision. Do not smooth the technical content into vagueness \u2014 imprecision reads worse to a reviewer than jargon does.\n\n6. WHAT I MUST NOT LOSE. List anything technically load-bearing that a simplification would damage, so I can check the rewrite did not cost me accuracy.\n\nDo not invent facts, numbers, or citations. If a sentence needs a number to work, mark it [NEED: ...] and tell me what to supply.\n\nTEXT FOLLOWS:\n---",
+  "card": [
+   "Jargon audit",
+   "Buried lede fix",
+   "So-what chain",
+   "Nominalizations & passives",
+   "Three rewrites (same / half / lay)",
+   "Load-bearing content to protect"
+  ]
+ },
+ {
+  "id": "team-build",
+  "title": "Team & Collaborator Gap Analysis",
+  "cat": "Strategy tools",
+  "funder": "Any",
+  "when": "Early \u2014 before the announcement drops, ideally.",
+  "scale": "No score.",
+  "accuracy": "Reflects the capture-planning shift in research development: positioning for solicitations rather than responding to them \u2014 building interdisciplinary teams before the announcement, cultivating program officer relationships, and using RePORTER / NSF Award Search / Dimensions to infer what a program actually funds.",
+  "prompt": "Analyze the team for this project and tell me what is missing before a reviewer tells me.\n\n1. REQUIRED EXPERTISE MAP. From the aims and methods, list every distinct expertise the project needs to succeed \u2014 including the unglamorous ones people forget: data management, statistical or psychometric expertise, qualitative analysis, community engagement, evaluation, regulatory or IRB complexity, software, and project management.\n\n2. COVERAGE CHECK. For each expertise: covered by a named person with documented experience / claimed but thin / not covered. Be strict. \"The PI has experience with mixed methods\" is thin unless the record shows it.\n\n3. THE REVIEWER'S QUESTION. For each named person, ask what a reviewer will ask: does the record show they have DONE this before? Where the record does not, say so and propose the fix \u2014 a co-investigator, a consultant with a letter, a named advisory board member, or preliminary work that demonstrates capability.\n\n4. EFFORT REALITY. Is anyone's committed effort implausible given their other commitments? Is the PI's effort enough to credibly lead? A 5% PI on a complex project is a feasibility flag.\n\n5. LETTERS OF SUPPORT AUDIT. For each collaborator, what must their letter actually say to be worth including? Draft the SPECIFIC commitment language for each \u2014 access to a site, hours of consultation, a named dataset, a defined deliverable. Generic enthusiasm letters are worse than no letter because they signal a soft commitment.\n\n6. WHO IS MISSING ENTIRELY. Name the roles this project needs and does not have, in priority order. For each, describe the kind of person to look for and where to find them \u2014 a specific department, a professional society, an author of a paper central to the design, a prior awardee of this same program.\n\n7. INSTITUTIONAL PARTNERS. Does this project need a partner institution \u2014 a health system, a school district, a community organization, a state agency, an R1 collaborator for equipment access? What would each side get? Reviewers can tell the difference between a partnership and a signature.\n\n8. CAPTURE MOVE. If a specific program is the target, tell me what to do NOW, before the announcement drops: which prior awards to read in RePORTER or NSF Award Search to infer what the program actually funds, which program officer to know, which conference or panel to be visible at, and what preliminary result would most change the reception of this application.\n\nPROJECT AND TEAM DESCRIPTION FOLLOW:\n---",
+  "card": [
+   "Required expertise map",
+   "Coverage: covered / thin / missing",
+   "Effort plausibility",
+   "Letter-of-support commitment language",
+   "Roles missing, in priority order",
+   "Institutional partners needed",
+   "Capture moves to make now"
+  ]
+ }
+]
