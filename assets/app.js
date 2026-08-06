@@ -5,6 +5,7 @@
   var NAV = [
     ['index.html', 'Search'],
     ['calendar.html', 'Deadlines'],
+    ['pipeline.html', 'My Pipeline'],
     ['funders.html', 'Funders'],
     ['foundations.html', 'Foundation 990s'],
     ['awards.html', 'Award Intel'],
@@ -41,6 +42,24 @@
       });
     },
 
+    /* ---------- feedback ----------
+       Opens a prefilled GitHub issue. The page and the date are filled in
+       automatically because a report that says "a link is broken" without
+       saying where is a report nobody can act on. */
+    issueUrl: function (subject) {
+      var page = '';
+      try { page = location.pathname.replace(/^\//, '') || 'index.html'; } catch (e) { }
+      var body =
+        'Page: ' + page + '\n' +
+        'Noticed on: ' + new Date().toISOString().slice(0, 10) + '\n\n' +
+        'Which entry or link?\n\n\n' +
+        'What is wrong with it?\n\n\n' +
+        'If you know the correct information, what is it?\n\n';
+      return 'https://github.com/jimfraserVSU/funding-search-toolkit/issues/new' +
+        '?title=' + encodeURIComponent(subject || ('Correction: ' + page)) +
+        '&body=' + encodeURIComponent(body);
+    },
+
     /* ---------- chrome ---------- */
     chrome: function () {
       var h = document.querySelector('header.site .navslot');
@@ -72,6 +91,11 @@
           '<li><a href="https://www.vsu.edu/research/" rel="noopener">VSU Division of Research</a></li>' +
           '</ul></div></div>' +
           '<hr style="border-color:rgba(255,255,255,.13);margin:1.6rem 0 1rem">' +
+          /* Between monthly freshness runs, the only thing that catches a dead
+             link or a moved deadline is a human noticing. Give them somewhere
+             to put it that isn't a private email to one person. */
+          '<p style="margin:0 0 .8rem"><a href="' + TK.issueUrl() + '" rel="noopener">' +
+          'Found a dead link, a wrong deadline, or something out of date? Report it →</a></p>' +
           '<p style="margin:0;font-size:.82rem">Built by Dr. Bucky Greenlove (Dr. James Curtis Fraser), Virginia State University. Live federal results come directly from the Grants.gov Search2 API. Curated entries were link-checked on build; <strong>always confirm eligibility, deadlines, and budget rules against the funder’s own announcement before you write.</strong> Nothing here is an institutional commitment on behalf of VSU.</p>';
       }
       /* copy buttons */
@@ -271,6 +295,82 @@
             document.getElementById('pfCancel').onclick = draw;
           }
           draw();
+        }
+      };
+    })(),
+
+    /* ---------- pipeline ----------
+       What the user has actually applied for, as opposed to what they have
+       merely starred. Stars are a discovery gesture; this is a commitment
+       record, so it carries dates, amounts and free text.
+
+       Stored in localStorage, which means it is per-browser and disappears if
+       someone clears site data. That is a real limitation and the page says so
+       plainly — the honest mitigation is the export/import pair below, not
+       pretending the risk isn't there. Anything server-side would need
+       accounts, which this site deliberately does not have. */
+    pipeline: (function () {
+      var KEY = 'bg_pipeline';
+      var mem = {};
+      try { mem = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { mem = {}; }
+      var save = function () { try { localStorage.setItem(KEY, JSON.stringify(mem)); } catch (e) { } };
+      var uid = function () { return 'x' + Math.random().toString(36).slice(2, 9); };
+      return {
+        STATUSES: [
+          ['considering', 'Considering'],
+          ['drafting', 'Drafting'],
+          ['submitted', 'Submitted'],
+          ['awarded', 'Awarded'],
+          ['declined', 'Declined'],
+          ['passed', 'Not pursuing']
+        ],
+        all: function () {
+          return Object.keys(mem).map(function (k) {
+            var r = mem[k]; r.key = k; return r;
+          });
+        },
+        get: function (k) { return mem[k]; },
+        has: function (k) { return !!mem[k]; },
+        count: function () { return Object.keys(mem).length; },
+        upsert: function (rec) {
+          var k = rec.key || rec.id || uid();
+          var prev = mem[k] || {};
+          mem[k] = {
+            id: rec.id || prev.id || k,
+            title: rec.title != null ? rec.title : prev.title || '',
+            sponsor: rec.sponsor != null ? rec.sponsor : prev.sponsor || '',
+            url: rec.url != null ? rec.url : prev.url || '',
+            deadline: rec.deadline != null ? rec.deadline : prev.deadline || '',
+            amount: rec.amount != null ? rec.amount : prev.amount || '',
+            role: rec.role != null ? rec.role : prev.role || '',
+            status: rec.status || prev.status || 'considering',
+            notes: rec.notes != null ? rec.notes : prev.notes || '',
+            added: prev.added || rec.added || new Date().toISOString().slice(0, 10),
+            submitted: rec.submitted != null ? rec.submitted : prev.submitted || '',
+            decided: rec.decided != null ? rec.decided : prev.decided || ''
+          };
+          save();
+          return k;
+        },
+        remove: function (k) { delete mem[k]; save(); },
+        clear: function () { mem = {}; save(); },
+        /* Full snapshot, so a user can move between machines or recover after
+           a browser wipe. */
+        exportJson: function () {
+          return JSON.stringify({ kind: 'bucky-greenlove-pipeline', version: 1,
+            exported: new Date().toISOString(), items: mem }, null, 1);
+        },
+        importJson: function (text, mode) {
+          var d = JSON.parse(text);
+          var items = d && d.items ? d.items : d;
+          if (!items || typeof items !== 'object') throw new Error('Not a pipeline file.');
+          if (mode === 'replace') mem = {};
+          var n = 0;
+          Object.keys(items).forEach(function (k) {
+            if (items[k] && typeof items[k] === 'object') { mem[k] = items[k]; n++; }
+          });
+          save();
+          return n;
         }
       };
     })(),

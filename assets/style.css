@@ -61,6 +61,7 @@ main{padding:2rem 0 4rem}
 .grid{display:grid;gap:1rem}
 .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 
 /* ---------- filters ---------- */
 .filters{position:sticky;top:6.2rem}
