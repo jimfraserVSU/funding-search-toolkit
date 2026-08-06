@@ -166,7 +166,13 @@
       return;
     }
     var shown = d.results.length;
-    var h = '<p class="lead"><strong>' + d.total.toLocaleString() + '</strong> organisation' +
+    var h = '';
+    if(d.broadenedTo){
+      h += '<div class="note warn"><p>No exact match for <strong>' + TK.esc(d.query) +
+           '</strong>. Showing results for <strong>' + TK.esc(d.broadenedTo) +
+           '</strong> instead — the IRS index matches literally, so punctuation and full legal names often miss.</p></div>';
+    }
+    h += '<p class="lead"><strong>' + d.total.toLocaleString() + '</strong> organisation' +
             (d.total === 1 ? '' : 's') + ' matched. Showing ' + shown +
             (d.pages > 1 ? ' (page ' + (d.page + 1) + ' of ' + d.pages + ')' : '') +
             '. Pick one to pull its filing history.</p>';
