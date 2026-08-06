@@ -395,8 +395,14 @@
           'DTSTAMP:' + dt(new Date()) + 'T000000Z',
           'DTSTART;VALUE=DATE:' + dt(e.date), 'DTEND;VALUE=DATE:' + dt(end),
           'SUMMARY:' + fold(e.title), 'DESCRIPTION:' + fold(e.desc || ''),
-          e.url ? 'URL:' + e.url : '', 'BEGIN:VALARM', 'TRIGGER:-P30D', 'ACTION:DISPLAY',
-          'DESCRIPTION:' + fold('30 days to: ' + e.title), 'END:VALARM', 'END:VEVENT');
+          e.url ? 'URL:' + e.url : '',
+          /* Two reminders, matching the server-side subscribable feed: 30 days
+             is when you can still decide not to, 7 days is when the internal
+             routing deadline has usually already passed. */
+          'BEGIN:VALARM', 'TRIGGER:-P30D', 'ACTION:DISPLAY',
+          'DESCRIPTION:' + fold('30 days to: ' + e.title), 'END:VALARM',
+          'BEGIN:VALARM', 'TRIGGER:-P7D', 'ACTION:DISPLAY',
+          'DESCRIPTION:' + fold('One week to: ' + e.title), 'END:VALARM', 'END:VEVENT');
       });
       L.push('END:VCALENDAR');
       TK.download(L.filter(Boolean).join('\r\n'), name, 'text/calendar');
