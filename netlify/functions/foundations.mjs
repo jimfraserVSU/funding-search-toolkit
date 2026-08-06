@@ -62,7 +62,16 @@ async function upstream(path) {
     headers: { accept: 'application/json', 'user-agent': UA },
     signal: ctl
   });
+  // ProPublica answers a search with zero hits using HTTP 404 and a perfectly
+  // valid body ({"total_results":0,...}). Verified 2026-08-06: q=Arnold Ventures
+  // and q=zzzznotarealorg both return 404 with total_results 0, while q=Kellogg
+  // returns 200 with 168. Treating 404 as a transport failure would report an
+  // empty search as "could not reach ProPublica", which is both wrong and
+  // alarming. So parse the body first and only throw if it isn't usable JSON.
   if (!r.ok) {
+    if (r.status === 404) {
+      try { return await r.json(); } catch { /* fall through to throw */ }
+    }
     const err = new Error(`ProPublica returned ${r.status}`);
     err.status = r.status;
     throw err;
@@ -118,16 +127,47 @@ async function doSearch(p) {
     return json({ error: 'Give a name, a state, or a category to search on.', results: [], total: 0 }, 400);
   }
 
-  const qs = new URLSearchParams();
-  if (q) qs.set('q', q);
-  if (page) qs.set('page', String(page));
-  if (/^[A-Z]{2}$/.test(state)) qs.set('state[id]', state);
-  if (/^\d{1,2}$/.test(ntee)) qs.set('ntee[id]', ntee);
-  qs.set('c_code[id]', '3'); // 501(c)(3) only — the only class that matters here
+  const build = (term) => {
+    const qs = new URLSearchParams();
+    if (term) qs.set('q', term);
+    if (page) qs.set('page', String(page));
+    if (/^[A-Z]{2}$/.test(state)) qs.set('state[id]', state);
+    if (/^\d{1,2}$/.test(ntee)) qs.set('ntee[id]', ntee);
+    qs.set('c_code[id]', '3'); // 501(c)(3) only — the only class that matters here
+    return '/search.json?' + qs.toString();
+  };
 
-  let d;
+  // The upstream index matches literally, so punctuation and long legal names
+  // sink a search: "W.K. Kellogg Foundation" returns nothing while "Kellogg"
+  // returns 168. Rather than show a dead end, broaden once and say so.
+  // Two steps, both conservative. First drop punctuation, which is what usually
+  // breaks the match ("W.K. Kellogg Foundation" -> "W K Kellogg Foundation").
+  // Then keep only the last two words, because donor names are front-loaded
+  // ("John D and Catherine T MacArthur Foundation" -> "MacArthur Foundation").
+  // An earlier version fell back to the single longest word; that turned
+  // "MacArthur" into "Catherine" and returned 626 irrelevant charities, so the
+  // fallback is deliberately narrow. If neither step finds anything we return
+  // zero results and say so, which is more useful than a page of noise.
+  const broader = (term) => {
+    const stripped = term.replace(/[.,'’"()]/g, ' ').replace(/\s+/g, ' ').trim();
+    if (stripped && stripped.toLowerCase() !== term.toLowerCase()) return stripped;
+    const words = stripped.split(/\s+/).filter(Boolean);
+    if (words.length > 2) return words.slice(-2).join(' ');
+    return null;
+  };
+
+  let d, broadenedTo = null;
   try {
-    d = await upstream('/search.json?' + qs.toString());
+    d = await upstream(build(q));
+    if (q && !(d.total_results > 0)) {
+      let term = q;
+      for (let i = 0; i < 2; i++) {
+        term = broader(term);
+        if (!term) break;
+        const alt = await upstream(build(term));
+        if (alt.total_results > 0) { d = alt; broadenedTo = term; break; }
+      }
+    }
   } catch (e) {
     return json({ error: 'Could not reach ProPublica right now. Try again shortly.', results: [], total: 0 }, 504);
   }
@@ -152,6 +192,8 @@ async function doSearch(p) {
       pages: d.num_pages || 0,
       perPage: d.per_page || results.length,
       results,
+      query: q,
+      broadenedTo,
       source: 'ProPublica Nonprofit Explorer (IRS Form 990 extracts)',
       fetched: new Date().toISOString()
     },
