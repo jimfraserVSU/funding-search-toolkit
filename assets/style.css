@@ -6,7 +6,7 @@
   --ink:#1E2721; --bg:#F4EFE3; --cream:#F4EFE3; --paper:#FFFDF6;
   --tint:#EAE2CF; --line:#DCD3BC; --line-s:#EDE6D6; --muted:#63614F;
   --green:#1F4D3A; --deep:#14291F; --olive:#4E6E58;
-  --rust:#B34A1E; --rust-d:#8E3A16; --amber:#8A5C10; --sand:#DFA765;
+  --rust:#0E3B40; --rust-d:#0A2C30; --amber:#8A5C10; --sand:#3AA6A3;
   /* semantic */
   --ok:#1F4D3A; --warn:#8A5C10; --danger:#9B2C14; --info:#4E6E58;
   --r:6px;
@@ -124,7 +124,7 @@ textarea{min-height:110px;resize:vertical;font-size:.9rem}
 .res .elig{font-size:.85rem;color:var(--muted);margin:.5rem 0 0;padding-top:.5rem;border-top:1px dotted var(--line)}
 .chips{display:flex;flex-wrap:wrap;gap:.32rem;margin:.55rem 0 0}
 .chip{font-size:.66rem;font-weight:700;padding:.18rem .5rem;border-radius:20px;background:var(--tint);color:var(--green);border:1px solid var(--line);letter-spacing:.04em;text-transform:uppercase}
-.chip.hbcu{background:#F6E3D6;border-color:#E3B392;color:var(--rust-d)}
+.chip.hbcu{background:#DCE9EA;border-color:#9EC2C4;color:var(--rust-d)}
 .chip.eval{background:#DCE8E0;border-color:#AFC9B9;color:var(--green)}
 .chip.new{background:#F1E6CC;border-color:#DFC98F;color:var(--amber)}
 .star{background:none;border:0;cursor:pointer;font-size:1.25rem;line-height:1;color:var(--muted);padding:0 0 0 .5rem;float:right}
@@ -210,7 +210,7 @@ footer.site strong{color:var(--cream);font-family:var(--serif);font-weight:600}
 .prompt.doc .copy{background:var(--green);color:var(--cream)}
 .prompt.doc .copy:hover{background:var(--rust)}
 .prompt.doc .copy.done{background:var(--olive)}
-.need{background:#F6E3D6;color:var(--rust-d);font-weight:700;padding:.05em .3em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.need{background:#DCE9EA;color:var(--rust-d);font-weight:700;padding:.05em .3em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .idgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.6rem;margin:1rem 0}
 .idcell{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:.6rem .8rem}
 .idcell b{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--rust);font-family:var(--sans);font-weight:700}
